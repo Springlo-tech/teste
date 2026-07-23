@@ -1,29 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebAR 3D Book Demo - Springlo Tech</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview 3D & WebAR | Experiências Interativas para Livros</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #3b82f6;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
 
-    <!-- Open Graph / Instagram / WhatsApp / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://springlo-tech.github.io/teste/">
-    <meta property="og:title" content="WebAR 3D Book Experience for Authors">
-    <meta property="og:description" content="Project interactive 3D books directly into your room using WebAR. No app download required!">
-    <meta property="og:image" content="https://springlo-tech.github.io/teste/og-preview.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Demonstração 3D interativa de um livro em realidade aumentada.">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://springlo-tech.github.io/teste/">
-    <meta name="twitter:title" content="WebAR 3D Book Experience for Authors">
-    <meta name="twitter:description" content="Project interactive 3D books directly into your room using WebAR. No app download required!">
-    <meta name="twitter:image" content="https://springlo-tech.github.io/teste/og-preview.jpg">
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #60a5fa, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .links-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card-link {
+      background-color: var(--card-bg);
+      border: 1px solid #334155;
+      padding: 18px 24px;
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .card-link:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+    }
+
+    .card-link .arrow {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    footer {
+      margin-top: 48px;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>WebAR 3D Book Demo</h1>
-    <p>Página de teste com tags Open Graph ativas.</p>
+
+  <div class="container">
+    <h1>3D Preview & Augmented Reality</h1>
+    <p class="subtitle">
+      Transforming stories and static pages into memorable, interactive digital experiences.</p>
+
+
+    <!-- Lista de Links para os Clientes / Demonstrativos -->
+    <div class="links-grid">
+
+      <!-- Link para o Projeto A 
+      <a href="https://springlo-tech.github.io/TestePreview/book-JA001/" class="card-link">
+        <span>Demonstração: Dragon's Reach</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+
+       
+      <a href="https://springlo-tech.github.io/TestePreview/book-template/" class="card-link">
+        <span>Demonstração: Projeto Exemplo B</span>
+        <span class="arrow">&rarr;</span>
+      </a> 
+     
+
+    </div>-->
+
+      <footer>
+        &copy; 2026 Preview WebAR. Todos os direitos reservados.
+      </footer>
+    </div>
+
 </body>
+
 </html>
