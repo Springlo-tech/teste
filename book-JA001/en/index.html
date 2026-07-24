@@ -26,7 +26,7 @@
     <meta name="twitter:image" content="https://springlo-tech.github.io/teste/book-JA001/assets/modelos/og-preview.jpg">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js" defer></script>
@@ -73,7 +73,7 @@
 
 
                 <div class="hero-visual">
-                    <model-viewer id="capa-3d" src="assets/modelos/capa.glb" camera-controls
+                    <model-viewer id="capa-3d" src="../assets/modelos/capa.glb" camera-controls
                         camera-orbit="0deg 75deg 4m" field-of-view="50deg" shadow-intensity="1"
                         min-camera-orbit="auto auto 2m" max-camera-orbit="auto auto 4m"
                         style="width: 100%; height: 560px;">
@@ -111,10 +111,10 @@
                             </ul>
                         </div>
                         <div class="phone-frame">
-                            <model-viewer id="modelo-ar" src="assets/modelos/dragao.glb"
-                                ios-src="assets/modelos/dragao.usdz" ar ar-placement="floor" ar-scale="auto"
+                            <model-viewer id="modelo-ar" src="../assets/modelos/dragao.glb"
+                                ios-src="../assets/modelos/dragao.usdz" ar ar-placement="floor" ar-scale="auto"
                                 ar-modes="webxr scene-viewer quick-look" autoplay animation-name="All Animations"
-                                poster="assets/modelos/imagem.webp" reveal="manual" camera-controls>
+                                poster="../assets/modelos/imagem.webp" reveal="manual" camera-controls>
 
                                 <button slot="ar-button" class="ar-button-trigger">
                                     View in Augmented Reality
@@ -130,7 +130,7 @@
                         <!-- Overlay de instrução (Tela Imagem 2) - Inicialmente escondido -->
                         <div id="ar-overlay" class="ar-instruction-overlay" style="display: none;">
                             <div class="overlay-content">
-                                <img src="assets/modelos/imagem.webp" alt="Preview" class="preview-img">
+                                <img src="../assets/modelos/imagem.webp" alt="Preview" class="preview-img">
                                 <p>📲 Tap para ver em Realidade Aumentada</p>
                                 <button id="start-ar-from-overlay" class="btn-start-ar">Visualizar em Realidade
                                     Aumentada</button>
@@ -147,7 +147,7 @@
             <div class="container grid-author">
 
                 <div class="author-photo">
-                    <img src="assets/modelos/autor.webp" alt="S. S. E">
+                    <img src="../assets/modelos/autor.webp" alt="S. S. E">
 
                 </div>
 
@@ -225,7 +225,7 @@
         </div>
     </footer>
 
-    <script src="ar.js"></script>
+    <script src="../ar.js"></script>
 </body>
 
 </html>
