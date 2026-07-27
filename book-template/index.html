@@ -11,14 +11,15 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js" defer></script>
-    
+
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://springlo-tech.github.io/teste/book-template/">
     <meta property="og:title" content="Experiência de Livro 3D em WebAR para Autores">
     <meta property="og:description"
         content="Projete livros 3D interativos diretamente no seu espaço usando WebAR. Sem necessidade de baixar aplicativos!">
-    <meta property="og:image" content="https://springlo-tech.github.io/teste/book-template/assets/modelos/og-preview.jpg">
+    <meta property="og:image"
+        content="https://springlo-tech.github.io/teste/book-template/assets/modelos/og-preview.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Demonstração de livro 3D interativo em realidade aumentada.">
@@ -29,7 +30,8 @@
     <meta name="twitter:title" content="Experiência de Livro 3D em WebAR para Autores">
     <meta name="twitter:description"
         content="Projete livros 3D interativos diretamente no seu espaço usando WebAR. Sem necessidade de baixar aplicativos!">
-    <meta name="twitter:image" content="https://springlo-tech.github.io/teste/book-template/assets/modelos/og-preview-pt.jpg">
+    <meta name="twitter:image"
+        content="https://springlo-tech.github.io/teste/book-template/assets/modelos/og-preview-pt.jpg">
 </head>
 
 <body>
@@ -55,7 +57,8 @@
                     <span class="tagline">O essencial é invisível aos olhos, mas não à sua imaginação</span>
                     <h1>UMA JORNADA ENTRE ESTRELAS E DESERTOS</h1>
                     <p class="description">
-                        Em um universo de asteroides distantes e lições esquecidas, um pequeno viajante nos lembra que a verdadeira
+                        Em um universo de asteroides distantes e lições esquecidas, um pequeno viajante nos lembra que a
+                        verdadeira
                         sabedoria está nas conexões. Reencontre um clássico que transcende gerações, agora em uma
                         experiência imersiva que rompe os limites da página e ganha vida no seu próprio espaço.
                     </p>
@@ -111,19 +114,34 @@
                                 <button slot="ar-button" class="ar-button-trigger">
                                     Ver em Realidade Aumentada
                                 </button>
+
+                                <!-- BARRA DE CONTROLES CUSTOMIZADA (Aparece em WebXR) -->
+                                <div id="ar-media-controls" class="ar-controls-bar" style="display: none;">
+                                    <button id="btn-take-photo" class="btn-ar-action" title="Tirar Foto">📸</button>
+                                    <button id="btn-record-video" class="btn-ar-action" title="Gravar Vídeo">🔴</button>
+                                </div>
                             </model-viewer>
+                        </div>
+                    </div>
+                    <!-- Modal / Preview do arquivo gerado -->
+                    <div id="media-preview-modal" class="preview-modal" style="display: none;">
+                        <div class="modal-content">
+                            <span id="close-modal" class="close-btn">&times;</span>
+                            <div id="preview-container"></div>
+                            <a id="download-link" class="btn-download" download="captura-ar">Baixar Arquivo</a>
                         </div>
                     </div>
                     <div class="qr-code-wrapper">
                         <p class="qr-text">Escaneie com seu celular para ver em RA</p>
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://springlo-tech.github.io/teste/book-template?mode=ar#modelo-ar"
                             alt="QR Code RA">
-                        
+
                         <div id="ar-overlay" class="ar-instruction-overlay" style="display: none;">
                             <div class="overlay-content">
                                 <img src="assets/modelos/imagem-pt.webp" alt="Prévia" class="preview-img">
                                 <p>📲 Toque para ver em Realidade Aumentada</p>
-                                <button id="start-ar-from-overlay" class="btn-start-ar">Visualizar em Realidade Aumentada</button>
+                                <button id="start-ar-from-overlay" class="btn-start-ar">Visualizar em Realidade
+                                    Aumentada</button>
                             </div>
                         </div>
                     </div>
@@ -142,7 +160,8 @@
                 <div class="author-info">
                     <span class="tagline-gold">SOBRE O AUTOR</span>
 
-                    <p>Escritor, sonhador e apaixonado por histórias que transportam os leitores para outros mundos. Suas obras
+                    <p>Escritor, sonhador e apaixonado por histórias que transportam os leitores para outros mundos.
+                        Suas obras
                         já tocaram a vida de milhares de leitores ao redor do mundo.</p>
                 </div>
 
@@ -178,7 +197,8 @@
                 <div class="grid-testimonials">
                     <div class="testimonial-card">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"Uma história envolvente do começo ao fim! Personagens incríveis e um mundo que parece incrivelmente
+                        <p>"Uma história envolvente do começo ao fim! Personagens incríveis e um mundo que parece
+                            incrivelmente
                             real."</p>
                         <span class="testimonial-author">— Juliana R.</span>
                     </div>
@@ -201,7 +221,8 @@
 
     <footer class="footer-legal">
         <div class="container">
-            <p>Projeto desenvolvido para fins de demonstração técnica. Personagens baseados na obra em domínio público de
+            <p>Projeto desenvolvido para fins de demonstração técnica. Personagens baseados na obra em domínio público
+                de
                 Antoine de Saint-Exupéry.</p>
             <div class="footer-credits">
                 <span>© 2026 Springlo Tech - Soluções em RA</span>

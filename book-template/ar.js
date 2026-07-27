@@ -6,96 +6,139 @@ document.addEventListener("DOMContentLoaded", function () {
     const startButton = document.getElementById("start-ar-from-overlay");
     const modelViewer = document.getElementById("modelo-ar");
 
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const arControls = document.getElementById("ar-media-controls");
+    const btnPhoto = document.getElementById("btn-take-photo");
+    const btnRecord = document.getElementById("btn-record-video");
+    
+    const previewModal = document.getElementById("media-preview-modal");
+    const previewContainer = document.getElementById("preview-container");
+    const downloadLink = document.getElementById("download-link");
+    const closeModal = document.getElementById("close-modal");
 
-    if (isAndroid && modelViewer) {
-        modelViewer.scale = "2.5 2.5 2.5";
-    }
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let isRecording = false;
 
-    function showOverlay() {
-        if (!overlay) return;
-
-        if (modelViewer) {
-            modelViewer.scrollIntoView({ 
-                behavior: isIOS ? "auto" : "smooth", 
-                block: "center" 
-            });
-        }
-
-        overlay.classList.add("overlay-active");
-    }
-
-    function hideOverlay() {
-        if (!overlay) return;
-
-        // Remove a classe do overlay
-        overlay.classList.remove("overlay-active");
-
-        // Tirar o foco de botões para fechar eventuais seleções virtuais do iOS
-        if (document.activeElement) {
-            document.activeElement.blur();
-        }
-
-        // TRUQUE DEFINITIVO PARA SAFARI/iOS:
-        // Força a remoção de trava de gestos no body e reavalia a viewport
-        if (isIOS) {
-            document.body.style.pointerEvents = 'none';
-            
-            // Força um reflow síncrono para o Safari entender que a camada mudou
-            void document.body.offsetHeight;
-            
-            document.body.style.pointerEvents = '';
-        }
-    }
-
+    // Detecta status da sessão WebXR para exibir os botões na tela
     if (modelViewer) {
         modelViewer.addEventListener('ar-status', (event) => {
-            if (event.detail.status === 'not-presenting' || event.detail.status === 'failed') {
+            if (event.detail.status === 'session-started') {
+                // Se a sessão iniciou via WebXR (Inline AR)
+                if (arControls) arControls.style.display = 'flex';
+            } else if (event.detail.status === 'not-presenting' || event.detail.status === 'failed') {
+                if (arControls) arControls.style.display = 'none';
                 hideOverlay();
             }
         });
     }
 
-    function startAR() {
-        if (!modelViewer) {
-            alert("AR model not found on this page.");
+    // --- LÓGICA DE CAPTURA DE FOTO ---
+    if (btnPhoto) {
+        btnPhoto.addEventListener("click", async () => {
+            try {
+                // Tira o snapshot direto da renderização 3D/Câmera
+                const blob = await modelViewer.toBlob({ idealAspect: true, mimeType: 'image/png' });
+                const url = URL.createObjectURL(blob);
+                
+                showPreview(url, 'image');
+            } catch (err) {
+                console.error("Erro ao tirar foto:", err);
+                alert("Não foi possível tirar a foto neste dispositivo.");
+            }
+        });
+    }
+
+    // --- LÓGICA DE GRAVAÇÃO DE VÍDEO (MediaRecorder) ---
+    if (btnRecord) {
+        btnRecord.addEventListener("click", () => {
+            if (!isRecording) {
+                startRecording();
+            } else {
+                stopRecording();
+            }
+        });
+    }
+
+    function startRecording() {
+        recordedChunks = [];
+        // Pega o elemento Canvas renderizado internamente pelo <model-viewer>
+        const canvas = modelViewer.shadowRoot ? modelViewer.shadowRoot.querySelector('canvas') : modelViewer.querySelector('canvas');
+        
+        if (!canvas) {
+            alert("Canvas de renderização não encontrado.");
             return;
         }
 
-        hideOverlay();
+        const stream = canvas.captureStream(30); // 30 FPS
+        const options = { mimeType: 'video/webm;codecs=vp9' };
+        
+        // Fallback de codecs para iOS/Safari
+        if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+            options.mimeType = 'video/mp4';
+        }
 
         try {
-            if (typeof modelViewer.dismissPoster === "function") {
-                modelViewer.dismissPoster();
-            }
-            modelViewer.play();
+            mediaRecorder = new MediaRecorder(stream, options);
+        } catch (e) {
+            console.error("MimeType não suportado:", e);
+            mediaRecorder = new MediaRecorder(stream);
+        }
 
-            if (typeof modelViewer.activateAR === "function") {
-                modelViewer.activateAR();
-            } else {
-                const nativeArButton = modelViewer.querySelector('[slot="ar-button"]');
-
-                if (nativeArButton) {
-                    nativeArButton.click();
-                } else {
-                    alert("Augmented Reality is not available on this device/browser.");
-                }
+        mediaRecorder.ondataavailable = (event) => {
+            if (event.data.size > 0) {
+                recordedChunks.push(event.data);
             }
-        } catch (error) {
-            console.error("Error starting AR:", error);
-            alert("Unable to start Augmented Reality on this device/browser.");
+        };
+
+        mediaRecorder.onstop = () => {
+            const blob = new Blob(recordedChunks, { type: mediaRecorder.mimeType || 'video/mp4' });
+            const url = URL.createObjectURL(blob);
+            showPreview(url, 'video');
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        btnRecord.classList.add("recording");
+        btnRecord.innerText = "⏹️";
+    }
+
+    function stopRecording() {
+        if (mediaRecorder && isRecording) {
+            mediaRecorder.stop();
+            isRecording = false;
+            btnRecord.classList.remove("recording");
+            btnRecord.innerText = "🔴";
         }
     }
 
-    if (mode === "ar") {
-        showOverlay();
+    // Exibe o modal para salvar/baixar o arquivo gerado
+    function showPreview(url, type) {
+        previewContainer.innerHTML = "";
+        if (type === 'image') {
+            const img = document.createElement("img");
+            img.src = url;
+            img.style.maxWidth = "100%";
+            previewContainer.appendChild(img);
+            downloadLink.download = "foto-ar.png";
+        } else if (type === 'video') {
+            const video = document.createElement("video");
+            video.src = url;
+            video.controls = true;
+            video.autoplay = true;
+            video.style.maxWidth = "100%";
+            previewContainer.appendChild(video);
+            downloadLink.download = "video-ar.mp4";
+        }
+
+        downloadLink.href = url;
+        previewModal.style.display = "flex";
     }
 
-    if (startButton) {
-        startButton.addEventListener("click", function (event) {
-            event.preventDefault();
-            startAR();
+    if (closeModal) {
+        closeModal.addEventListener("click", () => {
+            previewModal.style.display = "none";
         });
     }
+
+    /* Restante das suas funções originais (showOverlay, hideOverlay, startAR) */
 });
