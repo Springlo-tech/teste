@@ -2,129 +2,189 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preview 3D & WebAR | Experiências Interativas para Livros</title>
-  <style>
-    :root {
-      --bg: #0f172a;
-      --card-bg: #1e293b;
-      --accent: #3b82f6;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriela Hollman | Nutricionista - Link na Bio</title>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    }
+    <!-- Tipografia elegante (Cormorant Garamond + Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/bio.css">
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
 
-    .container {
-      max-width: 600px;
-      width: 100%;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #60a5fa, #a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p.subtitle {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 32px;
-      line-height: 1.5;
-    }
-
-    .links-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .card-link {
-      background-color: var(--card-bg);
-      border: 1px solid #334155;
-      padding: 18px 24px;
-      border-radius: 12px;
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .card-link:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
-    }
-
-    .card-link .arrow {
-      color: var(--accent);
-      font-size: 1.2rem;
-    }
-
-    footer {
-      margin-top: 48px;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-    }
-  </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>3D Preview & Augmented Reality</h1>
-    <p class="subtitle">
-      Transforming stories and static pages into memorable, interactive digital experiences.</p>
+    <div class="mobile-container">
+        <div class="view-container">
 
+            <!-- PÁGINA PRINCIPAL (BIO MAGNÉTICA) -->
+            <div id="view-home" class="page-view active">
+                <header class="hero-header">
+                    <div class="brand-logo">Gabriela Hollman</div>
+                    <div class="profile-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400"
+                            alt="Dra. Gabriela Hollman">
+                    </div>
+                    <h1 class="profile-title">Gabriela Hollman</h1>
+                    <div class="profile-subtitle">Nutricionista Clínica & Esportiva</div>
+                    <p class="profile-bio">Alcance sua melhor performance com uma nutrição feita para o seu corpo! Sem
+                        restrições extremas e com resultados reais.</p>
+                </header>
 
-    <!-- Lista de Links para os Clientes / Demonstrativos -->
-    <div class="links-grid">
+                <!-- BOTÕES DA BIO -->
+                <div class="links-wrapper">
+                    <div class="nav-card" onclick="switchView('view-consulta')">
+                        <div class="nav-card-content">
+                            <div class="nav-card-icon">📋</div>
+                            <span class="nav-card-title">Consulta Nutricional</span>
+                        </div>
+                        <div class="nav-card-arrow">➔</div>
+                    </div>
 
-      <!-- Link para o Projeto A 
-      <a href="https://springlo-tech.github.io/TestePreview/book-JA001/" class="card-link">
-        <span>Demonstração: Dragon's Reach</span>
-        <span class="arrow">&rarr;</span>
-      </a>
+                    <div class="nav-card" onclick="switchView('view-sobre')">
+                        <div class="nav-card-content">
+                            <div class="nav-card-icon">👤</div>
+                            <span class="nav-card-title">Sobre Mim</span>
+                        </div>
+                        <div class="nav-card-arrow">➔</div>
+                    </div>
 
-       
-      <a href="https://springlo-tech.github.io/TestePreview/book-template/" class="card-link">
-        <span>Demonstração: Projeto Exemplo B</span>
-        <span class="arrow">&rarr;</span>
-      </a> 
-     
+                    <div class="nav-card" onclick="switchView('view-beneficios')">
+                        <div class="nav-card-content">
+                            <div class="nav-card-icon">✨</div>
+                            <span class="nav-card-title">Benefícios do Método</span>
+                        </div>
+                        <div class="nav-card-arrow">➔</div>
+                    </div>
 
-    </div>-->
+                    <!-- BOTÃO DE DESTAQUE PARA SITE COMPLETO (Estratégia de Venda) -->
 
-      <footer>
-        &copy; 2026 Preview WebAR. Todos os direitos reservados.
-      </footer>
-    </div>
+                    <a href="site.html" class="btn-full-site">
+                        🌐 Conhecer Site Completo
+                    </a>
 
+                    <!-- BARRA DE MÉTRICAS -->
+                    <div class="metrics-bar">
+                        <div class="metric-item">
+                            <div class="number">+500</div>
+                            <div class="label">Pacientes</div>
+                        </div>
+                        <div class="metric-divider"></div>
+                        <div class="metric-item">
+                            <div class="number">7 Anos</div>
+                            <div class="label">Experiência</div>
+                        </div>
+                        <div class="metric-divider"></div>
+                        <div class="metric-item">
+                            <div class="number">98%</div>
+                            <div class="label">Aprovação</div>
+                        </div>
+                    </div>
+
+                    <div class="cta-button-container">
+                        <a href="https://wa.me/" target="_blank" class="cta-btn">💬 Agende a sua Consulta</a>
+                    </div>
+
+                    <footer class="footer">
+                        <p>© 2026 Gabriela Hollman Nutricionista</p>
+                    </footer>
+                </div>
+
+                <!-- TELA INTERNA 1: CONSULTA NUTRICIONAL -->
+                <div id="view-consulta" class="page-view">
+                    <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
+
+                    <div class="inner-page-header">
+                        <h2>Consulta Nutricional</h2>
+                        <p>Um acompanhamento 100% individualizado para transformar sua saúde.</p>
+                    </div>
+
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <h4>Avaliação Completa</h4>
+                            <p>Análise detalhada do seu histórico de saúde, rotina e exames laboratoriais.</p>
+                        </div>
+                        <div class="service-card">
+                            <h4>Estratégia Personalizada</h4>
+                            <p>Ajustes específicos para recomposição corporal e ganho de massa magra.</p>
+                        </div>
+                        <div class="service-card">
+                            <h4>Plano Adaptado</h4>
+                            <p>Dieta calculada sob medida para a sua rotina real, sem restrições extremas.</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-button-container">
+                        <a href="https://wa.me/" target="_blank" class="cta-btn">Quero Agendar Minha Consulta</a>
+                    </div>
+                </div>
+
+                <!-- TELA INTERNA 2: SOBRE MIM -->
+                <div id="view-sobre" class="page-view">
+                    <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
+
+                    <div class="inner-page-header">
+                        <h2>Sobre Gabriela Hollman</h2>
+                    </div>
+
+                    <div class="about-card">
+                        <p>Acredito que a nutrição vai muito além de contar calorias. É sobre energia, disposição,
+                            autoestima e longevidade.<br><br>Com mais de 7 anos de experiência, ajudo pacientes a
+                            alcançarem sua melhor versão física sem abrir mão da vida social.</p>
+                    </div>
+
+                    <div class="cta-button-container">
+                        <a href="https://wa.me/" target="_blank" class="cta-btn">Falar no WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- TELA INTERNA 3: BENEFÍCIOS -->
+                <div id="view-beneficios" class="page-view">
+                    <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
+
+                    <div class="inner-page-header">
+                        <h2>Benefícios do Método</h2>
+                    </div>
+
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div class="benefit-text">
+                                <h5>Melhoria no Desempenho Físico</h5>
+                                <p>Tenha mais força e energia para seus treinos.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div class="benefit-text">
+                                <h5>Recomposição Corporal Eficaz</h5>
+                                <p>Perca gordura e preserve a massa magra de forma saudável.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cta-button-container">
+                        <a href="https://wa.me/" target="_blank" class="cta-btn">Iniciar Minha Transformação</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            function switchView(viewId) {
+                const views = document.querySelectorAll('.page-view');
+                views.forEach(view => view.classList.remove('active'));
+                const targetView = document.getElementById(viewId);
+                if (targetView) targetView.classList.add('active');
+                document.querySelector('.mobile-container').scrollTop = 0;
+            }
+        </script>
 </body>
 
 </html>
