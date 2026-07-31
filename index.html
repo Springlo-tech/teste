@@ -14,7 +14,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/bio.css">
 
-
 </head>
 
 <body>
@@ -61,130 +60,127 @@
                         </div>
                         <div class="nav-card-arrow">➔</div>
                     </div>
-
-                    <!-- BOTÃO DE DESTAQUE PARA SITE COMPLETO (Estratégia de Venda) -->
-
-                    <a href="site.html" class="btn-full-site">
-                        🌐 Conhecer Site Completo
-                    </a>
-
-                    <!-- BARRA DE MÉTRICAS -->
-                    <div class="metrics-bar">
-                        <div class="metric-item">
-                            <div class="number">+500</div>
-                            <div class="label">Pacientes</div>
-                        </div>
-                        <div class="metric-divider"></div>
-                        <div class="metric-item">
-                            <div class="number">7 Anos</div>
-                            <div class="label">Experiência</div>
-                        </div>
-                        <div class="metric-divider"></div>
-                        <div class="metric-item">
-                            <div class="number">98%</div>
-                            <div class="label">Aprovação</div>
-                        </div>
-                    </div>
-
-                    <div class="cta-button-container">
-                        <a href="https://wa.me/" target="_blank" class="cta-btn">💬 Agende a sua Consulta</a>
-                    </div>
-
-                    <footer class="footer">
-                        <p>© 2026 Gabriela Hollman Nutricionista</p>
-                    </footer>
                 </div>
-
-                <!-- TELA INTERNA 1: CONSULTA NUTRICIONAL -->
-                <div id="view-consulta" class="page-view">
-                    <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
-
-                    <div class="inner-page-header">
-                        <h2>Consulta Nutricional</h2>
-                        <p>Um acompanhamento 100% individualizado para transformar sua saúde.</p>
+                <a href="site.html" class="btn-full-site">
+                    🌐 Conhecer Site Completo
+                </a>
+                <!-- BARRA DE MÉTRICAS -->
+                <div class="metrics-bar">
+                    <div class="metric-item">
+                        <div class="number">+500</div>
+                        <div class="label">Pacientes</div>
                     </div>
-
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <h4>Avaliação Completa</h4>
-                            <p>Análise detalhada do seu histórico de saúde, rotina e exames laboratoriais.</p>
-                        </div>
-                        <div class="service-card">
-                            <h4>Estratégia Personalizada</h4>
-                            <p>Ajustes específicos para recomposição corporal e ganho de massa magra.</p>
-                        </div>
-                        <div class="service-card">
-                            <h4>Plano Adaptado</h4>
-                            <p>Dieta calculada sob medida para a sua rotina real, sem restrições extremas.</p>
-                        </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-item">
+                        <div class="number">7 Anos</div>
+                        <div class="label">Experiência</div>
                     </div>
-
-                    <div class="cta-button-container">
-                        <a href="https://wa.me/" target="_blank" class="cta-btn">Quero Agendar Minha Consulta</a>
+                    <div class="metric-divider"></div>
+                    <div class="metric-item">
+                        <div class="number">98%</div>
+                        <div class="label">Aprovação</div>
                     </div>
                 </div>
 
-                <!-- TELA INTERNA 2: SOBRE MIM -->
-                <div id="view-sobre" class="page-view">
-                    <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
-
-                    <div class="inner-page-header">
-                        <h2>Sobre Gabriela Hollman</h2>
-                    </div>
-
-                    <div class="about-card">
-                        <p>Acredito que a nutrição vai muito além de contar calorias. É sobre energia, disposição,
-                            autoestima e longevidade.<br><br>Com mais de 7 anos de experiência, ajudo pacientes a
-                            alcançarem sua melhor versão física sem abrir mão da vida social.</p>
-                    </div>
-
-                    <div class="cta-button-container">
-                        <a href="https://wa.me/" target="_blank" class="cta-btn">Falar no WhatsApp</a>
-                    </div>
+                <div class="cta-button-container">
+                    <a href="https://wa.me/" target="_blank" class="cta-btn">💬 Agende a sua Consulta</a>
                 </div>
 
-                <!-- TELA INTERNA 3: BENEFÍCIOS -->
-                <div id="view-beneficios" class="page-view">
-                    <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
-
-                    <div class="inner-page-header">
-                        <h2>Benefícios do Método</h2>
-                    </div>
-
-                    <div class="benefits-list">
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div class="benefit-text">
-                                <h5>Melhoria no Desempenho Físico</h5>
-                                <p>Tenha mais força e energia para seus treinos.</p>
-                            </div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div class="benefit-text">
-                                <h5>Recomposição Corporal Eficaz</h5>
-                                <p>Perca gordura e preserve a massa magra de forma saudável.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cta-button-container">
-                        <a href="https://wa.me/" target="_blank" class="cta-btn">Iniciar Minha Transformação</a>
-                    </div>
-                </div>
-
+                <footer class="footer">
+                    <p>© 2026 Gabriela Hollman Nutricionista</p>
+                </footer>
             </div>
-        </div>
 
-        <script>
-            function switchView(viewId) {
-                const views = document.querySelectorAll('.page-view');
-                views.forEach(view => view.classList.remove('active'));
-                const targetView = document.getElementById(viewId);
-                if (targetView) targetView.classList.add('active');
-                document.querySelector('.mobile-container').scrollTop = 0;
-            }
-        </script>
+            <!-- TELA INTERNA 1: CONSULTA NUTRICIONAL -->
+            <div id="view-consulta" class="page-view">
+                <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
+
+                <div class="inner-page-header">
+                    <h2>Consulta Nutricional</h2>
+                    <p>Um acompanhamento 100% individualizado para transformar sua saúde.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h4>Avaliação Completa</h4>
+                        <p>Análise detalhada do seu histórico de saúde, rotina e exames laboratoriais.</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Estratégia Personalizada</h4>
+                        <p>Ajustes específicos para recomposição corporal e ganho de massa magra.</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Plano Adaptado</h4>
+                        <p>Dieta calculada sob medida para a sua rotina real, sem restrições extremas.</p>
+                    </div>
+                </div>
+
+                <div class="cta-button-container">
+                    <a href="https://wa.me/" target="_blank" class="cta-btn">Quero Agendar Minha Consulta</a>
+                </div>
+            </div>
+
+            <!-- TELA INTERNA 2: SOBRE MIM -->
+            <div id="view-sobre" class="page-view">
+                <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
+
+                <div class="inner-page-header">
+                    <h2>Sobre Gabriela Hollman</h2>
+                </div>
+
+                <div class="about-card">
+                    <p>Acredito que a nutrição vai muito além de contar calorias. É sobre energia, disposição,
+                        autoestima e longevidade.<br><br>Com mais de 7 anos de experiência, ajudo pacientes a alcançarem
+                        sua melhor versão física sem abrir mão da vida social.</p>
+                </div>
+
+                <div class="cta-button-container">
+                    <a href="https://wa.me/" target="_blank" class="cta-btn">Falar no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- TELA INTERNA 3: BENEFÍCIOS -->
+            <div id="view-beneficios" class="page-view">
+                <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
+
+                <div class="inner-page-header">
+                    <h2>Benefícios do Método</h2>
+                </div>
+
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                            <h5>Melhoria no Desempenho Físico</h5>
+                            <p>Tenha mais força e energia para seus treinos.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                            <h5>Recomposição Corporal Eficaz</h5>
+                            <p>Perca gordura e preserve a massa magra de forma saudável.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-button-container">
+                    <a href="https://wa.me/" target="_blank" class="cta-btn">Iniciar Minha Transformação</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function switchView(viewId) {
+            const views = document.querySelectorAll('.page-view');
+            views.forEach(view => view.classList.remove('active'));
+            const targetView = document.getElementById(viewId);
+            if (targetView) targetView.classList.add('active');
+            document.querySelector('.mobile-container').scrollTop = 0;
+        }
+    </script>
 </body>
 
 </html>
