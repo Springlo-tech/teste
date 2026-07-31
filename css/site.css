@@ -55,6 +55,47 @@ header {
   align-items: center;
 }
 
+/* MENU TRADICIONAL DE LANDING PAGE */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+
+/* Animação minimalista da linha dourada ao passar o mouse */
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 1.5px;
+  background-color: var(--gold-accent);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+}
+
+.nav-menu a:hover {
+  color: var(--green-dark);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
 .brand-logo {
   font-size: 20px;
   letter-spacing: 2px;

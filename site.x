@@ -4,38 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- SEO & METATAGS -->
-  <meta name="description" content="Alcance sua melhor performance com a Dra. Gabriela Hollman, Nutricionista Clínica e Esportiva.">
+  <!-- ========================================== -->
+  <!-- META TAGS DE SEO E COMPARTILHAMENTO (OG)   -->
+  <!-- ========================================== -->
+  <meta name="description" content="Alcance sua melhor performance com a Dra. Gabriela Hollman, Nutricionista Clínica e Esportiva. Planos sem restrições extremas e com resultados reais.">
+  <meta name="keywords" content="Nutricionista, Nutrição Clínica, Nutrição Esportiva, Emagrecimento, Hipertrofia, Dieta, Saúde, Gabriela Hollman">
   <meta name="author" content="Dra. Gabriela Hollman">
   <meta name="robots" content="index, follow">
 
+  <!-- Open Graph (Deixa o link bonito no WhatsApp, Instagram, LinkedIn) -->
+  <meta property="og:title" content="Dra. Gabriela Hollman | Nutrição Clínica & Esportiva">
+  <meta property="og:description" content="Planos alimentares sob medida para se adaptar à sua rotina real, conquistando saúde e estética em harmonia.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seusite.com.br/site">
+  <meta property="og:image" content="https://seusite.com.br/img/foto-perfil.jpg"> <!-- Link da imagem que vai aparecer no preview -->
+
   <title>Dra. Gabriela Hollman | Nutrição Clínica & Esportiva</title>
 
-  <!-- Google Fonts -->
+  <!-- ========================================================================= -->
+  <!-- 🎯 ATENÇÃO AGÊNCIA DE TRÁFEGO: INSERIR PIXEL (META/GOOGLE) AQUI ABAIXO  -->
+  <!-- ========================================================================= -->
+  <!-- Exemplo: <script> Código do Facebook Pixel ou Google Analytics (GTAG) </script> -->
+
+
+
+  <!-- ========================================== -->
+
+  <!-- Fontes Premium do Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Vínculo com o CSS -->
+  <!-- Vinculo com o CSS do Site Completo -->
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
-  <!-- NAVEGAÇÃO SUPERIOR ELEGANTE -->
-  <header class="site-header">
-    <div class="nav-container">
-      <!-- Marca / Logo -->
-      <a href="#" class="brand-logo">Gabriela Hollman</a>
-      
-      <!-- MENU TRADICIONAL DE LANDING PAGE -->
-      <nav class="nav-menu">
-        <a href="#sobre">Sobre</a>
-        <a href="#metodo">Para Quem É</a>
-        <a href="#passos">Como Funciona</a>
-      </nav>
+  <!-- ========================================================================= -->
+  <!-- 🎯 ATENÇÃO AGÊNCIA DE TRÁFEGO: INSERIR CÓDIGO NOSCRIPT (GTM) AQUI ABAIXO -->
+  <!-- ========================================================================= -->
+  <!-- Exemplo: <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXX" ...></iframe></noscript> -->
 
-      <!-- BOTÃO VOLTAR PARA A BIO (Aparece apenas se a URL tiver ?ref=bio) -->
-      <a href="index.html" id="btnBio" class="btn-back-bio" style="display: none;">
+
+
+  <!-- NAVEGAÇÃO SUPERIOR -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">Gabriela Hollman</a>
+      <!-- BOTÃO QUE VOLTA PARA A BIO -->
+      <a href="index.html" class="btn-back-bio">
         ← Voltar para Bio
       </a>
     </div>
@@ -64,7 +81,7 @@
   </section>
 
   <!-- PARA QUEM É -->
-  <section id="metodo" class="for-who">
+  <section class="for-who">
     <div class="container">
       <div class="section-header">
         <span class="section-subtitle">Acompanhamento Exclusivo</span>
@@ -94,7 +111,7 @@
   </section>
 
   <!-- PASSO A PASSO DA CONSULTA -->
-  <section id="passos" class="steps">
+  <section class="steps">
     <div class="container">
       <div class="section-header">
         <span class="section-subtitle">Como Funciona</span>
@@ -130,7 +147,7 @@
   </section>
 
   <!-- SOBRE MIM -->
-  <section id="sobre" class="about" style="background-color: var(--bg-cream-card);">
+  <section class="about" style="background-color: var(--bg-cream-card);">
     <div class="container">
       <div class="about-grid">
         <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=800" class="about-img" alt="Consultório Nutrição">
@@ -160,20 +177,6 @@
   <footer>
     <p>© 2026 Gabriela Hollman Nutrição. Todos os direitos reservados.</p>
   </footer>
-
-  <!-- CONTROLE DE NAVEGAÇÃO VIA PARÂMETRO DA BIO -->
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const origin = urlParams.get('ref');
-    
-    // O botão só fica visível se o link for acessado via ?ref=bio
-    if (origin === 'bio') {
-      const btnBio = document.getElementById('btnBio');
-      if (btnBio) {
-        btnBio.style.display = 'inline-flex';
-      }
-    }
-  </script>
 
 </body>
 </html>
