@@ -7,19 +7,19 @@
   <!-- ========================================== -->
   <!-- META TAGS DE SEO E COMPARTILHAMENTO (OG)   -->
   <!-- ========================================== -->
-  <meta name="description" content="Alcance sua melhor performance com a Dra. Gabriela Hollman, Nutricionista Clínica e Esportiva. Planos sem restrições extremas e com resultados reais.">
-  <meta name="keywords" content="Nutricionista, Nutrição Clínica, Nutrição Esportiva, Emagrecimento, Hipertrofia, Dieta, Saúde, Gabriela Hollman">
-  <meta name="author" content="Dra. Gabriela Hollman">
+  <meta name="description" content="Alcance sua melhor performance com a Dra. Gabriela H., Nutricionista Clínica e Esportiva. Planos sem restrições extremas e com resultados reais.">
+  <meta name="keywords" content="Nutricionista, Nutrição Clínica, Nutrição Esportiva, Emagrecimento, Hipertrofia, Dieta, Saúde, Gabriela H.">
+  <meta name="author" content="Dra. Gabriela H.">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph (Deixa o link bonito no WhatsApp, Instagram, LinkedIn) -->
-  <meta property="og:title" content="Dra. Gabriela Hollman | Nutrição Clínica & Esportiva">
+  <meta property="og:title" content="Dra. Gabriela H. | Nutrição Clínica & Esportiva">
   <meta property="og:description" content="Planos alimentares sob medida para se adaptar à sua rotina real, conquistando saúde e estética em harmonia.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://seusite.com.br/site">
   <meta property="og:image" content="https://seusite.com.br/img/foto-perfil.jpg"> <!-- Link da imagem que vai aparecer no preview -->
 
-  <title>Dra. Gabriela Hollman | Nutrição Clínica & Esportiva</title>
+  <title>Dra. Gabriela H. | Nutrição Clínica & Esportiva</title>
 
   <!-- ========================================================================= -->
   <!-- 🎯 ATENÇÃO AGÊNCIA DE TRÁFEGO: INSERIR PIXEL (META/GOOGLE) AQUI ABAIXO  -->
@@ -50,7 +50,7 @@
   <!-- NAVEGAÇÃO SUPERIOR -->
   <header>
     <div class="nav-container">
-      <a href="index.html" class="brand-logo">Gabriela Hollman</a>
+      <a href="index.html" class="brand-logo">Gabriela H.</a>
       <!-- BOTÃO QUE VOLTA PARA A BIO -->
       <a href="index.html" class="btn-back-bio">
         ← Voltar para Bio
@@ -70,7 +70,7 @@
         </div>
 
         <div class="hero-image-wrapper">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" class="hero-img" alt="Dra. Gabriela Hollman">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" class="hero-img" alt="Dra. Gabriela H.">
           <div class="hero-badge">
             <strong>+500 Pacientes</strong>
             <span>Transformados com o Método</span>
@@ -153,7 +153,7 @@
         <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=800" class="about-img" alt="Consultório Nutrição">
         <div class="about-text">
           <span class="section-subtitle">Conheça a Profissional</span>
-          <h2 class="section-title" style="margin-bottom: 20px;">Dra. Gabriela Hollman</h2>
+          <h2 class="section-title" style="margin-bottom: 20px;">Dra. Gabriela H.</h2>
           <p>Com mais de 7 anos de experiência clínica e esportiva, meu objetivo principal é desmistificar a nutrição e provar que alcançar o corpo desejado não precisa ser um processo doloroso.</p>
           <p>Acredito no poder da individualidade biológica e no equilíbrio entre ciência e rotina real. Cada estratégia é desenvolvida para que você alcance sua melhor versão de forma definitiva.</p>
           <a href="https://wa.me/" target="_blank" class="btn-primary" style="margin-top: 10px;">Agendar Primeira Consulta</a>
@@ -175,7 +175,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 Gabriela Hollman Nutrição. Todos os direitos reservados.</p>
+    <p>© 2026 Gabriela H. Nutrição. Todos os direitos reservados.</p>
   </footer>
 
 </body>
