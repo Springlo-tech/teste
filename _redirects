@@ -1,0 +1,8 @@
+# Mapeia a URL limpa /florlotus para o parâmetro ?cliente=A
+/florlotus   /index.html?cliente=A  200
+
+# Mapeia a URL limpa /florrosa para o parâmetro ?cliente=B
+/florrosa    /index.html?cliente=B  200
+
+# Mapeia a URL limpa /flordocampo para o parâmetro ?cliente=C
+/flordocampo /index.html?cliente=C  200

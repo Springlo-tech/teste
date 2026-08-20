@@ -2,186 +2,344 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriela H. | Nutricionista - Link na Bio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartão AR - Personalizado</title>
 
-    <!-- Tipografia elegante (Cormorant Garamond + Montserrat) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="css/bio.css">
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 
+  <!-- MindAR -->
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
+
+  <!-- Animation Mixer -->
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #333;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      text-align: center;
+    }
+
+    #start-button {
+      padding: 15px 30px;
+      background-color: #007bff;
+      color: white;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    #start-button:active {
+      transform: scale(0.97);
+    }
+
+    #logo-cliente {
+      width: 120px;
+      max-height: 120px;
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+
+    #minha-cena {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="mobile-container">
-        <div class="view-container">
+  <!-- ========================================================= -->
+  <!-- TELA INICIAL -->
+  <!-- ========================================================= -->
+  <div id="splash-screen">
+    <img id="logo-cliente" src="" alt="Logo Personalizado">
+    <h2 id="titulo-cliente"></h2>
+    <p>Toque para iniciar a câmera e ativar o som</p>
+    <button id="start-button">Iniciar</button>
+  </div>
 
-            <!-- PÁGINA PRINCIPAL (BIO MAGNÉTICA) -->
-            <div id="view-home" class="page-view active">
-                <header class="hero-header">
-                    <div class="brand-logo">Gabriela H.</div>
-                    <div class="profile-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400"
-                            alt="Dra. Gabriela H.">
-                    </div>
-                    <h1 class="profile-title">Gabriela H.</h1>
-                    <div class="profile-subtitle">Nutricionista Clínica & Esportiva</div>
-                    <p class="profile-bio">Alcance sua melhor performance com uma nutrição feita para o seu corpo! Sem
-                        restrições extremas e com resultados reais.</p>
-                </header>
+  <!-- ========================================================= -->
+  <!-- CENA AR -->
+  <!-- ========================================================= -->
+  <a-scene 
+    id="minha-cena" 
+    mindar-image="imageTargetSrc: markers/targets_BAPC.mind; maxTrack: 1;" 
+    gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;" 
+    color-space="sRGB" 
+    renderer="colorManagement: true; physicallyCorrectLights: false; exposure: 1.3;"
+    vr-mode-ui="enabled: false" 
+    device-orientation-permission-ui="enabled: false">
+    
+    <a-light type="ambient" color="#FFFFFF" intensity="1.8"></a-light>
 
-                <!-- BOTÕES DA BIO -->
-                <div class="links-wrapper">
-                    <div class="nav-card" onclick="switchView('view-consulta')">
-                        <div class="nav-card-content">
-                            <div class="nav-card-icon">📋</div>
-                            <span class="nav-card-title">Consulta Nutricional</span>
-                        </div>
-                        <div class="nav-card-arrow">➔</div>
-                    </div>
+    <!-- ======================================================= -->
+    <!-- ASSETS -->
+    <!-- ======================================================= -->
+    <a-assets timeout="10000">
+      <!-- Imagens -->
+      <img id="background-img0" src="assets/imagens/tubarao.jpg" crossorigin="anonymous">
+      <img id="background-img1" src="assets/imagens/FundoCartao.jpeg" crossorigin="anonymous">
+      <img id="background-img2" src="assets/imagens/FundoConvite.jpg" crossorigin="anonymous">
 
-                    <div class="nav-card" onclick="switchView('view-sobre')">
-                        <div class="nav-card-content">
-                            <div class="nav-card-icon">👤</div>
-                            <span class="nav-card-title">Sobre Mim</span>
-                        </div>
-                        <div class="nav-card-arrow">➔</div>
-                    </div>
+      <!-- Modelos 3D na pasta assets/modelos -->
+      <a-asset-item id="modeloTubarao" src="assets/modelos/tubarao.glb"></a-asset-item>
+      <a-asset-item id="modeloPresente" src="assets/modelos/presente.glb"></a-asset-item>
+      <a-asset-item id="modeloArvore" src="assets/modelos/arvoreNatal.glb"></a-asset-item>
+    </a-assets>
 
-                    <div class="nav-card" onclick="switchView('view-beneficios')">
-                        <div class="nav-card-content">
-                            <div class="nav-card-icon">✨</div>
-                            <span class="nav-card-title">Benefícios do Método</span>
-                        </div>
-                        <div class="nav-card-arrow">➔</div>
-                    </div>
-                </div>
-                <a href="site.html?ref=bio" class="btn-full-site">
-                    🌐 Conhecer Site Completo
-                </a>
+    <!-- CÂMERA -->
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-                <!-- BARRA DE MÉTRICAS -->
-                <div class="metrics-bar">
-                    <div class="metric-item">
-                        <div class="number">+500</div>
-                        <div class="label">Pacientes</div>
-                    </div>
-                    <div class="metric-divider"></div>
-                    <div class="metric-item">
-                        <div class="number">7 Anos</div>
-                        <div class="label">Experiência</div>
-                    </div>
-                    <div class="metric-divider"></div>
-                    <div class="metric-item">
-                        <div class="number">98%</div>
-                        <div class="label">Aprovação</div>
-                    </div>
-                </div>
+    <!-- ======================================================= -->
+    <!-- TARGET A (Index 0) -->
+    <!-- ======================================================= -->
+    <a-entity mindar-image-target="targetIndex: 0" id="targetA">
+       <a-plane src="#background-img0"
+           width="1.11" height="1.52"
+          position="0 0 -0.01"
+         material="shader: flat; transparent: true; opacity: 1;">
+      </a-plane>
 
-                <div class="cta-button-container">
-                    <a href="https://wa.me/" target="_blank" class="cta-btn">💬 Agende a sua Consulta</a>
-                </div>
+   <a-gltf-model 
+        id="modelo-0" 
+        src="#modeloTubarao" 
+        scale="1 1 1" 
+        position="0 0 0.10" 
+        rotation="0 0 0"
+        visible="false" 
+        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    
+    </a-entity>
 
-                <footer class="footer">
-                    <p>© 2026 Gabriela H. Nutricionista</p>
-                </footer>
-            </div>
+    <!-- ======================================================= -->
+    <!-- TARGET B (Index 1) -->
+    <!-- ======================================================= -->
+    <a-entity mindar-image-target="targetIndex: 1" id="targetB">
+       <a-plane src="#background-img1"
+           width="1.11" height="1.52"
+          position="0 0 -0.01"
+         material="shader: flat; transparent: true; opacity: 1;">
+      </a-plane>
 
-            <!-- TELA INTERNA 1: CONSULTA NUTRICIONAL -->
-            <div id="view-consulta" class="page-view">
-                <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
+   <a-gltf-model 
+        id="modelo-1" 
+        src="#modeloArvore" 
+        scale="0.5 0.5 0.5" 
+        position="0 0 0.10" 
+        rotation="0 0 0"
+        visible="false" 
+        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    
+    </a-entity>
 
-                <div class="inner-page-header">
-                    <h2>Consulta Nutricional</h2>
-                    <p>Um acompanhamento 100% individualizado para transformar sua saúde.</p>
-                </div>
+    <!-- ======================================================= -->
+    <!-- TARGET C (Index 2) -->
+    <!-- ======================================================= -->
+   <a-entity mindar-image-target="targetIndex: 2" id="targetC">
+       <a-plane src="#background-img2"
+           width="1.11" height="1.52"
+          position="0 0 -0.01"
+         material="shader: flat; transparent: true; opacity: 1;">
+      </a-plane>
 
-                <div class="services-grid">
-                    <div class="service-card">
-                        <h4>Avaliação Completa</h4>
-                        <p>Análise detalhada do seu histórico de saúde, rotina e exames laboratoriais.</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>Estratégia Personalizada</h4>
-                        <p>Ajustes específicos para recomposição corporal e ganho de massa magra.</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>Plano Adaptado</h4>
-                        <p>Dieta calculada sob medida para a sua rotina real, sem restrições extremas.</p>
-                    </div>
-                </div>
+   <a-gltf-model 
+        id="modelo-2" 
+        src="#modeloPresente" 
+        scale="0.5 0.5 0.5" 
+        position="0 0 0.10" 
+        rotation="0 0 0"
+        visible="false" 
+        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    
+    </a-entity>
 
-                <div class="cta-button-container">
-                    <a href="https://wa.me/" target="_blank" class="cta-btn">Quero Agendar Minha Consulta</a>
-                </div>
-            </div>
+  </a-scene>
 
-            <!-- TELA INTERNA 2: SOBRE MIM -->
-            <div id="view-sobre" class="page-view">
-                <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
+  <!-- ========================================================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ========================================================= -->
+  <script>
+    // COMPONENTE - MUDANÇA DE COR
+    AFRAME.registerComponent('color-cycle-opt', {
+      schema: {
+        colors: { type: 'array', default: ['#ff0000', '#0000ff', '#000000'] },
+        interval: { type: 'number', default: 1000 }
+      },
+      init: function () {
+        this.colorIndex = 0;
+        this.materials = [];
+        this.intervalId = null;
+        this.el.addEventListener('model-loaded', this.setupMaterials.bind(this));
+      },
+      setupMaterials: function () {
+        const model = this.el.getObject3D('mesh');
+        if (!model) return;
 
-                <div class="inner-page-header">
-                    <h2>Sobre Gabriela H.</h2>
-                </div>
+        this.materials = [];
+        model.traverse((node) => {
+          if (node.isMesh && node.material) {
+            const nodeMaterials = Array.isArray(node.material) ? node.material : [node.material];
+            this.materials.push(...nodeMaterials);
+          }
+        });
 
-                <div class="about-card">
-                    <p>Acredito que a nutrição vai muito além de contar calorias. É sobre energia, disposição,
-                        autoestima e longevidade.<br><br>Com mais de 7 anos de experiência, ajudo pacientes a alcançarem
-                        sua melhor versão física sem abrir mão da vida social.</p>
-                </div>
+        if (this.intervalId) clearInterval(this.intervalId);
+        this.intervalId = setInterval(this.cycleColor.bind(this), this.data.interval);
+      },
+      cycleColor: function () {
+        if (this.materials.length === 0) return;
+        const newColor = this.data.colors[this.colorIndex];
 
-                <div class="cta-button-container">
-                    <a href="https://wa.me/" target="_blank" class="cta-btn">Falar no WhatsApp</a>
-                </div>
-            </div>
+        this.materials.forEach(material => {
+          if (material.emissive) {
+            if (newColor === '#000000') {
+              material.emissive.set(0x000000);
+              material.emissiveIntensity = 0;
+            } else {
+              material.emissive.set(newColor);
+              material.emissiveIntensity = 0.8;
+            }
+          }
+        });
 
-            <!-- TELA INTERNA 3: BENEFÍCIOS -->
-            <div id="view-beneficios" class="page-view">
-                <div class="back-btn" onclick="switchView('view-home')">← Voltar para Bio</div>
+        this.colorIndex = (this.colorIndex + 1) % this.data.colors.length;
+      },
+      remove: function () {
+        if (this.intervalId) clearInterval(this.intervalId);
+      }
+    });
 
-                <div class="inner-page-header">
-                    <h2>Benefícios do Método</h2>
-                </div>
+    // PARÂMETRO DA URL
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
 
-                <div class="benefits-list">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">✓</div>
-                        <div class="benefit-text">
-                            <h5>Melhoria no Desempenho Físico</h5>
-                            <p>Tenha mais força e energia para seus treinos.</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">✓</div>
-                        <div class="benefit-text">
-                            <h5>Recomposição Corporal Eficaz</h5>
-                            <p>Perca gordura e preserve a massa magra de forma saudável.</p>
-                        </div>
-                    </div>
-                </div>
+    // PERSONALIZAÇÃO DE LOGO E TÍTULO
+    const clienteParam = getQueryParam('cliente');
+    let logoPath = 'assets/imagens/logo-B.png';
+    let titulo = '';
 
-                <div class="cta-button-container">
-                    <a href="https://wa.me/" target="_blank" class="cta-btn">Iniciar Minha Transformação</a>
-                </div>
-            </div>
+    switch (clienteParam ? clienteParam.toUpperCase() : '') {
+      case 'A':
+        logoPath = 'assets/imagens/logo-A.png';
+        titulo = 'Presente de Natal - Cliente A';
+        break;
+      case 'B':
+        logoPath = 'assets/imagens/logo-B.png';
+        titulo = 'Boas Festas - Cliente B';
+        break;
+      case 'C':
+        logoPath = 'assets/imagens/logo-B.png';
+        titulo = 'Feliz Natal - Cliente C';
+        break;
+      case 'D':
+        logoPath = 'assets/imagens/logo-B.png';
+        titulo = 'Feliz Natal - Cliente D';
+        break;
+    }
 
-        </div>
-    </div>
+    document.getElementById('logo-cliente').src = logoPath;
+    document.getElementById('titulo-cliente').textContent = titulo;
 
-    <script>
-        function switchView(viewId) {
-            const views = document.querySelectorAll('.page-view');
-            views.forEach(view => view.classList.remove('active'));
-            const targetView = document.getElementById(viewId);
-            if (targetView) targetView.classList.add('active');
-            document.querySelector('.mobile-container').scrollTop = 0;
-        }
-    </script>
+    // SPLASH / CÂMERA
+    const splash = document.getElementById('splash-screen');
+    const startBtn = document.getElementById('start-button');
+    const scene = document.getElementById('minha-cena');
+
+    // ÁUDIOS
+    const audios = [
+      new Audio('assets/musicas/natal.mp3'),
+      new Audio('assets/musicas/natal.mp3'),
+      new Audio('assets/musicas/natal.mp3'),
+      new Audio('assets/musicas/casamento.mp3')
+    ];
+
+    audios.forEach(audio => {
+      audio.loop = true;
+      audio.preload = 'auto';
+    });
+
+    startBtn.addEventListener('click', () => {
+      splash.style.display = 'none';
+      scene.style.display = 'block';
+    });
+
+    // DEBUG DOS MODELOS
+    function debugModelo(modelo, nome) {
+      if (!modelo) return;
+      modelo.addEventListener('model-loaded', () => {
+        console.log('MODELO CARREGADO:', nome);
+      });
+      modelo.addEventListener('model-error', (event) => {
+        console.error('ERRO AO CARREGAR MODELO:', nome, event);
+      });
+    }
+
+    debugModelo(document.querySelector('#modelo-0'), 'modelo-0');
+    debugModelo(document.querySelector('#modelo-1'), 'modelo-1');
+    debugModelo(document.querySelector('#modelo-2'), 'modelo-2');
+    debugModelo(document.querySelector('#modelo-3'), 'modelo-3');
+
+    // GERENCIAMENTO DE TARGETS
+    function setupTarget(targetId, modeloId, audioIndex) {
+      const target = document.querySelector(targetId);
+      const modelo = document.querySelector(modeloId);
+      const audio = audios[audioIndex];
+
+      if (!target || !modelo) return;
+
+      target.addEventListener('targetFound', () => {
+        console.log('TARGET ENCONTRADO:', targetId);
+        modelo.setAttribute('visible', 'true');
+        modelo.setAttribute('animation-mixer', 'timeScale', 1);
+
+        audios.forEach((a, i) => {
+          if (i !== audioIndex) a.pause();
+        });
+
+        audio.currentTime = 0;
+        audio.play().catch(error => console.log('Áudio bloqueado:', error));
+      });
+
+      target.addEventListener('targetLost', () => {
+        console.log('TARGET PERDIDO:', targetId);
+        modelo.setAttribute('animation-mixer', 'timeScale', 0);
+        modelo.setAttribute('visible', 'false');
+        audio.pause();
+      });
+    }
+
+    // CONFIGURAÇÃO DOS TARGETS
+    setupTarget('#targetA', '#modelo-0', 0);
+    setupTarget('#targetB', '#modelo-1', 1);
+    setupTarget('#targetC', '#modelo-2', 2);
+    setupTarget('#targetD', '#modelo-3', 3);
+  </script>
+
 </body>
 
 </html>

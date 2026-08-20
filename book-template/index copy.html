@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Pequeno Príncipe - Experiência Imersiva 3D e WebAR</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js" defer></script>
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://demo.springlo-tech.com.br/book-template/">
+    <meta property="og:title" content="Experiência de Livro 3D em WebAR para Autores">
+    <meta property="og:description"
+        content="Projete livros 3D interativos diretamente no seu espaço usando WebAR. Sem necessidade de baixar aplicativos!">
+    <meta property="og:image" content="https://demo.springlo-tech.com.br/book-template/assets/modelos/og-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Demonstração de livro 3D interativo em realidade aumentada.">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://demo.springlo-tech.com.br/book-template/">
+    <meta name="twitter:title" content="Experiência de Livro 3D em WebAR para Autores">
+    <meta name="twitter:description"
+        content="Projete livros 3D interativos diretamente no seu espaço usando WebAR. Sem necessidade de baixar aplicativos!">
+    <meta name="twitter:image"
+        content="https://demo.springlo-tech.com.br/book-template/assets/modelos/og-preview-pt.jpg">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Livro AR</div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobreolivro">O Livro</a></li>
+                    <li><a href="#autor">O Autor</a></li>
+                    <li><a href="#depoimentos">Avaliações</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero-main">
+            <div class="container grid-hero">
+                <div class="hero-content">
+                    <span class="tagline">O essencial é invisível aos olhos, mas não à sua imaginação</span>
+                    <h1>UMA JORNADA ENTRE ESTRELAS E DESERTOS</h1>
+                    <p class="description">
+                        Em um universo de asteroides distantes e lições esquecidas, um pequeno viajante nos lembra que a
+                        verdadeira
+                        sabedoria está nas conexões. Reencontre um clássico que transcende gerações, agora em uma
+                        experiência imersiva que rompe os limites da página e ganha vida no seu próprio espaço.
+                    </p>
+
+                    <div class="actions">
+                        <a href="https://www.amazon.com.br/Pequeno-Pr%C3%ADncipe-almofadada-aquarelas-originais/dp/6559801365/ref=asc_df_6559801365?mcid=99994498f3be31dc9a2156fcbf622080&tag=googleshopp00-20&linkCode=df0&hvadid=709856848230&hvpos=&hvnetw=g&hvrand=2251099799815309127&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9197452&hvtargid=pla-2385327343816&psc=1&hvocijid=2251099799815309127-6559801365-&hvexpln=0&language=pt_BR"
+                            class="btn-amazon" target="_blank" rel="noopener noreferrer">Garantir na Amazon</a>
+                        <a href="https://wa.me/11919945924" class="btn-whatsapp">Conversar no WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <model-viewer id="capa-3d" src="assets/modelos/capa.glb" camera-controls
+                        camera-orbit="0deg 75deg 4m" field-of-view="50deg" shadow-intensity="1"
+                        min-camera-orbit="auto auto 2m" max-camera-orbit="auto auto 4m"
+                        style="width: 100%; height: 560px;">
+
+                        <div class="interaction-prompt">
+                            <span class="icon-hand">👆</span>
+                            <p>Interaja com o modelo 3D</p>
+                            <div class="drag-arrows">↔</div>
+                        </div>
+                    </model-viewer>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobreolivro" class="ar-section">
+            <div class="container grid-ar-making-of">
+
+                <div class="ar-visual-content">
+                    <div class="ar-text">
+                        <h2>Traga o personagem para o seu mundo.</h2>
+                        <p class="highlight-blue"> Experimente ao vivo agora.
+                        </p>
+                    </div>
+
+                    <div class="phone-container">
+                        <div class="ar-instructions-side">
+                            <h3>Melhor Experiência em RA</h3>
+                            <ul>
+                                <li>💡 Procure um local bem iluminado</li>
+                                <li>📐 Aponte para uma superfície plana (mesa ou chão)</li>
+                                <li>📱 Mova o celular devagar para escanear a área</li>
+                            </ul>
+                            <div class="ar-capture-tip">
+                                <p>📸 <strong>Dica:</strong> Para tirar uma foto ou gravar um vídeo da sua experiência
+                                    em RA,
+                                    use a <strong>captura de tela ou o gravador de tela do seu celular</strong>.
+                            </div>
+                        </div>
+                        <div class="phone-frame">
+                            <model-viewer id="modelo-ar" src="assets/modelos/principe.glb"
+                                ios-src="assets/modelos/principe.usdz" ar ar-placement="floor" ar-scale="auto"
+                                ar-modes="webxr scene-viewer quick-look" autoplay animation-name="All Animations"
+                                poster="assets/modelos/imagem-pt.webp" reveal="manual" camera-controls>
+
+                                <button slot="ar-button" class="ar-button-trigger">
+                                    Ver em Realidade Aumentada
+                                </button>
+                            </model-viewer>
+                        </div>
+                    </div>
+                    <div class="qr-code-wrapper">
+                        <p class="qr-text">Escaneie com seu celular para ver em RA</p>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://demo.springlo-tech.com.br/book-template?mode=ar#modelo-ar"
+                            alt="QR Code RA">
+
+                        <div id="ar-overlay" class="ar-instruction-overlay" style="display: none;">
+                            <div class="overlay-content">
+                                <img src="assets/modelos/imagem-pt.webp" alt="Prévia" class="preview-img">
+                                <p>📲 Toque para ver em Realidade Aumentada</p>
+                                <button id="start-ar-from-overlay" class="btn-start-ar">Visualizar em Realidade
+                                    Aumentada</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="autor" class="author-section">
+            <div class="container grid-author">
+
+                <div class="author-photo">
+                    <img src="assets/modelos/autor.jpg" alt="S. S. E">
+                </div>
+
+                <div class="author-info">
+                    <span class="tagline-gold">SOBRE O AUTOR</span>
+
+                    <p>Escritor, sonhador e apaixonado por histórias que transportam os leitores para outros mundos.
+                        Suas obras
+                        já tocaram a vida de milhares de leitores ao redor do mundo.</p>
+                </div>
+
+                <div class="vertical-divider"></div>
+
+                <div class="author-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number">+ 2.500</div>
+                        <div class="stat-label">LEITORES</div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-number">4,9</div>
+                        <div class="stat-label">AVALIAÇÃO MÉDIA</div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon">💬</div>
+                        <div class="stat-number">+ 300</div>
+                        <div class="stat-label">AVALIAÇÕES</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="depoimentos" class="testimonials-section">
+            <div class="container">
+                <span class="tagline-gold-dark center">O QUE OS LEITORES ESTÃO DIZENDO</span>
+
+                <div class="grid-testimonials">
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Uma história envolvente do começo ao fim! Personagens incríveis e um mundo que parece
+                            incrivelmente
+                            real."</p>
+                        <span class="testimonial-author">— Juliana R.</span>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Me prendeu desde o primeiro capítulo. Mal posso esperar pelos próximos livros da série!"</p>
+                        <span class="testimonial-author">— Marcos T.</span>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Alta fantasia épica de altíssimo nível. Simplesmente sensacional!"</p>
+                        <span class="testimonial-author">— Ana Paula S.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-legal">
+        <div class="container">
+            <p>Projeto desenvolvido para fins de demonstração técnica. Personagens baseados na obra em domínio público
+                de
+                Antoine de Saint-Exupéry.</p>
+            <div class="footer-credits">
+                <span>© 2026 Springlo Tech - Soluções em RA</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="ar.js"></script>
+</body>
+
+</html>
