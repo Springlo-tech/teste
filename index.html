@@ -97,14 +97,14 @@
     <!-- ======================================================= -->
     <a-assets timeout="10000">
       <!-- Imagens -->
-      <img id="background-img0" src="assets/imagens/tubarao.jpg" crossorigin="anonymous">
-      <img id="background-img1" src="assets/imagens/FundoCartao.jpeg" crossorigin="anonymous">
-      <img id="background-img2" src="assets/imagens/FundoConvite.jpg" crossorigin="anonymous">
+      <img id="background-img0" src="assets/imagens/target0.jpg" crossorigin="anonymous">
+      <img id="background-img1" src="assets/imagens/target1.jpg" crossorigin="anonymous">
+      <img id="background-img2" src="assets/imagens/target2.jpg" crossorigin="anonymous">
 
       <!-- Modelos 3D na pasta assets/modelos -->
+      <a-asset-item id="modeloPolvo" src="assets/modelos/polvo.glb"></a-asset-item>
       <a-asset-item id="modeloTubarao" src="assets/modelos/tubarao.glb"></a-asset-item>
-      <a-asset-item id="modeloPresente" src="assets/modelos/presente.glb"></a-asset-item>
-      <a-asset-item id="modeloArvore" src="assets/modelos/arvoreNatal.glb"></a-asset-item>
+      <a-asset-item id="modeloTubarao2" src="assets/modelos/bonecoNeve.glb"></a-asset-item>
     </a-assets>
 
     <!-- CÂMERA -->
@@ -122,9 +122,9 @@
 
    <a-gltf-model 
         id="modelo-0" 
-        src="#modeloTubarao" 
+        src="#modeloPolvo" 
         scale="1 1 1" 
-        position="0 0 0.20" 
+        position="0 0 0.10" 
         rotation="90 0 0"
         visible="false" 
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
@@ -144,10 +144,10 @@
 
    <a-gltf-model 
         id="modelo-1" 
-        src="#modeloArvore" 
-        scale="0.5 0.5 0.5" 
+        src="#modeloTubarao" 
+        scale="1 1 1" 
         position="0 0 0.10" 
-        rotation="0 0 0"
+        rotation="90 0 0"
         visible="false" 
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
@@ -166,7 +166,7 @@
 
    <a-gltf-model 
         id="modelo-2" 
-        src="#modeloPresente" 
+        src="#modeloTubarao2" 
         scale="0.5 0.5 0.5" 
         position="0 0 0.10" 
         rotation="0 0 0"
@@ -175,6 +175,21 @@
       </a-gltf-model>
     
     </a-entity>
+
+    <!-- TARGET D (Index 3) -->
+<a-entity mindar-image-target="targetIndex: 3" id="targetD">
+  <a-plane src="#background-img2" width="1.11" height="1.52" position="0 0 -0.01" material="shader: flat; transparent: true; opacity: 1;"></a-plane>
+  <a-gltf-model 
+    id="modelo-3" 
+    src="#modeloQuarto" 
+    scale="0.5 0.5 0.5" 
+    position="0 0 0.10" 
+    visible="false" 
+    animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+  </a-gltf-model>
+</a-entity>
+
+   
 
   </a-scene>
 
