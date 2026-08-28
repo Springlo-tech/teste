@@ -82,11 +82,11 @@
   <!-- CENA AR -->
   <!-- ========================================================= -->
   <a-scene id="minha-cena" mindar-image="
-      imageTargetSrc: markers/targets_BAPC.mind;
-      maxTrack: 1;
-      filterMinCF: 0.0001;
-      filterBeta: 1000;
-    " gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;" color-space="sRGB"
+    imageTargetSrc: markers/targets_BAPC.mind;
+    maxTrack: 1;
+    filterMinCF: 0.0001;
+    filterBeta: 1000;"
+    gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;" color-space="sRGB"
     renderer="colorManagement: true; physicallyCorrectLights: false; exposure: 1.3;" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
 
@@ -97,8 +97,10 @@
     <!-- ======================================================= -->
     <a-assets timeout="10000">
       <!-- Imagens -->
-      <img id="fundo" src="assets/imagens/fundo.jpg" crossorigin="anonymous">
-      
+      <img id="background-img0" src="assets/imagens/target0.jpg" crossorigin="anonymous">
+      <img id="background-img1" src="assets/imagens/target1.jpg" crossorigin="anonymous">
+      <img id="background-img2" src="assets/imagens/target2.jpg" crossorigin="anonymous">
+
       <!-- Modelos 3D na pasta assets/modelos -->
       <a-asset-item id="modeloPolvo" src="assets/modelos/polvo.glb"></a-asset-item>
       <a-asset-item id="modeloTubarao" src="assets/modelos/tubarao.glb"></a-asset-item>
@@ -112,7 +114,7 @@
     <!-- TARGET A (Index 0) -->
     <!-- ======================================================= -->
     <a-entity mindar-image-target="targetIndex: 0" id="targetA">
-      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
+      <a-plane src="#background-img0" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
@@ -126,7 +128,7 @@
     <!-- TARGET B (Index 1) -->
     <!-- ======================================================= -->
     <a-entity mindar-image-target="targetIndex: 1" id="targetB">
-      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
+      <a-plane src="#background-img1" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
@@ -140,7 +142,7 @@
     <!-- TARGET C (Index 2) -->
     <!-- ======================================================= -->
     <a-entity mindar-image-target="targetIndex: 2" id="targetC">
-      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
+      <a-plane src="#background-img2" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
@@ -152,7 +154,7 @@
 
     <!-- TARGET D (Index 3) -->
     <a-entity mindar-image-target="targetIndex: 3" id="targetD">
-      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
+      <a-plane src="#background-img2" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
       <a-gltf-model id="modelo-3" src="#modeloQuarto" scale="0.5 0.5 0.5" position="0 0 0.10" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
@@ -289,100 +291,40 @@
     debugModelo(document.querySelector('#modelo-2'), 'modelo-2');
     debugModelo(document.querySelector('#modelo-3'), 'modelo-3');
 
-    // =========================================================
     // GERENCIAMENTO DE TARGETS
-    // =========================================================
-
-    const targets = [
-      { targetId: '#targetA', modeloId: '#modelo-0', audioIndex: 0 },
-      { targetId: '#targetB', modeloId: '#modelo-1', audioIndex: 1 },
-      { targetId: '#targetC', modeloId: '#modelo-2', audioIndex: 2 },
-      { targetId: '#targetD', modeloId: '#modelo-3', audioIndex: 3 }
-    ];
-
-    // Esconde TODOS os modelos antes de mostrar o novo.
-    // Isso evita que o GLB da imagem anterior apareça
-    // durante a troca de target.
-    function esconderTodosModelos() {
-      targets.forEach(item => {
-        const modelo = document.querySelector(item.modeloId);
-
-        if (modelo) {
-          modelo.setAttribute('visible', 'false');
-          modelo.setAttribute('animation-mixer', 'timeScale', 0);
-        }
-      });
-    }
-
-    // Para todos os áudios antes de iniciar o áudio
-    // correspondente ao novo target.
-    function pararTodosAudios() {
-      audios.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-      });
-    }
-
-    targets.forEach(item => {
-
-      const target = document.querySelector(item.targetId);
-      const modelo = document.querySelector(item.modeloId);
-      const audio = audios[item.audioIndex];
+    function setupTarget(targetId, modeloId, audioIndex) {
+      const target = document.querySelector(targetId);
+      const modelo = document.querySelector(modeloId);
+      const audio = audios[audioIndex];
 
       if (!target || !modelo) return;
 
-      // =======================================================
-      // NOVA IMAGEM ENCONTRADA
-      // =======================================================
       target.addEventListener('targetFound', () => {
+        console.log('TARGET ENCONTRADO:', targetId);
+        modelo.setAttribute('visible', 'true');
+        modelo.setAttribute('animation-mixer', 'timeScale', 1);
 
-        console.log('TARGET ENCONTRADO:', item.targetId);
-
-        // PRIMEIRO: esconde imediatamente todos os GLBs.
-        esconderTodosModelos();
-
-        // Para todos os áudios.
-        pararTodosAudios();
-
-        // Espera o próximo frame antes de mostrar
-        // o modelo correto.
-        requestAnimationFrame(() => {
-
-          // Mostra SOMENTE o GLB deste target.
-          modelo.setAttribute('visible', 'true');
-
-          // Ativa a animação.
-          modelo.setAttribute('animation-mixer', 'timeScale', 1);
-
-          // Inicia o áudio correspondente.
-          audio.currentTime = 0;
-
-          audio.play().catch(error => {
-            console.log('Áudio bloqueado:', error);
-          });
-
+        audios.forEach((a, i) => {
+          if (i !== audioIndex) a.pause();
         });
-      });
 
-      // =======================================================
-      // IMAGEM PERDIDA
-      // =======================================================
-      target.addEventListener('targetLost', () => {
-
-        console.log('TARGET PERDIDO:', item.targetId);
-
-        // Esconde imediatamente o GLB deste target.
-        modelo.setAttribute('visible', 'false');
-
-        // Para a animação.
-        modelo.setAttribute('animation-mixer', 'timeScale', 0);
-
-        // Para o áudio.
-        audio.pause();
         audio.currentTime = 0;
+        audio.play().catch(error => console.log('Áudio bloqueado:', error));
       });
-    });
 
+      target.addEventListener('targetLost', () => {
+        console.log('TARGET PERDIDO:', targetId);
+        modelo.setAttribute('animation-mixer', 'timeScale', 0);
+        modelo.setAttribute('visible', 'false');
+        audio.pause();
+      });
+    }
+
+    // CONFIGURAÇÃO DOS TARGETS
+    setupTarget('#targetA', '#modelo-0', 0);
+    setupTarget('#targetB', '#modelo-1', 1);
+    setupTarget('#targetC', '#modelo-2', 2);
+    setupTarget('#targetD', '#modelo-3', 3);
   </script>
 
 </body>
