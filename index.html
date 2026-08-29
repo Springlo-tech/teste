@@ -102,7 +102,10 @@
       <!-- Modelos 3D na pasta assets/modelos -->
       <a-asset-item id="modeloPolvo" src="assets/modelos/polvo.glb"></a-asset-item>
       <a-asset-item id="modeloTubarao" src="assets/modelos/tubarao.glb"></a-asset-item>
-      <a-asset-item id="modeloTubarao2" src="assets/modelos/bonecoNeve.glb"></a-asset-item>
+      <a-asset-item id="modeloTartaruga" src="assets/modelos/tartaruga.glb"></a-asset-item>
+      <a-asset-item id="modeloPeixe" src="assets/modelos/peixe.glb"></a-asset-item>
+      <a-asset-item id="modeloOrca" src="assets/modelos/orca.glb"></a-asset-item>
+      <a-asset-item id="modeloCavalo" src="assets/modelos/cavalo.glb"></a-asset-item>
     </a-assets>
 
     <!-- CÂMERA -->
@@ -144,7 +147,7 @@
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
-      <a-gltf-model id="modelo-2" src="#modeloTubarao2" scale="0.5 0.5 0.5" position="0 0 0.10" rotation="0 0 0"
+      <a-gltf-model id="modelo-2" src="#modeloTartaruga" scale="0.5 0.5 0.5" position="0 0 0.10" rotation="0 0 0"
         visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
 
@@ -154,7 +157,24 @@
     <a-entity mindar-image-target="targetIndex: 3" id="targetD">
       <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-3" src="#modeloQuarto" scale="0.5 0.5 0.5" position="0 0 0.10" visible="false"
+      <a-gltf-model id="modelo-3" src="#modeloPeixe" scale="0.5 0.5 0.5" position="0 0 0.10" visible="false"
+        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    </a-entity>
+
+    
+    <a-entity mindar-image-target="targetIndex: 4" id="targetE">
+      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
+        material="shader: flat; transparent: true; opacity: 1;"></a-plane>
+      <a-gltf-model id="modelo-4" src="#modeloOrca" scale="0.5 0.5 0.5" position="0 0 0.10" visible="false"
+        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    </a-entity>
+
+     <a-entity mindar-image-target="targetIndex: 5" id="targetF">
+      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
+        material="shader: flat; transparent: true; opacity: 1;"></a-plane>
+      <a-gltf-model id="modelo-5" src="#modeloCavalo" scale="0.5 0.5 0.5" position="0 0 0.10" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
     </a-entity>
@@ -260,7 +280,9 @@
       new Audio('assets/musicas/natal.mp3'),
       new Audio('assets/musicas/natal.mp3'),
       new Audio('assets/musicas/natal.mp3'),
-      new Audio('assets/musicas/casamento.mp3')
+      new Audio('assets/musicas/casamento.mp3'),
+      new Audio('assets/musicas/natal.mp3'),
+       new Audio('assets/musicas/natal.mp3')
     ];
 
     audios.forEach(audio => {
@@ -297,7 +319,10 @@
       { targetId: '#targetA', modeloId: '#modelo-0', audioIndex: 0 },
       { targetId: '#targetB', modeloId: '#modelo-1', audioIndex: 1 },
       { targetId: '#targetC', modeloId: '#modelo-2', audioIndex: 2 },
-      { targetId: '#targetD', modeloId: '#modelo-3', audioIndex: 3 }
+      { targetId: '#targetD', modeloId: '#modelo-3', audioIndex: 3 },
+      { targetId: '#targetE', modeloId: '#modelo-4', audioIndex: 4 },
+      { targetId: '#targetF', modeloId: '#modelo-5', audioIndex: 5 },
+
     ];
 
     // Esconde TODOS os modelos antes de mostrar o novo.
