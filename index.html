@@ -72,8 +72,8 @@
   <!-- TELA INICIAL -->
   <!-- ========================================================= -->
   <div id="splash-screen">
-    <img id="logo-cliente" src="" alt="Logo Personalizado">
-    <h2 id="titulo-cliente"></h2>
+    <img id="logo-cliente" src="assets/imagens/logo-A.png" alt="Logo Personalizado">
+    <h2 id="titulo-cliente">Presente de Natal - Cliente A</h2>
     <p>Toque para iniciar a câmera e ativar o som</p>
     <button id="start-button">Iniciar</button>
   </div>
@@ -82,10 +82,10 @@
   <!-- CENA AR -->
   <!-- ========================================================= -->
   <a-scene id="minha-cena" mindar-image="
-      imageTargetSrc: markers/targets_BAPC.mind;
+      imageTargetSrc: markers/target.mind;
       maxTrack: 1;
       filterMinCF: 0.0001;
-      filterBeta: 1000;
+      filterBeta: 0.001;
     " gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;" color-space="sRGB"
     renderer="colorManagement: true; physicallyCorrectLights: false; exposure: 1.3;" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
@@ -162,7 +162,7 @@
       </a-gltf-model>
     </a-entity>
 
-    
+    <!-- TARGET E (Index 4) -->
     <a-entity mindar-image-target="targetIndex: 4" id="targetE">
       <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
@@ -171,7 +171,8 @@
       </a-gltf-model>
     </a-entity>
 
-     <a-entity mindar-image-target="targetIndex: 5" id="targetF">
+    <!-- TARGET F (Index 5) -->
+    <a-entity mindar-image-target="targetIndex: 5" id="targetF">
       <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
       <a-gltf-model id="modelo-5" src="#modeloCavalo" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0" visible="false"
@@ -179,97 +180,12 @@
       </a-gltf-model>
     </a-entity>
 
-
-
   </a-scene>
 
   <!-- ========================================================= -->
   <!-- JAVASCRIPT -->
   <!-- ========================================================= -->
   <script>
-    // COMPONENTE - MUDANÇA DE COR
-    AFRAME.registerComponent('color-cycle-opt', {
-      schema: {
-        colors: { type: 'array', default: ['#ff0000', '#0000ff', '#000000'] },
-        interval: { type: 'number', default: 1000 }
-      },
-      init: function () {
-        this.colorIndex = 0;
-        this.materials = [];
-        this.intervalId = null;
-        this.el.addEventListener('model-loaded', this.setupMaterials.bind(this));
-      },
-      setupMaterials: function () {
-        const model = this.el.getObject3D('mesh');
-        if (!model) return;
-
-        this.materials = [];
-        model.traverse((node) => {
-          if (node.isMesh && node.material) {
-            const nodeMaterials = Array.isArray(node.material) ? node.material : [node.material];
-            this.materials.push(...nodeMaterials);
-          }
-        });
-
-        if (this.intervalId) clearInterval(this.intervalId);
-        this.intervalId = setInterval(this.cycleColor.bind(this), this.data.interval);
-      },
-      cycleColor: function () {
-        if (this.materials.length === 0) return;
-        const newColor = this.data.colors[this.colorIndex];
-
-        this.materials.forEach(material => {
-          if (material.emissive) {
-            if (newColor === '#000000') {
-              material.emissive.set(0x000000);
-              material.emissiveIntensity = 0;
-            } else {
-              material.emissive.set(newColor);
-              material.emissiveIntensity = 0.8;
-            }
-          }
-        });
-
-        this.colorIndex = (this.colorIndex + 1) % this.data.colors.length;
-      },
-      remove: function () {
-        if (this.intervalId) clearInterval(this.intervalId);
-      }
-    });
-
-    // PARÂMETRO DA URL
-    function getQueryParam(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name);
-    }
-
-    // PERSONALIZAÇÃO DE LOGO E TÍTULO
-    const clienteParam = getQueryParam('cliente');
-    let logoPath = 'assets/imagens/logo-B.png';
-    let titulo = '';
-
-    switch (clienteParam ? clienteParam.toUpperCase() : '') {
-      case 'A':
-        logoPath = 'assets/imagens/logo-A.png';
-        titulo = 'Presente de Natal - Cliente A';
-        break;
-      case 'B':
-        logoPath = 'assets/imagens/logo-B.png';
-        titulo = 'Boas Festas - Cliente B';
-        break;
-      case 'C':
-        logoPath = 'assets/imagens/logo-B.png';
-        titulo = 'Feliz Natal - Cliente C';
-        break;
-      case 'D':
-        logoPath = 'assets/imagens/logo-B.png';
-        titulo = 'Feliz Natal - Cliente D';
-        break;
-    }
-
-    document.getElementById('logo-cliente').src = logoPath;
-    document.getElementById('titulo-cliente').textContent = titulo;
-
     // SPLASH / CÂMERA
     const splash = document.getElementById('splash-screen');
     const startBtn = document.getElementById('start-button');
@@ -282,7 +198,7 @@
       new Audio('assets/musicas/oceano.mp3'),
       new Audio('assets/musicas/oceano.mp3'),
       new Audio('assets/musicas/oceano.mp3'),
-       new Audio('assets/musicas/oceano.mp3')
+      new Audio('assets/musicas/oceano.mp3')
     ];
 
     audios.forEach(audio => {
@@ -310,6 +226,8 @@
     debugModelo(document.querySelector('#modelo-1'), 'modelo-1');
     debugModelo(document.querySelector('#modelo-2'), 'modelo-2');
     debugModelo(document.querySelector('#modelo-3'), 'modelo-3');
+    debugModelo(document.querySelector('#modelo-4'), 'modelo-4');
+    debugModelo(document.querySelector('#modelo-5'), 'modelo-5');
 
     // =========================================================
     // GERENCIAMENTO DE TARGETS
@@ -321,17 +239,12 @@
       { targetId: '#targetC', modeloId: '#modelo-2', audioIndex: 2 },
       { targetId: '#targetD', modeloId: '#modelo-3', audioIndex: 3 },
       { targetId: '#targetE', modeloId: '#modelo-4', audioIndex: 4 },
-      { targetId: '#targetF', modeloId: '#modelo-5', audioIndex: 5 },
-
+      { targetId: '#targetF', modeloId: '#modelo-5', audioIndex: 5 }
     ];
 
-    // Esconde TODOS os modelos antes de mostrar o novo.
-    // Isso evita que o GLB da imagem anterior apareça
-    // durante a troca de target.
     function esconderTodosModelos() {
       targets.forEach(item => {
         const modelo = document.querySelector(item.modeloId);
-
         if (modelo) {
           modelo.setAttribute('visible', 'false');
           modelo.setAttribute('animation-mixer', 'timeScale', 0);
@@ -339,8 +252,6 @@
       });
     }
 
-    // Para todos os áudios antes de iniciar o áudio
-    // correspondente ao novo target.
     function pararTodosAudios() {
       audios.forEach(audio => {
         audio.pause();
@@ -349,65 +260,35 @@
     }
 
     targets.forEach(item => {
-
       const target = document.querySelector(item.targetId);
       const modelo = document.querySelector(item.modeloId);
       const audio = audios[item.audioIndex];
 
       if (!target || !modelo) return;
 
-      // =======================================================
-      // NOVA IMAGEM ENCONTRADA
-      // =======================================================
       target.addEventListener('targetFound', () => {
-
         console.log('TARGET ENCONTRADO:', item.targetId);
-
-        // PRIMEIRO: esconde imediatamente todos os GLBs.
         esconderTodosModelos();
-
-        // Para todos os áudios.
         pararTodosAudios();
 
-        // Espera o próximo frame antes de mostrar
-        // o modelo correto.
         requestAnimationFrame(() => {
-
-          // Mostra SOMENTE o GLB deste target.
           modelo.setAttribute('visible', 'true');
-
-          // Ativa a animação.
           modelo.setAttribute('animation-mixer', 'timeScale', 1);
-
-          // Inicia o áudio correspondente.
           audio.currentTime = 0;
-
           audio.play().catch(error => {
             console.log('Áudio bloqueado:', error);
           });
-
         });
       });
 
-      // =======================================================
-      // IMAGEM PERDIDA
-      // =======================================================
       target.addEventListener('targetLost', () => {
-
         console.log('TARGET PERDIDO:', item.targetId);
-
-        // Esconde imediatamente o GLB deste target.
         modelo.setAttribute('visible', 'false');
-
-        // Para a animação.
         modelo.setAttribute('animation-mixer', 'timeScale', 0);
-
-        // Para o áudio.
         audio.pause();
         audio.currentTime = 0;
       });
     });
-
   </script>
 
 </body>

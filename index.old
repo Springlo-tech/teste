@@ -82,11 +82,11 @@
   <!-- CENA AR -->
   <!-- ========================================================= -->
   <a-scene id="minha-cena" mindar-image="
-    imageTargetSrc: markers/targets_BAPC.mind;
-    maxTrack: 1;
-    filterMinCF: 0.0001;
-    filterBeta: 1000;"
-    gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;" color-space="sRGB"
+      imageTargetSrc: markers/target.mind;
+      maxTrack: 1;
+      filterMinCF: 0.0001;
+      filterBeta: 1000;
+    " gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;" color-space="sRGB"
     renderer="colorManagement: true; physicallyCorrectLights: false; exposure: 1.3;" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
 
@@ -97,14 +97,15 @@
     <!-- ======================================================= -->
     <a-assets timeout="10000">
       <!-- Imagens -->
-      <img id="background-img0" src="assets/imagens/target0.jpg" crossorigin="anonymous">
-      <img id="background-img1" src="assets/imagens/target1.jpg" crossorigin="anonymous">
-      <img id="background-img2" src="assets/imagens/target2.jpg" crossorigin="anonymous">
+      <img id="fundo" src="assets/imagens/fundo.jpg" crossorigin="anonymous">
 
       <!-- Modelos 3D na pasta assets/modelos -->
       <a-asset-item id="modeloPolvo" src="assets/modelos/polvo.glb"></a-asset-item>
       <a-asset-item id="modeloTubarao" src="assets/modelos/tubarao.glb"></a-asset-item>
-      <a-asset-item id="modeloTubarao2" src="assets/modelos/bonecoNeve.glb"></a-asset-item>
+      <a-asset-item id="modeloTartaruga" src="assets/modelos/tartaruga.glb"></a-asset-item>
+      <a-asset-item id="modeloPeixe" src="assets/modelos/peixe.glb"></a-asset-item>
+      <a-asset-item id="modeloOrca" src="assets/modelos/orca.glb"></a-asset-item>
+      <a-asset-item id="modeloCavalo" src="assets/modelos/cavalo.glb"></a-asset-item>
     </a-assets>
 
     <!-- CÂMERA -->
@@ -114,12 +115,12 @@
     <!-- TARGET A (Index 0) -->
     <!-- ======================================================= -->
     <a-entity mindar-image-target="targetIndex: 0" id="targetA">
-      <a-plane src="#background-img0" width="1.11" height="1.52" position="0 0 -0.01"
+      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
-      <a-gltf-model id="modelo-0" src="#modeloPolvo" scale="1 1 1" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      <a-gltf-model id="modelo-0" src="#modeloPolvo" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0"
+        visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
 
     </a-entity>
@@ -128,11 +129,11 @@
     <!-- TARGET B (Index 1) -->
     <!-- ======================================================= -->
     <a-entity mindar-image-target="targetIndex: 1" id="targetB">
-      <a-plane src="#background-img1" width="1.11" height="1.52" position="0 0 -0.01"
+      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
-      <a-gltf-model id="modelo-1" src="#modeloTubarao" scale="1 1 1" position="0 0 0.10" rotation="90 0 0"
+      <a-gltf-model id="modelo-1" src="#modeloTubarao" scale="1.2 1.2 1.2" position="0 0 0.10" rotation="90 0 0"
         visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
 
@@ -142,11 +143,11 @@
     <!-- TARGET C (Index 2) -->
     <!-- ======================================================= -->
     <a-entity mindar-image-target="targetIndex: 2" id="targetC">
-      <a-plane src="#background-img2" width="1.11" height="1.52" position="0 0 -0.01"
+      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
-      <a-gltf-model id="modelo-2" src="#modeloTubarao2" scale="0.5 0.5 0.5" position="0 0 0.10" rotation="0 0 0"
+      <a-gltf-model id="modelo-2" src="#modeloTartaruga" scale="0.4 0.4 0.4" position="0 0 0.10" rotation="90 0 0"
         visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
 
@@ -154,10 +155,27 @@
 
     <!-- TARGET D (Index 3) -->
     <a-entity mindar-image-target="targetIndex: 3" id="targetD">
-      <a-plane src="#background-img2" width="1.11" height="1.52" position="0 0 -0.01"
+      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-3" src="#modeloQuarto" scale="0.5 0.5 0.5" position="0 0 0.10" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      <a-gltf-model id="modelo-3" src="#modeloPeixe" scale="0.2 0.2 0.2" position="0 0 0.10" rotation="90 0 0"
+        visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    </a-entity>
+
+
+    <a-entity mindar-image-target="targetIndex: 4" id="targetE">
+      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
+        material="shader: flat; transparent: true; opacity: 1;"></a-plane>
+      <a-gltf-model id="modelo-4" src="#modeloOrca" scale="0.4 0.4 0.4" position="0 0 0.10" rotation="90 0 0"
+        visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 5" id="targetF">
+      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
+        material="shader: flat; transparent: true; opacity: 1;"></a-plane>
+      <a-gltf-model id="modelo-5" src="#modeloCavalo" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0"
+        visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
     </a-entity>
 
@@ -169,55 +187,6 @@
   <!-- JAVASCRIPT -->
   <!-- ========================================================= -->
   <script>
-    // COMPONENTE - MUDANÇA DE COR
-    AFRAME.registerComponent('color-cycle-opt', {
-      schema: {
-        colors: { type: 'array', default: ['#ff0000', '#0000ff', '#000000'] },
-        interval: { type: 'number', default: 1000 }
-      },
-      init: function () {
-        this.colorIndex = 0;
-        this.materials = [];
-        this.intervalId = null;
-        this.el.addEventListener('model-loaded', this.setupMaterials.bind(this));
-      },
-      setupMaterials: function () {
-        const model = this.el.getObject3D('mesh');
-        if (!model) return;
-
-        this.materials = [];
-        model.traverse((node) => {
-          if (node.isMesh && node.material) {
-            const nodeMaterials = Array.isArray(node.material) ? node.material : [node.material];
-            this.materials.push(...nodeMaterials);
-          }
-        });
-
-        if (this.intervalId) clearInterval(this.intervalId);
-        this.intervalId = setInterval(this.cycleColor.bind(this), this.data.interval);
-      },
-      cycleColor: function () {
-        if (this.materials.length === 0) return;
-        const newColor = this.data.colors[this.colorIndex];
-
-        this.materials.forEach(material => {
-          if (material.emissive) {
-            if (newColor === '#000000') {
-              material.emissive.set(0x000000);
-              material.emissiveIntensity = 0;
-            } else {
-              material.emissive.set(newColor);
-              material.emissiveIntensity = 0.8;
-            }
-          }
-        });
-
-        this.colorIndex = (this.colorIndex + 1) % this.data.colors.length;
-      },
-      remove: function () {
-        if (this.intervalId) clearInterval(this.intervalId);
-      }
-    });
 
     // PARÂMETRO DA URL
     function getQueryParam(name) {
@@ -226,31 +195,20 @@
     }
 
     // PERSONALIZAÇÃO DE LOGO E TÍTULO
-    const clienteParam = getQueryParam('cliente');
-    let logoPath = 'assets/imagens/logo-B.png';
-    let titulo = '';
 
-    switch (clienteParam ? clienteParam.toUpperCase() : '') {
-      case 'A':
-        logoPath = 'assets/imagens/logo-A.png';
-        titulo = 'Presente de Natal - Cliente A';
-        break;
-      case 'B':
-        logoPath = 'assets/imagens/logo-B.png';
-        titulo = 'Boas Festas - Cliente B';
-        break;
-      case 'C':
-        logoPath = 'assets/imagens/logo-B.png';
-        titulo = 'Feliz Natal - Cliente C';
-        break;
-      case 'D':
-        logoPath = 'assets/imagens/logo-B.png';
-        titulo = 'Feliz Natal - Cliente D';
-        break;
+    logoPath = 'assets/imagens/logo-A.png';
+    titulo = 'Presente de Natal - Cliente A';
+
+    // ATRIBUIÇÃO AOS ELEMENTOS DO HTML
+    const imgLogo = document.getElementById('logo-cliente');
+    const elTitulo = document.getElementById('titulo-cliente');
+    if (imgLogo) {
+      imgLogo.src = logoPath;
     }
 
-    document.getElementById('logo-cliente').src = logoPath;
-    document.getElementById('titulo-cliente').textContent = titulo;
+    if (elTitulo) {
+      elTitulo.textContent = titulo;
+    }
 
     // SPLASH / CÂMERA
     const splash = document.getElementById('splash-screen');
@@ -259,10 +217,12 @@
 
     // ÁUDIOS
     const audios = [
-      new Audio('assets/musicas/natal.mp3'),
-      new Audio('assets/musicas/natal.mp3'),
-      new Audio('assets/musicas/natal.mp3'),
-      new Audio('assets/musicas/casamento.mp3')
+      new Audio('assets/musicas/oceano.mp3'),
+      new Audio('assets/musicas/oceano.mp3'),
+      new Audio('assets/musicas/oceano.mp3'),
+      new Audio('assets/musicas/oceano.mp3'),
+      new Audio('assets/musicas/oceano.mp3'),
+      new Audio('assets/musicas/oceano.mp3')
     ];
 
     audios.forEach(audio => {
@@ -291,40 +251,103 @@
     debugModelo(document.querySelector('#modelo-2'), 'modelo-2');
     debugModelo(document.querySelector('#modelo-3'), 'modelo-3');
 
+    // =========================================================
     // GERENCIAMENTO DE TARGETS
-    function setupTarget(targetId, modeloId, audioIndex) {
-      const target = document.querySelector(targetId);
-      const modelo = document.querySelector(modeloId);
-      const audio = audios[audioIndex];
+    // =========================================================
 
-      if (!target || !modelo) return;
+    const targets = [
+      { targetId: '#targetA', modeloId: '#modelo-0', audioIndex: 0 },
+      { targetId: '#targetB', modeloId: '#modelo-1', audioIndex: 1 },
+      { targetId: '#targetC', modeloId: '#modelo-2', audioIndex: 2 },
+      { targetId: '#targetD', modeloId: '#modelo-3', audioIndex: 3 },
+      { targetId: '#targetE', modeloId: '#modelo-4', audioIndex: 4 },
+      { targetId: '#targetF', modeloId: '#modelo-5', audioIndex: 5 },
 
-      target.addEventListener('targetFound', () => {
-        console.log('TARGET ENCONTRADO:', targetId);
-        modelo.setAttribute('visible', 'true');
-        modelo.setAttribute('animation-mixer', 'timeScale', 1);
+    ];
 
-        audios.forEach((a, i) => {
-          if (i !== audioIndex) a.pause();
-        });
+    // Esconde TODOS os modelos antes de mostrar o novo.
+    // Isso evita que o GLB da imagem anterior apareça
+    // durante a troca de target.
+    function esconderTodosModelos() {
+      targets.forEach(item => {
+        const modelo = document.querySelector(item.modeloId);
 
-        audio.currentTime = 0;
-        audio.play().catch(error => console.log('Áudio bloqueado:', error));
-      });
-
-      target.addEventListener('targetLost', () => {
-        console.log('TARGET PERDIDO:', targetId);
-        modelo.setAttribute('animation-mixer', 'timeScale', 0);
-        modelo.setAttribute('visible', 'false');
-        audio.pause();
+        if (modelo) {
+          modelo.setAttribute('visible', 'false');
+          modelo.setAttribute('animation-mixer', 'timeScale', 0);
+        }
       });
     }
 
-    // CONFIGURAÇÃO DOS TARGETS
-    setupTarget('#targetA', '#modelo-0', 0);
-    setupTarget('#targetB', '#modelo-1', 1);
-    setupTarget('#targetC', '#modelo-2', 2);
-    setupTarget('#targetD', '#modelo-3', 3);
+    // Para todos os áudios antes de iniciar o áudio
+    // correspondente ao novo target.
+    function pararTodosAudios() {
+      audios.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+    }
+
+    targets.forEach(item => {
+
+      const target = document.querySelector(item.targetId);
+      const modelo = document.querySelector(item.modeloId);
+      const audio = audios[item.audioIndex];
+
+      if (!target || !modelo) return;
+
+      // =======================================================
+      // NOVA IMAGEM ENCONTRADA
+      // =======================================================
+      target.addEventListener('targetFound', () => {
+
+        console.log('TARGET ENCONTRADO:', item.targetId);
+
+        // PRIMEIRO: esconde imediatamente todos os GLBs.
+        esconderTodosModelos();
+
+        // Para todos os áudios.
+        pararTodosAudios();
+
+        // Espera o próximo frame antes de mostrar
+        // o modelo correto.
+        requestAnimationFrame(() => {
+
+          // Mostra SOMENTE o GLB deste target.
+          modelo.setAttribute('visible', 'true');
+
+          // Ativa a animação.
+          modelo.setAttribute('animation-mixer', 'timeScale', 1);
+
+          // Inicia o áudio correspondente.
+          audio.currentTime = 0;
+
+          audio.play().catch(error => {
+            console.log('Áudio bloqueado:', error);
+          });
+
+        });
+      });
+
+      // =======================================================
+      // IMAGEM PERDIDA
+      // =======================================================
+      target.addEventListener('targetLost', () => {
+
+        console.log('TARGET PERDIDO:', item.targetId);
+
+        // Esconde imediatamente o GLB deste target.
+        modelo.setAttribute('visible', 'false');
+
+        // Para a animação.
+        modelo.setAttribute('animation-mixer', 'timeScale', 0);
+
+        // Para o áudio.
+        audio.pause();
+        audio.currentTime = 0;
+      });
+    });
+
   </script>
 
 </body>
