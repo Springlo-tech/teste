@@ -54,8 +54,8 @@
     }
 
     #logo-cliente {
-      width: 120px;
-      max-height: 120px;
+      width: 320px;
+      max-height: 320px;
       object-fit: contain;
       margin-bottom: 20px;
     }
@@ -73,7 +73,7 @@
   <!-- ========================================================= -->
   <div id="splash-screen">
     <img id="logo-cliente" src="assets/imagens/logo-A.webp" alt="Logo Personalizado">
-    <h2 id="titulo-cliente">Coleção Animais Marinhos</h2>
+    <h2 id="titulo-cliente">Coleção Halloween</h2>
     <p>Toque para iniciar a câmera e ativar o som</p>
     <button id="start-button">Iniciar</button>
   </div>
@@ -119,7 +119,7 @@
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
-      <a-gltf-model id="modelo-0" src="#modeloAbobora" scale="0.9 .9 .9" position="0 0 0.10" rotation="90 0 0" visible="false"
+      <a-gltf-model id="modelo-0" src="#modeloAbobora" scale="0.7 .7 .7" position="0 0 0.10" rotation="90 0 0" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
 
@@ -133,7 +133,7 @@
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
-      <a-gltf-model id="modelo-1" src="#modeloBruxa" scale="0.6 0.6 0.6" position="0 0 0.10" rotation="90 0 0"
+      <a-gltf-model id="modelo-1" src="#modeloBruxa" scale="0.5 0.5 0.5" position="0 0 0.10" rotation="90 0 0"
         visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
 
@@ -147,7 +147,7 @@
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
-      <a-gltf-model id="modelo-2" src="#modeloFantasma" scale="0.8 0.8 0.8" position="0 0 0.10" rotation="90 0 0"
+      <a-gltf-model id="modelo-2" src="#modeloFantasma" scale="0.6 0.6 0.6" position="0 0 0.10" rotation="90 0 0"
         visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
 
@@ -157,7 +157,7 @@
     <a-entity mindar-image-target="targetIndex: 3" id="targetD">
       <a-plane src="#fundo" width="2" height="2" position="0 0.5 0" 
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-3" src="#modeloMorcego" scale="0.6 0.6 0.6" position="0 0.6 0.10" rotation="90 0 0" visible="false"
+      <a-gltf-model id="modelo-3" src="#modeloMorcego" scale="0.5 0.5 0.5" position="0 0.6 0.10" rotation="90 0 0" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
     </a-entity>
@@ -166,7 +166,7 @@
     <a-entity mindar-image-target="targetIndex: 4" id="targetE">
       <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-4" src="#modeloMumia" scale="0.8 0.8 0.8" position="0 0 0.10" rotation="90 0 0" visible="false"
+      <a-gltf-model id="modelo-4" src="#modeloMumia" scale="0.7 0.7 0.7" position="0 0 0.10" rotation="90 0 0" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
     </a-entity>
@@ -175,7 +175,7 @@
     <a-entity mindar-image-target="targetIndex: 5" id="targetF">
       <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-5" src="#modeloVampiro" scale="0.7 .7 .7" position="0 0 0.10" rotation="90 0 0" visible="false"
+      <a-gltf-model id="modelo-5" src="#modeloVampiro" scale="0.6 .6 ." position="0 0 0.10" rotation="90 0 0" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
     </a-entity>
@@ -191,20 +191,10 @@
     const startBtn = document.getElementById('start-button');
     const scene = document.getElementById('minha-cena');
 
-    // ÁUDIOS
-    const audios = [
-      new Audio('assets/musicas/oceano.mp3'),
-      new Audio('assets/musicas/oceano.mp3'),
-      new Audio('assets/musicas/oceano.mp3'),
-      new Audio('assets/musicas/oceano.mp3'),
-      new Audio('assets/musicas/oceano.mp3'),
-      new Audio('assets/musicas/oceano.mp3')
-    ];
-
-    audios.forEach(audio => {
-      audio.loop = true;
-      audio.preload = 'auto';
-    });
+    // MÚSICA ÚNICA
+    const musicaFundo = new Audio('assets/musicas/halloween.mp3');
+    musicaFundo.loop = true;
+    musicaFundo.preload = 'auto';
 
     startBtn.addEventListener('click', () => {
       splash.style.display = 'none';
@@ -234,12 +224,12 @@
     // =========================================================
 
     const targets = [
-      { targetId: '#targetA', modeloId: '#modelo-0', audioIndex: 0 },
-      { targetId: '#targetB', modeloId: '#modelo-1', audioIndex: 1 },
-      { targetId: '#targetC', modeloId: '#modelo-2', audioIndex: 2 },
-      { targetId: '#targetD', modeloId: '#modelo-3', audioIndex: 3 },
-      { targetId: '#targetE', modeloId: '#modelo-4', audioIndex: 4 },
-      { targetId: '#targetF', modeloId: '#modelo-5', audioIndex: 5 }
+      { targetId: '#targetA', modeloId: '#modelo-0' },
+      { targetId: '#targetB', modeloId: '#modelo-1' },
+      { targetId: '#targetC', modeloId: '#modelo-2' },
+      { targetId: '#targetD', modeloId: '#modelo-3' },
+      { targetId: '#targetE', modeloId: '#modelo-4' },
+      { targetId: '#targetF', modeloId: '#modelo-5' }
     ];
 
     function esconderTodosModelos() {
@@ -252,30 +242,22 @@
       });
     }
 
-    function pararTodosAudios() {
-      audios.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-      });
-    }
-
     targets.forEach(item => {
       const target = document.querySelector(item.targetId);
       const modelo = document.querySelector(item.modeloId);
-      const audio = audios[item.audioIndex];
 
       if (!target || !modelo) return;
 
       target.addEventListener('targetFound', () => {
         console.log('TARGET ENCONTRADO:', item.targetId);
         esconderTodosModelos();
-        pararTodosAudios();
 
         requestAnimationFrame(() => {
           modelo.setAttribute('visible', 'true');
           modelo.setAttribute('animation-mixer', 'timeScale', 1);
-          audio.currentTime = 0;
-          audio.play().catch(error => {
+          
+          // Toca a música de fundo se já não estiver a tocar
+          musicaFundo.play().catch(error => {
             console.log('Áudio bloqueado:', error);
           });
         });
@@ -285,8 +267,9 @@
         console.log('TARGET PERDIDO:', item.targetId);
         modelo.setAttribute('visible', 'false');
         modelo.setAttribute('animation-mixer', 'timeScale', 0);
-        audio.pause();
-        audio.currentTime = 0;
+        
+        musicaFundo.pause();
+        musicaFundo.currentTime = 0;
       });
     });
   </script>
