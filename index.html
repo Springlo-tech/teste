@@ -102,7 +102,7 @@
       <!-- Modelos 3D na pasta assets/modelos -->
       <a-asset-item id="modeloAbobora" src="assets/modelos/abobora.glb"></a-asset-item>
       <a-asset-item id="modeloBruxa" src="assets/modelos/bruxa.glb"></a-asset-item>
-      <a-asset-item id="modeloCaveira" src="assets/modelos/caveira.glb"></a-asset-item>
+      <a-asset-item id="modeloFantasma" src="assets/modelos/fantasma.glb"></a-asset-item>
       <a-asset-item id="modeloMorcego" src="assets/modelos/morcego.glb"></a-asset-item>
       <a-asset-item id="modeloMumia" src="assets/modelos/mumia.glb"></a-asset-item>
       <a-asset-item id="modeloVampiro" src="assets/modelos/vampiro.glb"></a-asset-item>
@@ -147,7 +147,7 @@
         material="shader: flat; transparent: true; opacity: 1;">
       </a-plane>
 
-      <a-gltf-model id="modelo-2" src="#modeloCaveira" scale="0.8 0.8 0.8" position="0 0 0.10" rotation="90 0 0"
+      <a-gltf-model id="modelo-2" src="#modeloFantasma" scale="0.8 0.8 0.8" position="0 0 0.10" rotation="90 0 0"
         visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
 
@@ -155,9 +155,9 @@
 
     <!-- TARGET D (Index 3) -->
     <a-entity mindar-image-target="targetIndex: 3" id="targetD">
-      <a-plane src="#fundo" width="2" height="2" position="0 0.5 0" rotation="90 0 0"
+      <a-plane src="#fundo" width="2" height="2" position="0 0.5 0" 
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-3" src="#modeloMorcego" scale="0.5 0.5 0.5" position="0 0 0.10" rotation="90 0 0" visible="false"
+      <a-gltf-model id="modelo-3" src="#modeloMorcego" scale="0.6 0.6 0.6" position="0 0.6 0.10" rotation="90 0 0" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
     </a-entity>
@@ -175,7 +175,7 @@
     <a-entity mindar-image-target="targetIndex: 5" id="targetF">
       <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
         material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-5" src="#modeloVampiro" scale="0.9 .9 .9" position="0 0 0.10" rotation="90 0 0" visible="false"
+      <a-gltf-model id="modelo-5" src="#modeloVampiro" scale="0.7 .7 .7" position="0 0 0.10" rotation="90 0 0" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
     </a-entity>
