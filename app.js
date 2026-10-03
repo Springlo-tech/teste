@@ -58,7 +58,7 @@ const personagens = [
     glb: 'assets/modelos/abobora.glb',
     scale: '0.6 0.6 0.6',
     position: '0 0 0',
-    rotation: '0 0 0'
+    rotation: '90 0 0'
   },
   {
     nome: 'Bruxa',
@@ -67,7 +67,7 @@ const personagens = [
     glb: 'assets/modelos/bruxa.glb',
     scale: '0.5 0.5 0.5',
     position: '0 0 0',
-    rotation: '0 0 0'
+    rotation: '90 0 0'
   },
   {
     nome: 'Fantasma',
