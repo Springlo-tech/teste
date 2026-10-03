@@ -1,0 +1,10 @@
+Copie seus arquivos:
+- target.mind -> markers/target.mind
+- abobora.glb -> assets/modelos/abobora.glb
+
+Depois rode o index.html pelo Live Server.
+
+Abra o Console do Chrome com F12 > Console.
+Depois de clicar em Iniciar Câmera, deverá aparecer:
+"Vídeos encontrados: 1"
+e videoWidth/videoHeight maiores que zero.

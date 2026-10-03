@@ -3,277 +3,78 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cartão AR - Personalizado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>AR Abóbora - Teste</title>
 
-  <!-- A-Frame -->
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-
-  <!-- MindAR -->
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
-
-  <!-- Animation Mixer -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    #splash-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #333;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      text-align: center;
-    }
-
-    #start-button {
-      padding: 15px 30px;
-      background-color: #007bff;
-      color: white;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    #start-button:active {
-      transform: scale(0.97);
-    }
-
-    #logo-cliente {
-      width: 320px;
-      max-height: 320px;
-      object-fit: contain;
-      margin-bottom: 20px;
-    }
-
-    #minha-cena {
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- ========================================================= -->
-  <!-- TELA INICIAL -->
-  <!-- ========================================================= -->
   <div id="splash-screen">
-    <img id="logo-cliente" src="assets/imagens/logo-A.webp" alt="Logo Personalizado">
-    <h2 id="titulo-cliente">Coleção Halloween</h2>
-    <p>Toque para iniciar a câmera e ativar o som</p>
-    <button id="start-button">Iniciar</button>
+    <div class="splash-content">
+      <h1>Abóbora AR</h1>
+      <p>Aponte a câmera para o desenho da abóbora.</p>
+      <button id="start-button">Iniciar Câmera</button>
+      <p id="erro"></p>
+    </div>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- CENA AR -->
-  <!-- ========================================================= -->
+  <div id="status-ar">Procurando desenho...</div>
+
+  <div class="corner" id="corner-0">0</div>
+  <div class="corner" id="corner-1">1</div>
+  <div class="corner" id="corner-2">2</div>
+  <div class="corner" id="corner-3">3</div>
+
+  <div id="guia-posicao">
+    <div id="guia-bolinha"></div>
+    <div id="guia-texto">Procure o desenho</div>
+  </div>
+
+  <canvas id="overlay-guia"></canvas>
+
   <a-scene id="minha-cena" mindar-image="
       imageTargetSrc: markers/target.mind;
       maxTrack: 1;
       filterMinCF: 0.0001;
       filterBeta: 0.001;
-    " gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;" color-space="sRGB"
-    renderer="colorManagement: true; physicallyCorrectLights: false; exposure: 1.3;" vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false">
-
-    <a-light type="ambient" color="#FFFFFF" intensity="1.2"></a-light>
-
-    <!-- ======================================================= -->
-    <!-- ASSETS -->
-    <!-- ======================================================= -->
-    <a-assets timeout="10000">
-      <!-- Imagens -->
-      <img id="fundo" src="assets/imagens/fundo.png" crossorigin="anonymous">
-      
-      <!-- Modelos 3D na pasta assets/modelos -->
+      autoStart: false;
+    " renderer="
+  colorManagement: true;
+  physicallyCorrectLights: true;
+  antialias: true;
+  alpha: true;
+  toneMapping: ACESFilmic;
+  toneMappingExposure: 0.65;
+" color-space="sRGB" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets timeout="15000">
       <a-asset-item id="modeloAbobora" src="assets/modelos/abobora.glb"></a-asset-item>
-      <a-asset-item id="modeloBruxa" src="assets/modelos/bruxa.glb"></a-asset-item>
-      <a-asset-item id="modeloFantasma" src="assets/modelos/fantasma.glb"></a-asset-item>
-      <a-asset-item id="modeloMorcego" src="assets/modelos/morcego.glb"></a-asset-item>
-      <a-asset-item id="modeloMumia" src="assets/modelos/mumia.glb"></a-asset-item>
-      <a-asset-item id="modeloVampiro" src="assets/modelos/vampiro.glb"></a-asset-item>
     </a-assets>
 
-    <!-- CÂMERA -->
+    <a-light type="ambient" color="#FFFFFF" intensity="0.5"></a-light>
+    <a-light type="directional" position="0 1 1" intensity="5.5"></a-light>
+
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- ======================================================= -->
-    <!-- TARGET A (Index 0) -->
-    <!-- ======================================================= -->
-    <a-entity mindar-image-target="targetIndex: 0" id="targetA">
-      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
-        material="shader: flat; transparent: true; opacity: 1;">
-      </a-plane>
-
-      <a-gltf-model id="modelo-0" src="#modeloAbobora" scale="0.7 .7 .7" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-
-    </a-entity>
-
-    <!-- ======================================================= -->
-    <!-- TARGET B (Index 1) -->
-    <!-- ======================================================= -->
-    <a-entity mindar-image-target="targetIndex: 1" id="targetB">
-      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
-        material="shader: flat; transparent: true; opacity: 1;">
-      </a-plane>
-
-      <a-gltf-model id="modelo-1" src="#modeloBruxa" scale="0.5 0.5 0.5" position="0 0 0.10" rotation="90 0 0"
-        visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-
-    </a-entity>
-
-    <!-- ======================================================= -->
-    <!-- TARGET C (Index 2) -->
-    <!-- ======================================================= -->
-    <a-entity mindar-image-target="targetIndex: 2" id="targetC">
-      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
-        material="shader: flat; transparent: true; opacity: 1;">
-      </a-plane>
-
-      <a-gltf-model id="modelo-2" src="#modeloFantasma" scale="0.6 0.6 0.6" position="0 0 0.10" rotation="90 0 0"
-        visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-
-    </a-entity>
-
-    <!-- TARGET D (Index 3) -->
-    <a-entity mindar-image-target="targetIndex: 3" id="targetD">
-      <a-plane src="#fundo" width="2" height="2" position="0 0.5 0" 
-        material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-3" src="#modeloMorcego" scale="0.5 0.5 0.5" position="0 0.8 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-    </a-entity>
-
-    <!-- TARGET E (Index 4) -->
-    <a-entity mindar-image-target="targetIndex: 4" id="targetE">
-      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
-        material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-4" src="#modeloMumia" scale="0.7 0.7 0.7" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-    </a-entity>
-
-    <!-- TARGET F (Index 5) -->
-    <a-entity mindar-image-target="targetIndex: 5" id="targetF">
-      <a-plane src="#fundo" width="1.11" height="1.52" position="0 0 -0.01"
-        material="shader: flat; transparent: true; opacity: 1;"></a-plane>
-      <a-gltf-model id="modelo-5" src="#modeloVampiro" scale="0.6 .6 .6" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-    </a-entity>
+    <a-entity id="targetA" mindar-image-target="targetIndex: 0"></a-entity>
+    <a-entity id="targetB" mindar-image-target="targetIndex: 1"></a-entity>
+    <a-entity id="targetC" mindar-image-target="targetIndex: 2"></a-entity>
+    <a-entity id="targetD" mindar-image-target="targetIndex: 3"></a-entity>
+    <a-entity id="targetE" mindar-image-target="targetIndex: 4"></a-entity>
+    <a-entity id="targetF" mindar-image-target="targetIndex: 5"></a-entity>
+    <!-- único modelo ativo -->
+    <a-gltf-model id="modelo-ativo" visible="false" scale="0.6 0.6 0.6" position="0 0 0" rotation="0 0 0"
+      animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+    </a-gltf-model>
 
   </a-scene>
 
-  <!-- ========================================================= -->
-  <!-- JAVASCRIPT -->
-  <!-- ========================================================= -->
-  <script>
-    // SPLASH / CÂMERA
-    const splash = document.getElementById('splash-screen');
-    const startBtn = document.getElementById('start-button');
-    const scene = document.getElementById('minha-cena');
-
-    // MÚSICA ÚNICA
-    const musicaFundo = new Audio('assets/musicas/halloween.mp3');
-    musicaFundo.loop = true;
-    musicaFundo.preload = 'auto';
-
-    startBtn.addEventListener('click', () => {
-      splash.style.display = 'none';
-      scene.style.display = 'block';
-    });
-
-    // DEBUG DOS MODELOS
-    function debugModelo(modelo, nome) {
-      if (!modelo) return;
-      modelo.addEventListener('model-loaded', () => {
-        console.log('MODELO CARREGADO:', nome);
-      });
-      modelo.addEventListener('model-error', (event) => {
-        console.error('ERRO AO CARREGAR MODELO:', nome, event);
-      });
-    }
-
-    debugModelo(document.querySelector('#modelo-0'), 'modelo-0');
-    debugModelo(document.querySelector('#modelo-1'), 'modelo-1');
-    debugModelo(document.querySelector('#modelo-2'), 'modelo-2');
-    debugModelo(document.querySelector('#modelo-3'), 'modelo-3');
-    debugModelo(document.querySelector('#modelo-4'), 'modelo-4');
-    debugModelo(document.querySelector('#modelo-5'), 'modelo-5');
-
-    // =========================================================
-    // GERENCIAMENTO DE TARGETS
-    // =========================================================
-
-    const targets = [
-      { targetId: '#targetA', modeloId: '#modelo-0' },
-      { targetId: '#targetB', modeloId: '#modelo-1' },
-      { targetId: '#targetC', modeloId: '#modelo-2' },
-      { targetId: '#targetD', modeloId: '#modelo-3' },
-      { targetId: '#targetE', modeloId: '#modelo-4' },
-      { targetId: '#targetF', modeloId: '#modelo-5' }
-    ];
-
-    function esconderTodosModelos() {
-      targets.forEach(item => {
-        const modelo = document.querySelector(item.modeloId);
-        if (modelo) {
-          modelo.setAttribute('visible', 'false');
-          modelo.setAttribute('animation-mixer', 'timeScale', 0);
-        }
-      });
-    }
-
-    targets.forEach(item => {
-      const target = document.querySelector(item.targetId);
-      const modelo = document.querySelector(item.modeloId);
-
-      if (!target || !modelo) return;
-
-      target.addEventListener('targetFound', () => {
-        console.log('TARGET ENCONTRADO:', item.targetId);
-        esconderTodosModelos();
-
-        requestAnimationFrame(() => {
-          modelo.setAttribute('visible', 'true');
-          modelo.setAttribute('animation-mixer', 'timeScale', 1);
-          
-          // Toca a música de fundo se já não estiver a tocar
-          musicaFundo.play().catch(error => {
-            console.log('Áudio bloqueado:', error);
-          });
-        });
-      });
-
-      target.addEventListener('targetLost', () => {
-        console.log('TARGET PERDIDO:', item.targetId);
-        modelo.setAttribute('visible', 'false');
-        modelo.setAttribute('animation-mixer', 'timeScale', 0);
-        
-        musicaFundo.pause();
-        musicaFundo.currentTime = 0;
-      });
-    });
-  </script>
-
+  <script src="app.js"></script>
 </body>
 
 </html>
