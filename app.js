@@ -19,7 +19,7 @@ const overlayCtx = overlayGuia ? overlayGuia.getContext('2d') : null;
 const cornerElements = [document.getElementById('corner-0'), document.getElementById('corner-1'), document.getElementById('corner-2'), document.getElementById('corner-3')];
 
 const personagens = [
-  { nome: 'Abóbora', targetId: 'targetA', targetIndex: 0, glb: 'assets/modelos/abobora.glb', scale: '0.6 0.6 0.6', position: '0 0 0', rotation: '90 0 0' },
+  { nome: 'Abóbora', targetId: 'targetA', targetIndex: 0, glb: 'assets/modelos/abobora.glb', scale: '0.6 0.6 0.6', position: '0 0 0', rotation: '0 0 0' },
   { nome: 'Bruxa', targetId: 'targetB', targetIndex: 1, glb: 'assets/modelos/bruxa.glb', scale: '0.5 0.5 0.5', position: '0 0 0', rotation: '90 0 0' },
   { nome: 'Fantasma', targetId: 'targetC', targetIndex: 2, glb: 'assets/modelos/fantasma.glb', scale: '0.6 0.6 0.6', position: '0 0 0', rotation: '0 0 0' },
   { nome: 'Morcego', targetId: 'targetD', targetIndex: 3, glb: 'assets/modelos/morcego.glb', scale: '0.5 0.5 0.5', position: '0 0 0', rotation: '0 0 0' },
@@ -498,19 +498,19 @@ function reforcarCores(ctx, largura, altura) {
     let b = dados[i + 2];
 
     const luminancia = 0.299 * r + 0.587 * g + 0.114 * b;
-    const saturacao = 2.0;
+    const saturacao = 0.0;
 
     r = luminancia + (r - luminancia) * saturacao;
     g = luminancia + (g - luminancia) * saturacao;
     b = luminancia + (b - luminancia) * saturacao;
 
-    const contraste = 0.96;
+    const contraste = 5.0;
 
     r = (r - 128) * contraste + 128;
     g = (g - 128) * contraste + 128;
     b = (b - 128) * contraste + 128;
 
-    const brilho = 0.86;
+    const brilho = 0.5;
 
     r *= brilho;
     g *= brilho;
