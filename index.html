@@ -36,14 +36,23 @@
     <div id="guia-texto">Procure o desenho</div>
   </div>
 
+  <button id="btn-destravar" type="button"
+    style="display:none; position:fixed; left:50%; bottom:24px; transform:translateX(-50%); z-index:10000; padding:12px 20px; border:0; border-radius:24px; font-weight:700; font-size:15px; cursor:pointer;">
+    Destravar / Tirar nova foto
+  </button>
+
   <canvas id="overlay-guia"></canvas>
 
   <a-scene id="minha-cena" mindar-image="
       imageTargetSrc: markers/target.mind;
       maxTrack: 1;
-      filterMinCF: 0.0001;
+      warmupTolerance: 3;
+      missTolerance: 15;
+     filterMinCF: 0.0001;
       filterBeta: 0.001;
+
       autoStart: false;
+      uiScanning: no;
     " renderer="
   colorManagement: true;
   physicallyCorrectLights: true;
@@ -70,16 +79,14 @@
 
     </a-entity>
 
-     <a-entity id="targetB" mindar-image-target="targetIndex: 1">
+    <a-entity id="targetB" mindar-image-target="targetIndex: 1">
 
       <!-- único modelo ativo -->
-      <a-gltf-model id="modelo-ativo" visible="false" scale="0.6 0.6 0.6" position="0 0 0" rotation="0 0 0"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
+
 
     </a-entity>
 
-    
+
   </a-scene>
 
   <script src="app.js"></script>

@@ -14,6 +14,8 @@ const statusAR = document.getElementById('status-ar');
 const modeloAtivo = document.getElementById('modelo-ativo');
 const guiaBolinha = document.getElementById('guia-bolinha');
 const guiaTexto = document.getElementById('guia-texto');
+const guiaPosicao = document.getElementById('guia-posicao');
+const botaoDestravar = document.getElementById('btn-destravar');
 const overlayGuia = document.getElementById('overlay-guia');
 const overlayCtx = overlayGuia ? overlayGuia.getContext('2d') : null;
 const cornerElements = [document.getElementById('corner-0'), document.getElementById('corner-1'), document.getElementById('corner-2'), document.getElementById('corner-3')];
@@ -49,7 +51,77 @@ let uH1 = null;
 let uH2 = null;
 let canvasTexturaFinal = null;
 let texturaFinal = null;
+let timerPerdaTarget = null;
+let modoTravado = false;
+let personagemTravado = null;
+let targetTravado = null;
 const texturasTravadas = new Map();
+
+
+function ativarModoTravado() {
+  modoTravado = true;
+  personagemTravado = personagemAtual;
+  targetTravado = targetAtivo;
+  capturaRealizada = true;
+  framesBons = 0;
+
+  // Depois da captura, a interface de procura/enquadramento some.
+  if (statusAR) statusAR.style.display = 'none';
+  if (guiaPosicao) guiaPosicao.style.display = 'none';
+  if (previewCanvas) previewCanvas.style.display = 'none';
+
+  limparContorno();
+  esconderCantos();
+
+  if (botaoDestravar) botaoDestravar.style.display = 'block';
+}
+
+function destravarCaptura() {
+  // Somente este botão pode retirar o aplicativo do modo travado.
+  const personagemAnterior = personagemTravado;
+
+  modoTravado = false;
+  personagemTravado = null;
+  targetTravado = null;
+  capturaRealizada = false;
+  framesBons = 0;
+  ultimoCentro = null;
+
+  if (timerPerdaTarget) {
+    clearTimeout(timerPerdaTarget);
+    timerPerdaTarget = null;
+  }
+
+  // Remove a textura da captura anterior somente quando o usuário pede nova foto.
+  const chave = personagemAnterior ? personagemAnterior.targetIndex : null;
+  if (chave !== null && texturasTravadas.has(chave)) {
+    const texturaAnterior = texturasTravadas.get(chave);
+    if (texturaAnterior && texturaAnterior.dispose) texturaAnterior.dispose();
+    texturasTravadas.delete(chave);
+  }
+
+  modeloAtivo.setAttribute('visible', false);
+  modeloAtivo.setAttribute('animation-mixer', 'timeScale', 0);
+
+  if (botaoDestravar) botaoDestravar.style.display = 'none';
+  if (statusAR) {
+    statusAR.style.display = 'block';
+    statusAR.textContent = 'Procurando desenho...';
+  }
+  if (guiaPosicao) guiaPosicao.style.display = '';
+
+  // Ao destravar, sempre reinicia o fluxo de captura do zero.
+  targetEncontrado = false;
+  personagemAtual = null;
+  targetAtivo = null;
+  setGuiaStatus('white', 'Coloque o desenho dentro da moldura');
+  desenharGuiaEnquadramento('white');
+  if (previewCanvas) previewCanvas.style.display = 'none';
+}
+
+if (botaoDestravar) {
+  botaoDestravar.addEventListener('click', destravarCaptura);
+}
 
 function esperarCenaCarregar() {
   if (scene.hasLoaded) return Promise.resolve();
@@ -642,10 +714,7 @@ async function finalizarCaptura() {
 
   if (previewCanvas) previewCanvas.style.display = 'none';
 
-  limparContorno();
-
-  setGuiaStatus('lime', 'Pronto!');
-  statusAR.textContent = 'Personagem pronto';
+  ativarModoTravado();
 }
 
 modeloAtivo.addEventListener('model-loaded', () => {
@@ -661,10 +730,7 @@ modeloAtivo.addEventListener('model-loaded', () => {
     modeloAtivo.setAttribute('visible', true);
     modeloAtivo.setAttribute('animation-mixer', 'timeScale', 1);
 
-    limparContorno();
-
-    setGuiaStatus('lime', 'Pronto!');
-    statusAR.textContent = 'Personagem pronto';
+    ativarModoTravado();
   }
 });
 
@@ -678,10 +744,46 @@ personagens.forEach(personagem => {
   if (!target) return;
 
   target.addEventListener('targetFound', () => {
+    if (timerPerdaTarget) {
+      clearTimeout(timerPerdaTarget);
+      timerPerdaTarget = null;
+    }
+
+    // MODO TRAVADO: eventos de outros targets são ignorados completamente.
+    // O aplicativo NÃO volta para captura até o usuário clicar em Destravar.
+   if (modoTravado) {
+      if (!personagemTravado || personagem.targetIndex !== personagemTravado.targetIndex) return;
+
+      personagemAtual = personagemTravado;
+      targetAtivo = targetTravado || target;
+      targetEncontrado = true;
+      capturaRealizada = true;
+
+      if (modeloAtivo.parentElement !== target) target.appendChild(modeloAtivo);
+
+      modeloAtivo.setAttribute('scale', personagemTravado.scale);
+      modeloAtivo.setAttribute('position', personagemTravado.position);
+      modeloAtivo.setAttribute('rotation', personagemTravado.rotation);
+
+      const textura = texturasTravadas.get(personagemTravado.targetIndex);
+      if (textura && modeloCarregado) aplicarTexturaNoModelo(textura);
+
+      modeloAtivo.setAttribute('visible', true);
+      modeloAtivo.setAttribute('animation-mixer', 'timeScale', 1);
+
+      // Garante que NENHUMA interface de captura reapareça
+      if (statusAR) statusAR.style.display = 'none';
+      if (guiaPosicao) guiaPosicao.style.display = 'none';
+      if (previewCanvas) previewCanvas.style.display = 'none';
+      limparContorno();
+      esconderCantos();
+      return;
+    }
+
     personagemAtual = personagem;
     targetAtivo = target;
     targetEncontrado = true;
-    capturaRealizada = personagemTemTexturaTravada(personagem);
+    capturaRealizada = false;
     framesBons = 0;
     ultimoCentro = null;
 
@@ -702,54 +804,72 @@ personagens.forEach(personagem => {
       modeloCarregado = true;
     }
 
-    if (personagemTemTexturaTravada(personagem)) {
-      const textura = texturasTravadas.get(obterChavePersonagem(personagem));
-
-      if (modeloCarregado) {
-        aplicarTexturaNoModelo(textura);
-
-        modeloAtivo.setAttribute('visible', true);
-        modeloAtivo.setAttribute('animation-mixer', 'timeScale', 1);
-      }
-
-      statusAR.textContent = 'Personagem pronto';
-
-      setGuiaStatus('lime', 'Pronto!');
-      limparContorno();
-
-      if (previewCanvas) previewCanvas.style.display = 'none';
-
-    } else {
+    // Enquanto NÃO estiver travado, o fluxo é exclusivamente de enquadramento/captura.
+    if (statusAR) {
+      statusAR.style.display = 'block';
       statusAR.textContent = 'Enquadre o desenho';
-
-      setGuiaStatus('yellow', 'Centralize o desenho');
-      desenharGuiaEnquadramento('yellow');
-
-      if (previewCanvas) previewCanvas.style.display = 'block';
     }
+    if (guiaPosicao) guiaPosicao.style.display = '';
+    setGuiaStatus('yellow', 'Centralize o desenho');
+    desenharGuiaEnquadramento('yellow');
+    if (previewCanvas) previewCanvas.style.display = 'block';
   });
 
   target.addEventListener('targetLost', () => {
+    // Depois da captura, perder momentaneamente o target NUNCA reabre o scanner.
+    // Apenas o botão Destravar pode fazer isso.
+    if (modoTravado) {
+      if (!personagemTravado || personagem.targetIndex !== personagemTravado.targetIndex) return;
+
+      targetEncontrado = false;
+      capturaRealizada = true;
+      framesBons = 0;
+      ultimoCentro = null;
+
+      if (statusAR) statusAR.style.display = 'none';
+      if (guiaPosicao) guiaPosicao.style.display = 'none';
+      if (previewCanvas) previewCanvas.style.display = 'none';
+      limparContorno();
+      esconderCantos();
+
+      // Não apagamos personagemAtual/targetAtivo e não mostramos "Procurando desenho".
+      // Quando o mesmo target for reencontrado, o GLB volta a acompanhar automaticamente.
+      return;
+    }
+
     if (targetAtivo !== target) return;
 
     targetEncontrado = false;
     framesBons = 0;
     ultimoCentro = null;
 
-    statusAR.textContent = 'Procurando desenho...';
+    if (timerPerdaTarget) {
+      clearTimeout(timerPerdaTarget);
+      timerPerdaTarget = null;
+    }
 
-    setGuiaStatus('white', 'Coloque o desenho dentro da moldura');
+    timerPerdaTarget = setTimeout(() => {
+      if (targetEncontrado || targetAtivo !== target || modoTravado) return;
 
-    esconderCantos();
-    desenharGuiaEnquadramento('white');
+      if (statusAR) {
+        statusAR.style.display = 'block';
+        statusAR.textContent = 'Procurando desenho...';
+      }
+      if (guiaPosicao) guiaPosicao.style.display = '';
+      setGuiaStatus('white', 'Coloque o desenho dentro da moldura');
 
-    modeloAtivo.setAttribute('visible', false);
-    modeloAtivo.setAttribute('animation-mixer', 'timeScale', 0);
+      esconderCantos();
+      desenharGuiaEnquadramento('white');
 
-    if (previewCanvas) previewCanvas.style.display = 'none';
+      modeloAtivo.setAttribute('visible', false);
+      modeloAtivo.setAttribute('animation-mixer', 'timeScale', 0);
 
-    personagemAtual = null;
-    targetAtivo = null;
+      if (previewCanvas) previewCanvas.style.display = 'none';
+
+      personagemAtual = null;
+      targetAtivo = null;
+      timerPerdaTarget = null;
+    }, 400);
   });
 });
 
@@ -757,6 +877,10 @@ function loop() {
   requestAnimationFrame(loop);
 
   if (cameraTexture && cameraVideo && cameraVideo.readyState >= 2) cameraTexture.needsUpdate = true;
+
+  // No modo travado, o MindAR continua atualizando a pose do target/GLB,
+  // mas todo o pipeline de captura fica desligado.
+  if (modoTravado) return;
 
   if (!targetEncontrado) return;
 
@@ -789,7 +913,11 @@ desenharGuiaEnquadramento('white');
 window.addEventListener('resize', () => {
   ajustarOverlayGuia();
 
-  if (!capturaRealizada) desenharGuiaEnquadramento(targetEncontrado ? 'yellow' : 'white');
+  if (!modoTravado && !capturaRealizada) desenharGuiaEnquadramento(targetEncontrado ? 'yellow' : 'white');
+
+  // No modo travado, o MindAR continua atualizando a pose do target/GLB,
+  // mas todo o pipeline de captura fica desligado.
+  if (modoTravado) return;
 
   if (!targetEncontrado) return;
 
