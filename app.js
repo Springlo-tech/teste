@@ -19,7 +19,7 @@ const overlayCtx = overlayGuia ? overlayGuia.getContext('2d') : null;
 const cornerElements = [document.getElementById('corner-0'), document.getElementById('corner-1'), document.getElementById('corner-2'), document.getElementById('corner-3')];
 
 const personagens = [
-  { nome: 'Abóbora', targetId: 'targetA', targetIndex: 0, glb: 'assets/modelos/abobora.glb', scale: '0.6 0.6 0.6', position: '0 0 0', rotation: '0 0 0' },
+  { nome: 'Abóbora', targetId: 'targetA', targetIndex: 0, glb: 'assets/modelos/abobora.glb', scale: '0.6 0.6 0.6', position: '0 0 0', rotation: '90 0 0' },
   { nome: 'Bruxa', targetId: 'targetB', targetIndex: 1, glb: 'assets/modelos/bruxa.glb', scale: '0.5 0.5 0.5', position: '0 0 0', rotation: '90 0 0' },
   { nome: 'Fantasma', targetId: 'targetC', targetIndex: 2, glb: 'assets/modelos/fantasma.glb', scale: '0.6 0.6 0.6', position: '0 0 0', rotation: '0 0 0' },
   { nome: 'Morcego', targetId: 'targetD', targetIndex: 3, glb: 'assets/modelos/morcego.glb', scale: '0.5 0.5 0.5', position: '0 0 0', rotation: '0 0 0' },
