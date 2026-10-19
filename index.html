@@ -151,6 +151,8 @@
       <a-asset-item id="modeloMercurio" src="assets/modelos/mercurio.glb"></a-asset-item>
       <a-asset-item id="modeloNetuno" src="assets/modelos/netuno.glb"></a-asset-item>
       <a-asset-item id="modeloVenus" src="assets/modelos/venus.glb"></a-asset-item>
+      <a-asset-item id="modeloUrano" src="assets/modelos/urano.glb"></a-asset-item>
+      <a-asset-item id="modeloSaturno" src="assets/modelos/saturno.glb"></a-asset-item>
     </a-assets>
 
     <!-- CÂMERA -->
@@ -191,7 +193,7 @@
 
     <!-- TARGET D (Index 3) -->
     <a-entity mindar-image-target="targetIndex: 3" id="targetD">
-      <a-gltf-model id="modelo-3" src="#modeloMercurio" scale="0.5 0.5 0.5" position="0 0.8 0.10" rotation="90 0 0" visible="false"
+      <a-gltf-model id="modelo-3" src="#modeloMercurio" scale="0.8 0.8 0.8" position="0 0 0.10" rotation="90 0 0" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
     </a-entity>
@@ -211,6 +213,23 @@
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
     </a-entity>
+
+    <!-- TARGET F (Index 6)  urano -->
+    <a-entity mindar-image-target="targetIndex: 6" id="targetG">
+     
+      <a-gltf-model id="modelo-6" src="#modeloUrano" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0" visible="false"
+        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    </a-entity>
+
+     <!-- TARGET F (Index 7)  Saturno -->
+    <a-entity mindar-image-target="targetIndex: 7" id="targetH">
+     
+      <a-gltf-model id="modelo-7" src="#modeloSaturno" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0" visible="false"
+        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    </a-entity>
+
 
   </a-scene>
 
@@ -256,7 +275,9 @@
     { targetId: '#targetC', modeloId: '#modelo-2' },
     { targetId: '#targetD', modeloId: '#modelo-3' },
     { targetId: '#targetE', modeloId: '#modelo-4' },
-    { targetId: '#targetF', modeloId: '#modelo-5' }
+    { targetId: '#targetF', modeloId: '#modelo-5' },
+    { targetId: '#targetG', modeloId: '#modelo-6' },
+    { targetId: '#targetH', modeloId: '#modelo-7' }
   ];
 
   function esconderTodosModelos() {
