@@ -153,6 +153,8 @@
       <a-asset-item id="modeloVenus" src="assets/modelos/venus.glb"></a-asset-item>
       <a-asset-item id="modeloUrano" src="assets/modelos/urano.glb"></a-asset-item>
       <a-asset-item id="modeloSaturno" src="assets/modelos/saturno.glb"></a-asset-item>
+      <a-asset-item id="modeloSol" src="assets/modelos/sol.glb"></a-asset-item>
+      <a-asset-item id="modeloSistema" src="assets/modelos/sistema.glb"></a-asset-item>
     </a-assets>
 
     <!-- CÂMERA -->
@@ -230,6 +232,22 @@
       </a-gltf-model>
     </a-entity>
 
+      <!-- TARGET F (Index 8)  Sol -->
+    <a-entity mindar-image-target="targetIndex: 8" id="targetI">
+     
+      <a-gltf-model id="modelo-8" src="#modeloSol" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0" visible="false"
+        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    </a-entity>
+
+      <!-- TARGET F (Index 9)  Sistema Solar -->
+    <a-entity mindar-image-target="targetIndex: 9" id="targetJ">
+     
+      <a-gltf-model id="modelo-9" src="#modeloSistema" scale="0.2 .2 .2" position="0 0 0.10" rotation="90 0 0" visible="false"
+        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
+      </a-gltf-model>
+    </a-entity>
+
 
   </a-scene>
 
@@ -277,7 +295,9 @@
     { targetId: '#targetE', modeloId: '#modelo-4' },
     { targetId: '#targetF', modeloId: '#modelo-5' },
     { targetId: '#targetG', modeloId: '#modelo-6' },
-    { targetId: '#targetH', modeloId: '#modelo-7' }
+    { targetId: '#targetH', modeloId: '#modelo-7' },
+    { targetId: '#targetI', modeloId: '#modelo-8' },
+    { targetId: '#targetJ', modeloId: '#modelo-9' }
   ];
 
   function esconderTodosModelos() {
