@@ -145,107 +145,22 @@
       <img id="fundo" src="assets/imagens/fundo.png" crossorigin="anonymous">-->
       
       <!-- Modelos 3D na pasta assets/modelos -->
-      <a-asset-item id="modeloTerra" src="assets/modelos/terra.glb"></a-asset-item>
-      <a-asset-item id="modeloMarte" src="assets/modelos/marte.glb"></a-asset-item>
-      <a-asset-item id="modeloJupiter" src="assets/modelos/jupiter.glb"></a-asset-item>
-      <a-asset-item id="modeloMercurio" src="assets/modelos/mercurio.glb"></a-asset-item>
-      <a-asset-item id="modeloNetuno" src="assets/modelos/netuno.glb"></a-asset-item>
-      <a-asset-item id="modeloVenus" src="assets/modelos/venus.glb"></a-asset-item>
-      <a-asset-item id="modeloUrano" src="assets/modelos/urano.glb"></a-asset-item>
-      <a-asset-item id="modeloSaturno" src="assets/modelos/saturno.glb"></a-asset-item>
-      <a-asset-item id="modeloSol" src="assets/modelos/sol.glb"></a-asset-item>
-      <a-asset-item id="modeloSistema" src="assets/modelos/sistema.glb"></a-asset-item>
+      <a-asset-item id="modeloPrincipe" src="assets/modelos/principe.glb"></a-asset-item>
+      
     </a-assets>
 
     <!-- CÂMERA -->
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
     <!-- ======================================================= -->
-    <!-- TARGET A (Index 0) --> terra
+    <!-- TARGET A (Index 0) --> principe
     <!-- ======================================================= -->
     <a-entity mindar-image-target="targetIndex: 0" id="targetA">
       
-      <a-gltf-model id="modelo-0" src="#modeloTerra" scale="0.7 .7 .7" position="0 0 0.10" rotation="90 0 0" visible="false"
+      <a-gltf-model id="modelo-0" src="#modeloPrincipe" scale="1 1 1" position="0 0 0.10" rotation="90 0 0" visible="false"
         animation-mixer="clip: *; loop: repeat; timeScale: 0;">
       </a-gltf-model>
 
-    </a-entity>
-
-    <!-- ======================================================= -->
-    <!-- TARGET B (Index 1) -->marte
-    <!-- ======================================================= -->
-    <a-entity mindar-image-target="targetIndex: 1" id="targetB">
-    
-      <a-gltf-model id="modelo-1" src="#modeloMarte" scale="0.7 0.7 0.7" position="0 0 0.10" rotation="90 0 0"
-        visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-
-    </a-entity>
-
-    <!-- ======================================================= -->
-    <!-- TARGET C (Index 2) -->
-    <!-- ======================================================= -->
-    <a-entity mindar-image-target="targetIndex: 2" id="targetC">
-      
-      <a-gltf-model id="modelo-2" src="#modeloJupiter" scale="0.7 0.7 0.7" position="0 0 0.10" rotation="90 0 0"
-        visible="false" animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-
-    </a-entity>
-
-    <!-- TARGET D (Index 3) -->
-    <a-entity mindar-image-target="targetIndex: 3" id="targetD">
-      <a-gltf-model id="modelo-3" src="#modeloMercurio" scale="0.8 0.8 0.8" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-    </a-entity>
-
-    <!-- TARGET E (Index 4) netuno-->
-     <a-entity mindar-image-target="targetIndex: 4" id="targetE">
-     
-      <a-gltf-model id="modelo-4" src="#modeloNetuno" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-    </a-entity>
-
-    <!-- TARGET F (Index 5)  venus -->
-    <a-entity mindar-image-target="targetIndex: 5" id="targetF">
-     
-      <a-gltf-model id="modelo-5" src="#modeloVenus" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-    </a-entity>
-
-    <!-- TARGET F (Index 6)  urano -->
-    <a-entity mindar-image-target="targetIndex: 6" id="targetG">
-     
-      <a-gltf-model id="modelo-6" src="#modeloUrano" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-    </a-entity>
-
-     <!-- TARGET F (Index 7)  Saturno -->
-    <a-entity mindar-image-target="targetIndex: 7" id="targetH">
-     
-      <a-gltf-model id="modelo-7" src="#modeloSaturno" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-    </a-entity>
-
-      <!-- TARGET F (Index 8)  Sol -->
-    <a-entity mindar-image-target="targetIndex: 8" id="targetI">
-     
-      <a-gltf-model id="modelo-8" src="#modeloSol" scale="0.8 .8 .8" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
-    </a-entity>
-
-      <!-- TARGET F (Index 9)  Sistema Solar -->
-    <a-entity mindar-image-target="targetIndex: 9" id="targetJ">
-     
-      <a-gltf-model id="modelo-9" src="#modeloSistema" scale="0.2 .2 .2" position="0 0 0.10" rotation="90 0 0" visible="false"
-        animation-mixer="clip: *; loop: repeat; timeScale: 0;">
-      </a-gltf-model>
     </a-entity>
 
 
@@ -276,28 +191,12 @@
     });
   }
 
-  debugModelo(document.querySelector('#modelo-0'), 'modelo-0');
-  debugModelo(document.querySelector('#modelo-1'), 'modelo-1');
-  debugModelo(document.querySelector('#modelo-2'), 'modelo-2');
-  debugModelo(document.querySelector('#modelo-3'), 'modelo-3');
-  debugModelo(document.querySelector('#modelo-4'), 'modelo-4');
-  debugModelo(document.querySelector('#modelo-5'), 'modelo-5');
-
   // =========================================================
   // GERENCIAMENTO DE TARGETS
   // =========================================================
 
   const targets = [
-    { targetId: '#targetA', modeloId: '#modelo-0' },
-    { targetId: '#targetB', modeloId: '#modelo-1' },
-    { targetId: '#targetC', modeloId: '#modelo-2' },
-    { targetId: '#targetD', modeloId: '#modelo-3' },
-    { targetId: '#targetE', modeloId: '#modelo-4' },
-    { targetId: '#targetF', modeloId: '#modelo-5' },
-    { targetId: '#targetG', modeloId: '#modelo-6' },
-    { targetId: '#targetH', modeloId: '#modelo-7' },
-    { targetId: '#targetI', modeloId: '#modelo-8' },
-    { targetId: '#targetJ', modeloId: '#modelo-9' }
+    { targetId: '#targetA', modeloId: '#modelo-0' }
   ];
 
   function esconderTodosModelos() {
