@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     if (isAndroid && modelViewer) {
-        modelViewer.scale = "2.5 2.5 2.5";
+        modelViewer.scale = "1 1 1";
     }
 
     function showOverlay() {
