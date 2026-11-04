@@ -386,27 +386,30 @@
                 <a href="#demo" class="btn-secondary">Watch Demo</a>
             </div>
         </div>
-        <div class="hero-demo" id="demo">
-            <!-- Capa do Livro em Resolução Nativa (848x1264) -->
-            <div style="position: relative; max-width: 380px; margin: 0 auto;">
+        <div class="hero-demo" id="demo"
+            style="display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap;">
+
+            <!-- Capa do Livro (848x1264) -->
+            <div style="position: relative; max-width: 260px; flex: 1; min-width: 220px;">
                 <img src="assets/imagens/dragao.jpg" alt="AR Book Cover Demo - Dragon" width="848" height="1264"
                     style="width: 100%; height: auto; aspect-ratio: 848 / 1264; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #334155; display: block;">
             </div>
 
-            <!-- Caixas de Instrução para Teste em PC e Telemóvel -->
+            <!-- Caixa com o QR Code Posicionado Exatamente Onde Pediu -->
             <div
-                style="margin-top: 15px; background: rgba(15, 23, 42, 0.9); padding: 14px; border-radius: 10px; border: 1px solid #334155; text-align: left;">
-                <p style="font-size: 0.85rem; color: #f8fafc; margin-bottom: 8px;">
-                    <i class="fa-solid fa-laptop" style="color: #6366f1;"></i> <strong>No Computador?</strong> Aponte a
-                    câmara do seu telemóvel para a capa acima para ver o dragão em RA.
+                style="background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155; text-align: center; max-width: 220px; flex: 1; min-width: 180px;">
+                <p style="font-size: 0.85rem; color: #f8fafc; margin-bottom: 12px; font-weight: 600;">
+                    <i class="fa-solid fa-qrcode" style="color: #6366f1;"></i> Scan to Test AR
                 </p>
-                <p style="font-size: 0.85rem; color: #94a3b8; margin: 0;">
-                    <i class="fa-solid fa-mobile-screen" style="color: #10b981;"></i> <strong>No Telemóvel?</strong> <a
-                        href="SEU_LINK_WEBAR_DIRECTO" target="_blank"
-                        style="color: #818cf8; font-weight: 600; text-decoration: underline;">Clique aqui para abrir a
-                        experiência 3D directamente</a>.
+                <!-- Gerador automático de QR Code apontando para o seu scanear.html -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://springlo-tech.github.io/teste/"
+                    alt="QR Code para Testar RA"
+                    style="width: 130px; height: 130px; border-radius: 8px; background: white; padding: 6px; display: block; margin: 0 auto 12px auto;">
+                <p style="font-size: 0.75rem; color: #94a3b8; margin: 0;">
+                    Aponte a câmara do telemóvel para abrir a RA.
                 </p>
             </div>
+
         </div>
     </section>
 
