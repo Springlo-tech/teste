@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Springlo Tech | Interactive AR Book Covers (WebAR)</title>
+    <title>Springlo Tech | Interactive AR & Motion Reels</title>
     <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -135,8 +135,11 @@
             font-weight: 600;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             transition: 0.3s;
+            text-align: center;
+            width: 100%;
         }
 
         .btn-primary:hover {
@@ -151,6 +154,11 @@
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
         }
 
         .btn-secondary:hover {
@@ -173,7 +181,6 @@
             height: auto;
             max-height: 450px;
             object-fit: contain;
-            /* <-- Altere de 'cover' para 'contain' */
             display: block;
             margin: 0 auto;
         }
@@ -369,45 +376,81 @@
         <div class="logo">Springlo<span>Tech</span></div>
         <nav>
             <a href="#features">Features</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact" class="btn-nav">Get Started</a>
+            <a href="#pricing">AR Pricing</a>
+            <a href="#reels">Motion Reels</a>
+            <a href="#contact" class="btn-nav">Contact</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-text">
-            <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> WebAR Experience • No App Needed</span>
-            <h1>Bring Your Book Cover <span>To Life</span></h1>
-            <p>Stand out on TikTok, Instagram, and Amazon. Transform your 2D cover into an interactive 3D WebAR
-                experience that mesmerizes readers and drives book sales.</p>
+            <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> WebAR & Motion Graphics</span>
+            <h1>Bring Your Book & Content <span>To Life</span></h1>
+            <p>Stand out on TikTok, Instagram, and Amazon. Transform your 2D covers into interactive 3D WebAR
+                experiences and high-retention motion graphics.</p>
             <div class="cta-group">
-                <a href="#pricing" class="btn-primary">View Packages <i class="fa-solid fa-arrow-right"></i></a>
-                <a href="#demo" class="btn-secondary">Watch Demo</a>
+                <a href="#pricing" class="btn-primary">View AR Packages <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#reels" class="btn-secondary">Motion Reels</a>
             </div>
         </div>
         <div class="hero-demo" id="demo"
             style="display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap;">
 
-            <!-- Capa do Livro (848x1264) -->
+            <!-- Capa do Livro -->
             <div style="position: relative; max-width: 260px; flex: 1; min-width: 220px;">
-                <img src="assets/imagens/dragao.jpg" alt="AR Book Cover Demo - Dragon" width="848" height="1264"
+                <img src="assets/imagens/dragao.webp" alt="AR Book Cover Demo - Dragon" width="848" height="1264"
                     style="width: 100%; height: auto; aspect-ratio: 848 / 1264; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #334155; display: block;">
             </div>
 
-            <!-- Caixa com o QR Code Posicionado Exatamente Onde Pediu -->
+            <!-- Caixa com o QR Code -->
             <div
                 style="background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155; text-align: center; max-width: 220px; flex: 1; min-width: 180px;">
                 <p style="font-size: 0.85rem; color: #f8fafc; margin-bottom: 12px; font-weight: 600;">
                     <i class="fa-solid fa-qrcode" style="color: #6366f1;"></i> Scan to Test AR
                 </p>
-                <!-- Gerador automático de QR Code apontando para o seu scanear.html -->
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://springlo-tech.github.io/teste/"
                     alt="QR Code para Testar RA"
                     style="width: 130px; height: 130px; border-radius: 8px; background: white; padding: 6px; display: block; margin: 0 auto 12px auto;">
                 <p style="font-size: 0.75rem; color: #94a3b8; margin: 0;">
-                    Aponte a câmara do telemóvel para abrir a RA.
+                    Point your phone camera to open AR.
                 </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Secção de Demonstração em Vídeo -->
+    <section style="padding: 60px 8%; background: #020617; text-align: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 10px; color: #f8fafc;">See AR & Motion in Action</h2>
+        <p style="color: #94a3b8; margin-bottom: 40px; font-size: 1rem;">Watch how low-poly 3D models and motion
+            graphics captivate audiences.</p>
+
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 900px; margin: 0 auto;">
+
+            <!-- Vídeo 1 -->
+            <div
+                style="background: #1e293b; border-radius: 16px; padding: 15px; border: 1px solid #334155; box-shadow: 0 15px 25px -5px rgba(0,0,0,0.5);">
+                <video autoplay loop muted playsinline
+                    style="width: 100%; height: auto; border-radius: 10px; display: block;">
+                    <source src="assets/modelos/demo1.mp4" type="video/mp4">
+                   
+                </video>
+                <p style="margin-top: 12px; font-size: 0.9rem; color: #f8fafc; font-weight: 600;">Fantasy Book Cover
+                    Reveal (AR)</p>
+            </div>
+
+            <!-- Vídeo 2 -->
+            <div
+                style="background: #1e293b; border-radius: 16px; padding: 15px; border: 1px solid #334155; box-shadow: 0 15px 25px -5px rgba(0,0,0,0.5);">
+                <video autoplay loop muted playsinline
+                    style="width: 100%; height: auto; border-radius: 10px; display: block;">
+                    <source src="assets/modelos/demo2.mp4" type="video/mp4">
+                   
+                </video>
+                <p style="margin-top: 12px; font-size: 0.9rem; color: #f8fafc; font-weight: 600;">3D Motion Graphics
+                    Teaser</p>
             </div>
 
         </div>
@@ -415,8 +458,8 @@
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <h2 class="section-title">Why Authors Love WebAR Covers</h2>
-        <p class="section-subtitle">Designed to boost engagement for book launches, reveals, and promo campaigns.</p>
+        <h2 class="section-title">Why Creators & Authors Choose Springlo Tech</h2>
+        <p class="section-subtitle">Designed to boost engagement and maximize commercial impact.</p>
 
         <div class="grid-3">
             <div class="card">
@@ -427,26 +470,26 @@
             </div>
             <div class="card">
                 <i class="fa-solid fa-cube"></i>
-                <h3>Custom 3D Artwork</h3>
-                <p>We build tailored 3D models and particle effects (Blender) matching your genre—dragons, magic spells,
-                    space portals, or reliques.</p>
+                <h3>Custom 3D & Motion</h3>
+                <p>From majestic dragons and magical spells to dynamic social media promos, every asset is
+                    custom-crafted to elevate your brand.</p>
             </div>
             <div class="card">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <h3>Instant "Buy Now" CTA</h3>
-                <p>Add interactive buttons directly on screen over the book to redirect readers to Amazon, Barnes &
-                    Noble, or your website.</p>
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>High Retention</h3>
+                <p>Designed specifically to capture attention in the first 2 seconds on Instagram Reels, TikTok, and
+                    physical marketing campaigns.</p>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
+    <!-- Pricing Section: Augmented Reality -->
     <section class="pricing" id="pricing">
-        <h2 class="section-title">Choose Your AR Package</h2>
-        <p class="section-subtitle">Transparent pricing designed for indie authors and small publishers.</p>
+        <h2 class="section-title">Augmented Reality (WebAR) Packages</h2>
+        <p class="section-subtitle">Secure checkout powered by Stripe. Pay safely in USD, EUR, or local currency.</p>
 
         <div class="grid-3">
-            <!-- Starter -->
+            <!-- Starter AR -->
             <div class="price-card">
                 <div>
                     <h3>Starter Cover Reveal</h3>
@@ -460,10 +503,10 @@
                         <li><i class="fa-solid fa-check"></i> 1080p HD Promo Video</li>
                     </ul>
                 </div>
-                <a href="#contact" class="btn-secondary">Order Starter</a>
+                <!-- Substitua o link do Stripe abaixo pelo seu link de pagamento real -->
             </div>
 
-            <!-- Professional -->
+            <!-- Professional AR -->
             <div class="price-card featured">
                 <span class="popular-badge">Most Popular</span>
                 <div>
@@ -472,16 +515,15 @@
                     <div class="price">$399</div>
                     <ul class="price-features">
                         <li><i class="fa-solid fa-check"></i> Multi-element 3D Scene + Sound</li>
-                        <li><i class="fa-solid fa-check"></i> On-Screen Interactive "Buy" Button</li>
                         <li><i class="fa-solid fa-check"></i> 1 Year WebAR Hosting included</li>
-                        <li><i class="fa-solid fa-check"></i> Custom QR Code design for print</li>
-                        <li><i class="fa-solid fa-check"></i> 2 Promo Videos (Reels/TikTok ready)</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Promo Videos (Reels ready)</li>
                     </ul>
                 </div>
-                <a href="#contact" class="btn-primary">Order Pro Package</a>
+                <!-- Substitua o link do Stripe abaixo pelo seu link de pagamento real -->
+                
             </div>
 
-            <!-- Series -->
+            <!-- Series AR -->
             <div class="price-card">
                 <div>
                     <h3>Trilogy / Book Series</h3>
@@ -494,7 +536,62 @@
                         <li><i class="fa-solid fa-check"></i> Priority 5-day delivery</li>
                     </ul>
                 </div>
-                <a href="#contact" class="btn-secondary">Order Series</a>
+                <!-- Substitua o link do Stripe abaixo pelo seu link de pagamento real -->
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section: Motion Reels -->
+    <section class="pricing" id="reels" style="background: rgba(30, 41, 59, 0.3);">
+        <h2 class="section-title">Motion Reels & 3D Teasers</h2>
+        <p class="section-subtitle">High-impact vertical videos designed to hook viewers instantly.</p>
+
+        <div class="grid-3" style="max-width: 900px; margin: 0 auto;">
+            <!-- Single Reel -->
+            <div class="price-card">
+                <div>
+                    <h3>Single Motion Reel</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Custom 3D Book Trailer or Promo</p>
+                    <div class="price-container" style="margin: 20px 0;">
+                        <del
+                            style="color: var(--text-muted); font-size: 1.5rem; margin-right: 10px; font-weight: 600;">$95</del>
+                        <span class="price"
+                            style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">$75</span>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> 1 Vertical 9:16 Video</li>
+                        <li><i class="fa-solid fa-check"></i> Custom 3D book mockup</li>
+                        <li><i class="fa-solid fa-check"></i> Promotional text overlays</li>
+                        <li><i class="fa-solid fa-check"></i> 2 rounds of revisions</li>
+                        <li><i class="fa-solid fa-check"></i> Final delivery in MP4 format</li>
+
+                    </ul>
+                </div>
+                
+            </div>
+
+            <!-- Trio Pack Reels -->
+            <div class="price-card featured">
+                <span class="popular-badge">Best Value</span>
+                <div>
+                    <h3>Trio Launch Pack</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">3 Customized Motion Reels</p>
+                    <div class="price-container" style="margin: 20px 0;">
+                        <del
+                            style="color: var(--text-muted); font-size: 1.5rem; margin-right: 10px; font-weight: 600;">$250</del>
+                        <span class="price"
+                            style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">$189</span>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> 3 Vertical 9:16 Videos</li>
+                        <li><i class="fa-solid fa-check"></i> Custom 3D book mockup</li>
+                        <li><i class="fa-solid fa-check"></i> Promotional text overlays</li>
+                        <li><i class="fa-solid fa-check"></i> 2 rounds of revisions</li>
+                        <li><i class="fa-solid fa-check"></i> Final delivery in MP4 format</li>
+                    </ul>
+                </div>
+                
             </div>
         </div>
     </section>
@@ -502,42 +599,51 @@
     <!-- Contact Form -->
     <section class="contact" id="contact">
         <div class="contact-container">
-            <h2 style="text-align: center; margin-bottom: 10px;">Transform Your Book Cover</h2>
-            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Fill out the form below and we
-                will get back to you within 24 hours.</p>
+            <h2 style="text-align: center; margin-bottom: 10px;">Custom Project Inquiry</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Have a special request or need
+                a custom quote? Fill out the form below.</p>
 
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+            <form action="https://formspree.io/f/xbggbzzl" method="POST">
                 <div class="form-group">
                     <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Author or Publisher Name">
+                    <input type="text" id="name" name="name" required placeholder="Author or Brand Name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="author@example.com">
+                    <input type="email" id="email" name="email" required placeholder="contact@example.com">
                 </div>
                 <div class="form-group">
-                    <label for="package">Select Package</label>
+                    <label for="package">Select Service</label>
                     <select id="package" name="package">
-                        <option value="Starter ($199)">Starter Cover Reveal ($199)</option>
-                        <option value="Pro ($399)">Pro Interactive AR ($399)</option>
-                        <option value="Series ($899)">Book Series / Trilogy ($899)</option>
-                        <option value="Custom">Custom Request</option>
+                        <option value="AR Starter ($199)">AR Starter Cover Reveal ($199)</option>
+                        <option value="AR Pro ($399)">AR Pro Interactive ($399)</option>
+                        <option value="AR Series ($899)">AR Trilogy / Series ($899)</option>
+                        <option value="Single Reel ($75)">Single Motion Reel ($75)</option>
+                        <option value="Trio Reels ($189)">Trio Motion Reels ($189)</option>
+                        <option value="Custom">Custom Inquiry</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="message">Book Details & Genre</label>
+                    <label for="message">Project Details</label>
                     <textarea id="message" name="message" rows="4"
-                        placeholder="Tell us about your book genre, launch date, or ideas for the AR experience..."></textarea>
+                        placeholder="Tell us about your project or specific requirements..."></textarea>
                 </div>
-                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Submit Project
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Submit
                     Inquiry</button>
             </form>
+            <!-- Nota informativa sobre como o pagamento funciona -->
+        <div style="max-width: 600px; margin: 40px auto 0 auto; background: rgba(15, 23, 42, 0.6); padding: 20px; border-radius: 12px; border: 1px solid #334155; text-align: center;">
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+                <i class="fa-solid fa-lock" style="color: var(--accent); margin-right: 6px;"></i> 
+                <strong>How payment works:</strong> Fill out the inquiry form below to discuss your project details. Once aligned, we will send you a secure, globalized checkout link via Stripe to start your project safely.
+            </p>
+        </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Springlo Tech. All rights reserved. WebAR powered by MindAR & Three.js.</p>
+        <p>&copy; 2026 Springlo Tech. All rights reserved.</p>
     </footer>
 
 </body>

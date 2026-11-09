@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Springlo Tech | Interactive AR Book Covers (WebAR)</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(15, 23, 42, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #334155;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text-light);
+        }
+
+        .btn-nav {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .btn-nav:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 8% 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(90deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            border: 1px solid #475569;
+            color: var(--text-light);
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #334155;
+        }
+
+        .hero-demo {
+            position: relative;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #334155;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .hero-demo video,
+        .hero-demo img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            /* <-- Altere de 'cover' para 'contain' */
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 8%;
+            background: #020617;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px 30px;
+            border: 1px solid #334155;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .price-features li {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features i {
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 8%;
+            background: #020617;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #334155;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 8%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .cta-group {
+                justify-content: center;
+            }
+
+            header {
+                padding: 15px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Springlo<span>Tech</span></div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact" class="btn-nav">Get Started</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> WebAR Experience • No App Needed</span>
+            <h1>Bring Your Book Cover <span>To Life</span></h1>
+            <p>Stand out on TikTok, Instagram, and Amazon. Transform your 2D cover into an interactive 3D WebAR
+                experience that mesmerizes readers and drives book sales.</p>
+            <div class="cta-group">
+                <a href="#pricing" class="btn-primary">View Packages <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#demo" class="btn-secondary">Watch Demo</a>
+            </div>
+        </div>
+        <div class="hero-demo" id="demo"
+            style="display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap;">
+
+            <!-- Capa do Livro (848x1264) -->
+            <div style="position: relative; max-width: 260px; flex: 1; min-width: 220px;">
+                <img src="assets/imagens/dragao.webp" alt="AR Book Cover Demo - Dragon" width="848" height="1264"
+                    style="width: 100%; height: auto; aspect-ratio: 848 / 1264; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #334155; display: block;">
+            </div>
+
+            <!-- Caixa com o QR Code Posicionado Exatamente Onde Pediu -->
+            <div
+                style="background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155; text-align: center; max-width: 220px; flex: 1; min-width: 180px;">
+                <p style="font-size: 0.85rem; color: #f8fafc; margin-bottom: 12px; font-weight: 600;">
+                    <i class="fa-solid fa-qrcode" style="color: #6366f1;"></i> Scan to Test AR
+                </p>
+                <!-- Gerador automático de QR Code apontando para o seu scanear.html -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://springlo-tech.github.io/teste/"
+                    alt="QR Code para Testar RA"
+                    style="width: 130px; height: 130px; border-radius: 8px; background: white; padding: 6px; display: block; margin: 0 auto 12px auto;">
+                <p style="font-size: 0.75rem; color: #94a3b8; margin: 0;">
+                    Point your phone camera to open AR.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Secção de Demonstração em Vídeo -->
+    <section style="padding: 60px 8%; background: #020617; text-align: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 10px; color: #f8fafc;">See AR Book Covers in Action</h2>
+        <p style="color: #94a3b8; margin-bottom: 40px; font-size: 1rem;">Watch how low-poly 3D models come to life instantly on real book covers.</p>
+
+        <!-- Grelha com 2 Vídeos lado a lado -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 900px; margin: 0 auto;">
+            
+            <!-- Vídeo 1 -->
+            <div style="background: #1e293b; border-radius: 16px; padding: 15px; border: 1px solid #334155; box-shadow: 0 15px 25px -5px rgba(0,0,0,0.5);">
+                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 10px; display: block;">
+                    <source src="assets/modelos/demo1.mp4" type="video/mp4">
+                    O seu navegador não suporta vídeos.
+                </video>
+                <p style="margin-top: 12px; font-size: 0.9rem; color: #f8fafc; font-weight: 600;">Fantasy Book Cover Reveal</p>
+            </div>
+
+            <!-- Vídeo 2 -->
+            <div style="background: #1e293b; border-radius: 16px; padding: 15px; border: 1px solid #334155; box-shadow: 0 15px 25px -5px rgba(0,0,0,0.5);">
+                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 10px; display: block;">
+                    <source src="assets/videos/demo2.mp4" type="video/mp4">
+                    O seu navegador não suporta vídeos.
+                </video>
+                <p style="margin-top: 12px; font-size: 0.9rem; color: #f8fafc; font-weight: 600;">Interactive 3D Animation Test</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Why Authors Love WebAR Covers</h2>
+        <p class="section-subtitle">Designed to boost engagement for book launches, reveals, and promo campaigns.</p>
+
+        <div class="grid-3">
+            <div class="card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Zero App Friction</h3>
+                <p>Readers simply scan a QR Code or visit a URL. No app store downloads required—works directly in
+                    mobile browsers.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-cube"></i>
+                <h3>Custom 3D Artwork</h3>
+                <p>We bring your imagination to life with custom-crafted 3D models and stunning multi-layered visual effects. From majestic dragons and magical spells to mysterious space portals and ancient relics, every creation is designed to come alive right in your mobile browser. </p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>Bring It to Life</h3>
+                <p>Perfect for book covers, bookmarks, promotional gifts, and interactive collectibles, transforming ordinary printed materials into extraordinary experiences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <h2 class="section-title">Choose Your AR Package</h2>
+        <p class="section-subtitle">Transparent pricing designed for indie authors and small publishers.</p>
+
+        <div class="grid-3">
+            <!-- Starter -->
+            <div class="price-card">
+                <div>
+                    <h3>Starter Cover Reveal</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Perfect for TikTok & Social Media Launches
+                    </p>
+                    <div class="price">$199</div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> 1 Animated 3D Element</li>
+                        <li><i class="fa-solid fa-check"></i> WebAR Link & QR Code</li>
+                        <li><i class="fa-solid fa-check"></i> 3 Months WebAR Hosting</li>
+                        <li><i class="fa-solid fa-check"></i> 1080p HD Promo Video</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn-secondary">Order Starter</a>
+            </div>
+
+            <!-- Professional -->
+            <div class="price-card featured">
+                <span class="popular-badge">Most Popular</span>
+                <div>
+                    <h3>Pro Interactive AR</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Best for physical books & bookmarks</p>
+                    <div class="price">$399</div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Multi-element 3D Scene + Sound</li>
+                        <li><i class="fa-solid fa-check"></i> 1 Year WebAR Hosting included</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Promo Videos (Reels/TikTok ready)</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn-primary">Order Pro Package</a>
+            </div>
+
+            <!-- Series -->
+            <div class="price-card">
+                <div>
+                    <h3>Trilogy / Book Series</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Designed for multi-book campaigns</p>
+                    <div class="price">$899</div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> 3 Full AR Cover Experiences</li>
+                        <li><i class="fa-solid fa-check"></i> Matching visual identity</li>
+                        <li><i class="fa-solid fa-check"></i> 1 Year WebAR Hosting for all</li>
+                        <li><i class="fa-solid fa-check"></i> Priority 5-day delivery</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn-secondary">Order Series</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2 style="text-align: center; margin-bottom: 10px;">Transform Your Book Cover</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Fill out the form below and we
+                will get back to you within 24 hours.</p>
+
+            <form action="https://formspree.io/f/xbggbzzl" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Author or Publisher Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="author@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="package">Select Package</label>
+                    <select id="package" name="package">
+                        <option value="Starter ($199)">Starter Cover Reveal ($199)</option>
+                        <option value="Pro ($399)">Pro Interactive AR ($399)</option>
+                        <option value="Series ($899)">Book Series / Trilogy ($899)</option>
+                        <option value="Custom">Custom Request</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Book Details & Genre</label>
+                    <textarea id="message" name="message" rows="4"
+                        placeholder="Tell us about your book genre, launch date, or ideas for the AR experience..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Submit Project
+                    Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Springlo Tech. All rights reserved. </p>
+    </footer>
+
+</body>
+
+</html>
