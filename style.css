@@ -1,0 +1,741 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   ========================================= */
+:root {
+    --bg-dark: #050a18;
+    --bg-light: #f8fafc;
+    --accent-blue: #3b82f6;
+    --accent-yellow: #f59e0b;
+    --accent-green: #22c55e;
+    --text-white: #ffffff;
+    --text-gray: #94a3b8;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --border-rgba: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    /* Fundo geral escuro */
+    color: var(--text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* =========================================
+   HEADER & NAVEGAÇÃO
+   ========================================= */
+header {
+
+    position: fixed;
+    top: 0;
+    /* Prende ele exatamente no topo */
+    left: 0;
+    width: 100%;
+    /* Garante que ele ocupe toda a largura da tela */
+    z-index: 1000;
+    /* Faz o menu ficar por cima de qualquer outro elemento (como o model-viewer ou imagens) */
+
+    /* Sugestão: adicione um fundo e uma leve sombra para ele não sumir com o conteúdo de trás */
+    background-color: #0f172a;
+    /* Ou a cor de fundo que você já usa */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+    color: var(--text-white);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-blue);
+}
+
+.btn-whatsapp-top {
+    background: #1e3a8a;
+    padding: 10px 22px;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* =========================================
+   SEÇÃO HERO (TOPO ESCURO)
+   ========================================= */
+.hero-main {
+    padding: 80px 0;
+    background: radial-gradient(circle at 70% 30%, #112240 0%, #050a18 100%);
+}
+
+.grid-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.description {
+    color: var(--text-gray);
+    font-size: 1.15rem;
+    margin-bottom: 35px;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: 40px;
+}
+
+.features li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.check {
+    color: var(--accent-blue);
+    margin-right: 12px;
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-amazon {
+    background: var(--accent-yellow);
+    color: black;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.btn-whatsapp {
+    background: var(--accent-green);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Ajuste de escala interna do Model Viewer */
+#capa-3d,
+#modelo-ar {
+    --poster-color: transparent;
+    min-height: 560px;
+    max-width: 100%;
+}
+
+.hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    /* Adiciona um respiro interno */
+}
+
+
+/* Container da dica de interação */
+.interaction-prompt {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    /* Fundo escuro semi-transparente */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    /* Garante que o clique passe para o modelo 3D */
+    animation: fadeOut 4s forwards;
+    /* A dica desaparece após 4 segundos */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.icon-hand {
+    font-size: 1.5rem;
+    animation: handMove 2s infinite ease-in-out;
+}
+
+.interaction-prompt p {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 5px 0;
+}
+
+.drag-arrows {
+    font-size: 1.2rem;
+    color: var(--accent-blue);
+}
+
+/* Animação da Mãozinha simulando arrastar */
+@keyframes handMove {
+
+    0%,
+    100% {
+        transform: translateX(-10px);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+}
+
+/* Animação para sumir suavemente após o usuário notar */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* =========================================
+   SEÇÃO AR + MAKING OF (FUNDO BRANCO)
+   ========================================= */
+.ar-section {
+    background: #ffffff !important;
+    color: var(--text-dark) !important;
+    padding: 80px 0;
+}
+
+.grid-ar-making-of {
+    display: flex;
+    align-items: stretch;
+    gap: 30px;
+}
+
+.making-of-card {
+    flex: 1;
+    background: #ffffff;
+    padding: 30px;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.making-of-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+}
+
+.tech-subtitle {
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.blender-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 15px 0;
+}
+
+.tech-list {
+    list-style: none;
+}
+
+.tech-list li {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.ar-visual-content {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ar-text h2 {
+    color: var(--text-dark);
+    font-size: 2.2rem;
+}
+
+.highlight-blue {
+    color: #1e40af;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.instruction {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.phone-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f172a;
+    /* Destaque escuro para o celular */
+    border-radius: 25px;
+    padding: 30px;
+    margin-top: 20px;
+    min-height: 480px;
+}
+
+.ar-capture-tip {
+   
+    margin-top: 40px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(229, 223, 223, 0.8); /* Linha divisória bem suave */
+}
+
+.ar-capture-tip p {
+    
+    font-size: 0.78rem;          /* Fonte bem menor */
+    line-height: 1.25;            /* Espaçamento entre linhas compacto */
+    opacity: 0.85;                /* Leve transparência para tirar o peso visual */
+    margin: 0;
+}
+
+.ar-capture-tip strong {
+    font-weight: 1000;
+}
+
+
+.phone-frame {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    position: relative;
+    border: 8px solid #334155;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+#modelo-ar {
+    width: 100%;
+    height: 100%;
+}
+
+.ar-button-trigger {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+    z-index: 10;
+}
+
+.qr-code-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.qr-code-img {
+    width: 150px;
+    height: 150px;
+    margin-top: 10px;
+}
+
+.qr-text {
+    font-size: 0.9rem;
+    color: #1e3a8a;
+    font-weight: 700;
+}
+
+/* Overlay Estilo Imagem 2 */
+.ar-instruction-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay-content img {
+    width: 80%;
+    max-width: 300px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 2px solid var(--accent-blue);
+}
+
+.overlay-content p {
+    color: white;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.btn-start-ar {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+/* ===== Language Switch ===== */
+.lang-switch {
+    display: flex;
+    gap: 6px;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #ffffffcc;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.25s ease;
+    backdrop-filter: blur(6px);
+}
+
+/* Hover */
+.lang-btn:hover {
+    color: white;
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.15);
+}
+
+/* Ativo */
+.lang-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.lang-switch {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Esconde o QR Code no celular para não poluir */
+@media (max-width: 768px) {
+    .qr-code-wrapper {
+        display: none;
+    }
+}
+
+/* =========================================
+   SEÇÕES CLARAS (ENTREGO / COMO FUNCIONA)
+   ========================================= */
+.deliverables,
+.how-it-works {
+    background-color: #ffffff !important;
+    color: var(--text-dark) !important;
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--text-dark) !important;
+    margin-bottom: 60px;
+    font-weight: 800;
+}
+
+.grid-deliverables {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--bg-light);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+}
+
+.card h3 {
+    color: var(--text-dark);
+}
+
+.card p {
+    color: var(--text-muted);
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.step-icon {
+    width: 80px;
+    height: 80px;
+    background: #f1f5f9;
+    color: var(--text-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+    border: 1px solid #e2e8f0;
+}
+
+.step h4 {
+    color: var(--text-dark);
+}
+
+.step p {
+    color: var(--text-muted);
+}
+
+/* =========================================
+   FOOTER (RODAPÉ)
+   ========================================= */
+.footer {
+    background: #050a18;
+    padding: 80px 0 30px;
+    color: white;
+
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+}
+
+.footer h3,
+.footer h4 {
+    margin-bottom: 20px;
+}
+
+.footer p,.footer li,.footer a {
+    color: #94a3b8;
+    text-decoration: none;
+    line-height: 2;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-copy {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    text-align: center;
+    color: #94a3b8;
+
+}
+
+/*==============================
+ FAQ
+===============================*/
+
+.faq-section {
+    background: #ffffff;
+    padding: 100px 0;
+}
+
+.faq-list {
+    max-width: 900px;
+    margin: 50px auto 0;
+}
+
+.faq-item {
+    margin-bottom: 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #ffffff;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.faq-item:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .05);
+}
+
+.faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item p {
+    padding: 0 28px 24px;
+    color: #64748b;
+    line-height: 1.8;
+}
+
+.icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    transition: .3s;
+}
+
+details[open] .icon {
+    transform: rotate(45deg);
+}
+
+.intro-benefits {
+    color: #64748b;
+    margin: 20px 0 30px;
+    line-height: 1.7;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.benefit-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.benefit-content h4 {
+    margin: 0 0 6px;
+    color: #0f172a;
+    font-size: 1.05rem;
+}
+
+.benefit-content p {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.6;
+}
+ /* Estado Padrão (Escondido) */
+.ar-instruction-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    pointer-events: none; /* Garante que quando invisível não bloqueie nada */
+}
+
+/* Estado Ativo (Exibido) */
+.ar-instruction-overlay.overlay-active {
+    display: flex;
+    pointer-events: auto; /* Reativa os cliques apenas enquanto o overlay existe */
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 991px) {
+
+    .grid-ar-making-of,
+    .steps-container {
+        flex-direction: column;
+    }
+
+    .grid-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}

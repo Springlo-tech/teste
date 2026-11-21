@@ -1,709 +1,411 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Springlo Tech | Reels 3D Animados e Realidade Aumentada para Escritores</title>
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Landing Pages Interativas para Livros com 3D e Realidade Aumentada | Springlo Tech</title>
+    <meta name="description"
+        content="Transforme o seu livro em uma experiência digital interativa com uma landing page personalizada, modelos 3D e Realidade Aumentada. Desenvolvido para autores e editoras.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://arbook.springlo-tech.com.br/">
+    <!-- Alternativas de Idioma -->
+    <link rel="alternate" hreflang="pt-br" href="https://arbook.springlo-tech.com.br/">
+    <link rel="alternate" hreflang="en" href="https://arbook.springlo-tech.com.br/en/">
+    <link rel="alternate" hreflang="x-default" href="https://arbook.springlo-tech.com.br/en/">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Landing Pages Interativas para Livros com 3D e Realidade Aumentada">
+    <meta property="og:description"
+        content="Transforme seu livro em uma experiência digital imersiva com modelos 3D interativos e Realidade Aumentada.">
+    <meta property="og:url" content="https://arbook.springlo-tech.com.br/">
+    <meta property="og:site_name" content="Springlo Tech">
+    <meta property="og:image" content="https://arbook.springlo-tech.com.br/assets/modelos/og-preview-pt.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Experiência interativa de livro com 3D e Realidade Aumentada">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Landing Pages Interativas para Livros com 3D e Realidade Aumentada">
+    <meta name="twitter:description"
+        content="Crie uma experiência digital inesquecível para o seu livro com 3D interativo e Realidade Aumentada.">
+    <meta name="twitter:image" content="https://arbook.springlo-tech.com.br/assets/modelos/og-preview-pt.jpg">
+    <!-- Pinterest Verification -->
+    <meta name="p:domain_verify" content="24d6cc6a7965b83c6a89752238cb7a53"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
-            --text-light: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #10b981;
-        }
+    <!-- Dados Estruturados -->
+    <script
+        type="application/ld+json"> { "@context": "https://schema.org", "@graph": [ { "@type": "Organization", "@id": "https://springlo-tech.com.br/#organization", "name": "Springlo Tech", "url": "https://springlo-tech.com.br/", "logo": "https://springlo-tech.com.br/favicon.png", "description": "A Springlo Tech cria landing pages interativas para livros com modelos 3D e experiências de Realidade Aumentada." }, { "@type": "ProfessionalService", "@id": "https://arbook.springlo-tech.com.br/#service", "name": "Springlo Tech - Experiências Interativas para Livros", "url": "https://arbook.springlo-tech.com.br/", "description": "Landing pages personalizadas para autores e editoras com modelos 3D interativos e experiências de Realidade Aumentada.", "provider": { "@id": "https://springlo-tech.com.br/#organization" }, "serviceType": [ "Design de Landing Page para Livros", "Design Web 3D Interativo", "Experiências Web de Realidade Aumentada", "Desenvolvimento WebAR" ], "areaServed": "Mundial" }, { "@type": "WebSite", "@id": "https://arbook.springlo-tech.com.br/#website", "url": "https://arbook.springlo-tech.com.br/", "name": "Springlo Tech - Experiências Interativas para Livros", "publisher": { "@id": "https://springlo-tech.com.br/#organization" }, "inLanguage": "pt-BR" } ] } </script>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Header / Navbar */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(15, 23, 42, 0.92);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #334155;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-light);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--text-light);
-        }
-
-        .btn-nav {
-            background: var(--primary);
-            color: white !important;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        .btn-nav:hover {
-            background: var(--primary-hover);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 150px 8% 80px;
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 2.9rem;
-            line-height: 1.18;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .hero-text h1 span {
-            background: linear-gradient(90deg, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.2);
-            color: #a5b4fc;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            border: 1px solid rgba(99, 102, 241, 0.4);
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .cta-group .btn-primary,
-        .cta-group .btn-secondary {
-            width: auto;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: 0.3s;
-            text-align: center;
-            width: 100%;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            border: 1px solid #475569;
-            color: var(--text-light);
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .btn-secondary:hover {
-            background: #334155;
-        }
-
-        .hero-demo {
-            position: relative;
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid #334155;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Video Showcase Section */
-        .showcase {
-            padding: 70px 8%;
-            background: #020617;
-            text-align: center;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .video-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 16px;
-            border: 1px solid #334155;
-            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-card video {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            display: block;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 8%;
-            background: var(--bg-dark);
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2.1rem;
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-
-        .section-subtitle {
-            color: var(--text-muted);
-            margin-bottom: 50px;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            text-align: left;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 80px 8%;
-            text-align: center;
-        }
-
-        .price-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 40px 30px;
-            border: 1px solid #334155;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .price-card.featured {
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 4px 14px;
-            border-radius: 12px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin: 20px 0 5px;
-        }
-
-        .price-note {
-            font-size: 0.85rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .price-features {
-            list-style: none;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .price-features li {
-            margin-bottom: 12px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.95rem;
-        }
-
-        .price-features i {
-            color: var(--accent);
-            margin-top: 4px;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 8%;
-            background: #020617;
-        }
-
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid #334155;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: white;
-            outline: none;
-            font-size: 0.95rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            padding: 30px 8%;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid #334155;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding-top: 120px;
-            }
-
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-
-            .cta-group {
-                justify-content: center;
-            }
-
-            .cta-group .btn-primary,
-            .cta-group .btn-secondary {
-                width: 100%;
-            }
-
-            header {
-                padding: 15px 5%;
-            }
-
-            nav a:not(.btn-nav) {
-                display: none;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
-    <!-- Cabeçalho -->
     <header>
-        <a href="#" class="logo">Springlo<span>Tech</span></a>
-        <nav>
-            <a href="#videos">Demonstração</a>
-            <a href="#reels">Reels 3D</a>
-            <a href="#webar">Realidade Aumentada</a>
-            <a href="#contact" class="btn-nav">Pedir Orçamento</a>
-        </nav>
+        <div class="container">
+            <nav>
+                <div class="logo">AR Book</div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#servicos">O Que Entregamos</a></li>
+                    <li><a href="#portfolio">O Livro em RA</a></li>
+                    <li><a href="#processo">Como Funciona</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <!-- Se quiser reativar o seletor de idiomas no futuro:
+                <div class="lang-switch">
+                    <a href="/" class="lang-btn active">PT</a>
+                    <a href="/en/" class="lang-btn">EN</a>
+                </div> -->
+            </nav>
+        </div>
     </header>
 
-    <!-- Seção Principal (Hero) - Foco em Reels e Divulgação de Livros -->
-    <section class="hero">
-        <div class="hero-text">
-            <span class="badge"><i class="fa-solid fa-film"></i> Reels 3D & Realidade Aumentada para Autores</span>
-            <h1>Transforme Seu Livro em <span>Vídeos 3D</span> que chamem a atenção.</h1>
-            <p>Você foca em escrever; nós cuidamos do visual. Modelamos seu livro em 3D e criamos Reels animados de alto
-                impacto para você divulgar no Instagram, TikTok e Amazon sem precisar virar editor de vídeo.</p>
-            <div class="cta-group">
-                <a href="#reels" class="btn-primary">Ver Pacotes de Reels <i class="fa-solid fa-arrow-right"></i></a>
-                <a href="#webar" class="btn-secondary">Conhecer Capas em RA</a>
-            </div>
-        </div>
-
-        <div class="hero-demo" id="demo">
-            <!-- Capa do Livro -->
-            <div style="position: relative; max-width: 240px; flex: 1; min-width: 200px;">
-                <img src="assets/imagens/dragao.webp" alt="Demonstração de Capa de Livro em RA - Dragão" width="848"
-                    height="1264"
-                    style="width: 100%; height: auto; aspect-ratio: 848 / 1264; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #334155; display: block;">
-            </div>
-
-            <!-- Caixa com o QR Code para testar o segundo serviço (WebAR) -->
-            <div
-                style="background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155; text-align: center; max-width: 220px; flex: 1; min-width: 180px;">
-                <p style="font-size: 0.85rem; color: #f8fafc; margin-bottom: 12px; font-weight: 600;">
-                    <i class="fa-solid fa-qrcode" style="color: #6366f1;"></i> Teste a Capa em RA
-                </p>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://springlo-tech.github.io/teste/"
-                    alt="QR Code para Testar Realidade Aumentada"
-                    style="width: 130px; height: 130px; border-radius: 8px; background: white; padding: 6px; display: block; margin: 0 auto 12px auto;">
-                <p style="font-size: 0.75rem; color: #94a3b8; margin: 0;">
-                    Aponte a câmera do celular para o QR Code e depois para a capa ao lado.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção de Demonstração em Vídeo -->
-    <section class="showcase" id="videos">
-        <h2 class="section-title">Veja Seu Livro em Movimento</h2>
-        <p class="section-subtitle">Animações 3D exclusivas feitas a partir da sua capa para prender a atenção dos
-            leitores nos primeiros 2 segundos.</p>
-
-        <div class="video-grid">
-            <!-- Vídeo 1 -->
-            <div class="video-card">
-                <video autoplay loop muted playsinline>
-                    <source src="assets/modelos/demo1.mp4" type="video/mp4">
-                    Seu navegador não suporta a reprodução de vídeos.
-                </video>
-                <p style="margin-top: 14px; font-size: 0.95rem; color: #f8fafc; font-weight: 600;"> Capa em
-                    3D (Reels / TikTok)</p>
-                <p style="font-size: 0.8rem; color: #94a3b8;"><p style="font-size: 0.8rem; color: #94a3b8;">Modelagem 3D fiel à arte do seu livro</p></p>
-            </div>
-
-            <!-- Vídeo 2 -->
-            <div class="video-card">
-                <video autoplay loop muted playsinline>
-                    <source src="assets/modelos/demo2.mp4" type="video/mp4">
-                    Seu navegador não suporta a reprodução de vídeos.
-                </video>
-                <p style="margin-top: 14px; font-size: 0.95rem; color: #f8fafc; font-weight: 600;">Capa com Realidade Aumentada</p>
-                
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção de Benefícios -->
-    <section class="features" id="features">
-        <h2 class="section-title">Por Que Escritores Escolhem a Springlo Tech</h2>
-        <p class="section-subtitle">Soluções visuais pensadas para destacar sua obra em meio a milhares de publicações.
-        </p>
-
-        <div class="grid-3">
-            <div class="card">
-                <i class="fa-solid fa-clapperboard"></i>
-                <h3>Livro Modelado em 3D</h3>
-                <p>Recriamos seu livro físico ou e-book em 3D com iluminação profissional, movimento de câmera e
-                    elementos temáticos da sua história.</p>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                <h3>Alta Retenção nas Redes</h3>
-                <p>Vídeos verticais (9:16) criados estrategicamente para parar o dedo do leitor no feed do Instagram
-                    Reels, TikTok e YouTube Shorts.</p>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-                <h3>Inovação com WebAR</h3>
-                <p>Quer ir além do vídeo? Transformamos sua capa impressa ou marcador em uma experiência de Realidade
-                    Aumentada direto no navegador, sem precisar baixar app.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção de Preços 1 (PRIORIDADE): Reels e Vídeos Animados 3D -->
-    <section class="pricing" id="reels" style="background: rgba(30, 41, 59, 0.35);">
-        <span class="badge"><i class="fa-solid fa-fire"></i> Mais Procurado pelos Autores</span>
-        <h2 class="section-title">Pacotes de Reels & Vídeos 3D</h2>
-        <p class="section-subtitle">Receba vídeos prontos para postar e divulgar seu livro com visual profissional.</p>
-
-        <div class="grid-3" style="max-width: 1000px; margin: 0 auto;">
-            <!-- Reel Único -->
-            <div class="price-card">
-                <div>
-                    <h3>Reels 3D Único</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Ideal para revelar sua capa ou divulgar um
-                        lançamento</p>
-                    <div class="price">
-                        <span
-                            style="font-size: 1.4rem; color: var(--text-muted); text-decoration: line-through; margin-right: 6px; font-weight: normal;">R$
-                            55</span>
-                        R$ 45
+    <main>
+        <section id="inicio" class="hero-main">
+            <div class="container grid-hero">
+                <div class="hero-content">
+                    <span class="tagline">Landing Pages para Autores e Editoras</span>
+                    <h1>Seu livro merece mais do que apenas palavras.
+                        <p>Ele merece uma experiência.</p>
+                    </h1>
+                    <p class="description">
+                        Criamos landing pages profissionais com um modelo 3D interativo e Realidade Aumentada para
+                        transformar o seu livro em uma experiência inesquecível.
+                    </p>
+                    <ul class="features">
+                        <li><span class="check">✓</span> Sem necessidade de aplicativo</li>
+                        <li><span class="check">✓</span> Compatível com Android e iPhone</li>
+                        <li><span class="check">✓</span> Livro 3D interativo</li>
+                        <li><span class="check">✓</span> Experiências de Realidade Aumentada</li>
+                        <li><span class="check">✓</span> Design personalizado para o seu livro</li>
+                    </ul>
+                    <div class="actions">
+                        <a href="https://wa.me/5511919945924?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20seus%20serviços."
+                            class="btn-whatsapp">Conversar no WhatsApp</a>
                     </div>
-                    <div class="price-note"></div>
-                    <ul class="price-features">
-                        <li><i class="fa-solid fa-check"></i> 1 Vídeo Vertical (9:16) em Full HD</li>
-                        <li><i class="fa-solid fa-check"></i> Modelagem 3D do seu livro (capa, lombada e contracapa)
+                </div>
+
+                <div class="hero-visual">
+                    <model-viewer id="capa-3d" src="assets/modelos/capa.glb" camera-controls
+                        camera-orbit="0deg 75deg 4m" field-of-view="50deg" shadow-intensity="1"
+                        min-camera-orbit="auto auto 2m" max-camera-orbit="auto auto 4m"
+                        style="width: 100%; height: 560px;">
+
+                        <div class="interaction-prompt">
+                            <span class="icon-hand">👆</span>
+                            <p>Interaja com o modelo 3D</p>
+                            <div class="drag-arrows">↔</div>
+                        </div>
+                    </model-viewer>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="ar-section">
+            <div class="container grid-ar-making-of">
+
+                <div class="making-of-card">
+                    <h3>Por que Criar um Site Interativo para o Seu Livro? </h3>
+                    <p class="intro-benefits">
+                        Dê ao seu livro uma apresentação tão única quanto a própria história e ofereça aos seus leitores
+                        uma experiência que eles não vão esquecer.
+                    </p>
+                    <ul class="benefits-list">
+
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Destaque-se no Mercado de Livros</h4>
+                                <p>Dê ao seu livro uma apresentação digital única que atrai a atenção e cria uma
+                                    primeira impressão marcante.</p>
+                            </div>
                         </li>
-                        <li><i class="fa-solid fa-check"></i> Animação de câmera e partículas</li>
-                        <li><i class="fa-solid fa-check"></i> Entrega rápida em até 48h</li>
+
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Aumente o Engajamento dos Leitores</h4>
+                                <p>Experiências interativas incentivam os visitantes a explorar, interagir e passar mais
+                                    tempo
+                                    com o conteúdo do seu livro.</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fa-solid fa-share-nodes"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Facilite a Divulgação do Seu Livro</h4>
+                                <p>Promova a experiência interativa do seu livro através do WhatsApp, Instagram,
+                                    Facebook e
+                                    outras redes sociais.</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Construa uma Apresentação Mais Profissional</h4>
+                                <p>Apresente sua obra com uma experiência digital moderna, responsiva e profissional
+                                    desenhada para o seu público.</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="benefit-icon">
+                                <i class="fa-solid fa-vr-cardboard"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Crie uma Experiência Inesquecível</h4>
+                                <p>Traga personagens e elementos do seu livro para o mundo real com 3D interativo
+                                    e Realidade Aumentada.</p>
+                            </div>
+                        </li>
+                        <div class="ar-capture-tip">
+                            <p>📸 <strong>Dica:</strong> Para tirar uma foto ou gravar um vídeo da sua experiência em
+                                RA,
+                                use a <strong>captura de tela ou o gravador de tela do seu celular</strong>.
+                        </div>
+
                     </ul>
                 </div>
-                <a href="#contact" class="btn-secondary">Encomendar 1 Reels</a>
-            </div>
 
-            <!-- Pacote Trio Lançamento (Destaque) -->
-            <div class="price-card featured">
-                <span class="popular-badge">Melhor Custo-Benefício</span>
-                <div>
-                    <h3>Pacote Trio Lançamento</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">3 vídeos diferentes para manter seu livro
-                        em alta o mês todo</p>
-                    <div class="price">
-                        <span
-                            style="font-size: 1.4rem; color: var(--text-muted); text-decoration: line-through; margin-right: 6px; font-weight: normal;">R$
-                            165</span>
-                        R$ 110
+                <div class="ar-visual-content">
+                    <div class="ar-text">
+                        <h2>Apresente seu livro com inovação.</h2>
+                        <p class="highlight-blue">Encante seus leitores com personagens que interagem com o mundo real.
+                        </p>
+                        <p class="instruction">
+                            Traga o personagem para a sua mesa: teste a experiência agora mesmo.
+                        </p>
+                    </div>
+                    <div class="phone-container">
+                        <div class="phone-frame">
+                            <model-viewer id="modelo-ar" src="assets/modelos/principe.glb"
+                                ios-src="assets/modelos/principe.usdz" ar ar-placement="floor" ar-scale="auto"
+                                ar-modes="webxr scene-viewer quick-look" autoplay poster="assets/modelos/imagem-pt.webp"
+                                reveal="manual" camera-controls>
+
+                                <button slot="ar-button" class="ar-button-trigger">
+                                    Ver em Realidade Aumentada
+                                </button>
+                            </model-viewer>
+                        </div>
                     </div>
 
-                    <ul class="price-features">
-                        <li><i class="fa-solid fa-check"></i> 3 Vídeo Vertical (9:16) em Full HD</li>
-                        <li><i class="fa-solid fa-check"></i> Modelagem 3D do seu livro (capa, lombada e contracapa)
-                        </li>
-                        <li><i class="fa-solid fa-check"></i> Animação de câmera e partículas</li>
-                        <li><i class="fa-solid fa-check"></i> Entrega rápida em até 48h</li>
+                    <div class="qr-code-wrapper">
+                        <p class="qr-text">Escaneie com a câmera do seu celular para visualizar em RA.</p>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://arbook.springlo-tech.com.br/?mode=ar#modelo-ar"
+                            alt="QR Code RA">
 
-                    </ul>
+                        <!-- Overlay de instrução - Inicialmente escondido -->
+                        <div id="ar-overlay" class="ar-instruction-overlay" style="display: none;">
+                            <div class="overlay-content">
+                                <img src="assets/modelos/imagem-pt.webp" alt="Prévia" class="preview-img">
+                                <p>📲 Toque para ver em Realidade Aumentada</p>
+                                <button id="start-ar-from-overlay" class="btn-start-ar">Ver em Realidade Aumentada
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <a href="#contact" class="btn-primary">Quero o Pacote Trio</a>
+            </div>
+        </section>
+
+        <section id="servicos" class="deliverables">
+            <div class="container">
+                <h2 class="section-title">Tudo o que a Experiência Interativa do Seu Livro Precisa</h2>
+                <div class="grid-deliverables">
+                    <div class="card">
+                        <span class="icon">📦</span>
+                        <h3>Landing Page Personalizada</h3>
+                        <p>Um site exclusivo e responsivo desenhado em torno do seu livro, história e público.</p>
+                    </div>
+                    <div class="card">
+                        <span class="icon">📦</span>
+                        <h3>Modelo 3D Interativo</h3>
+                        <p>Um modelo 3D otimizado para que os visitantes explorem diretamente no navegador.</p>
+                    </div>
+                    <div class="card">
+                        <span class="icon">📱</span>
+                        <h3>Realidade Aumentada</h3>
+                        <p>Permita que os leitores vivenciem personagens e elementos do livro no próprio ambiente deles.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <span class="icon">💻</span>
+                        <h3>Hospedagem e Publicação</h3>
+                        <p>Publicamos sua experiência e deixamos a sua landing page pronta para o seu público.</p>
+                    </div>
+                    <div class="card">
+                        <span class="icon">💻</span>
+                        <h3>Design Responsivo</h3>
+                        <p>Uma experiência fluida em computadores, tablets e smartphones.</p>
+                    </div>
+                    <div class="card">
+                        <span class="icon">💻</span>
+                        <h3>Suporte Inicial</h3>
+                        <p>Orientação para ajudar você a compartilhar e promover a experiência interativa do livro.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="processo" class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">Como a Experiência Interativa do Seu Livro É Criada</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-icon">📝</div>
+                        <h4>1. Briefing</h4>
+                        <p>Você envia os detalhes e informações sobre o seu livro.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-icon">🎨</div>
+                        <h4>2. Desenvolvimento</h4>
+                        <p>Criamos efeitos pop-up, o ambiente de Realidade Aumentada e a sua landing page.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-icon">✅</div>
+                        <h4>3. Revisão</h4>
+                        <p>Você revisa o projeto e aprova os detalhes finais.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-icon">🚀</div>
+                        <h4>4. Lançamento</h4>
+                        <p>Publicamos a sua landing page e realizamos todos os testes necessários.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-icon">📢</div>
+                        <h4>5. Divulgação</h4>
+                        <p>Você recebe o seu link no ar, pronto para promover o livro e conquistar novos leitores.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Perguntas Frequentes</h2>
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+                        <summary>
+                            Preciso instalar algum aplicativo para usar a Realidade Aumentada?
+                            <span class="icon">+</span>
+                        </summary>
+                        <p>
+                            Não. A experiência roda diretamente pelo navegador do celular usando a tecnologia WebAR.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>
+                            Funciona tanto em iPhone quanto em Android?
+                            <span class="icon">+</span>
+                        </summary>
+                        <p>
+                            Sim. A experiência é totalmente compatível com os principais dispositivos Android e iPhone.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>
+                            Existem custos extras além da taxa de desenvolvimento?
+                            <span class="icon">+</span>
+                        </summary>
+                        <p>
+                            Não necessariamente. Nós criamos uma conta exclusiva para você na plataforma Cloudflare
+                            Pages e realizamos o upload de todo o projeto lá, garantindo uma infraestrutura de alta
+                            performance e total autonomia para a sua página.
+                            <br><br>
+                            Se você quiser um domínio personalizado (ex: www.seulivro.com), basta adquiri-lo
+                            separadamente, o que custa em média de R$ 40 a R$ 60 por ano.
+                            <br><br>
+                            Para a maioria dos autores e editoras, essa estrutura dedicada é mais do que suficiente para
+                            hospedar os arquivos com segurança e lidar com todo o tráfego regular.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>
+                            Quanto tempo leva o processo de desenvolvimento?
+                            <span class="icon">+</span>
+                        </summary>
+                        <p>
+                            O prazo varia conforme a complexidade do projeto, levando tipicamente entre 5 e 15 dias
+                            úteis.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>
+                            A landing page fica hospedada permanentemente?
+                            <span class="icon">+</span>
+                        </summary>
+                        <p>
+                            Sim. Cuidamos do deploy e entregamos tudo totalmente funcional, pronto para divulgação.
+                        </p>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+
+            <div>
+                <h3>Springlo Tech</h3>
+                <p>
+                    Especializada na criação de Landing Pages com modelos 3D e Realidade Aumentada para autores e
+                    editoras.
+                </p>
+            </div>
+            <div>
+                <h4>Serviços</h4>
+                <ul>
+                    <li>Landing Pages para Livros</li>
+                    <li>Efeitos Pop-up e modelos 3D</li>
+                    <li>Realidade Aumentada</li>
+                    <li>WebAR</li>
+                    <li>Hospedagem Web</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contato</h4>
+                <p>WhatsApp</p>
+                <p>+55 (11) 91994-5924</p>
+                <p>contato@springlo-tech.com.br</p>
             </div>
 
+            <div class="footer-copy"></div>
+
+            © 2026 Springlo Tech • Todos os direitos reservados.
         </div>
-    </section>
-
-    <!-- Seção de Preços 2: Realidade Aumentada (WebAR com MindAR) -->
-    <section class="pricing" id="webar">
-        <span class="badge"><i class="fa-solid fa-vr-cardboard"></i> Inovação Interativa</span>
-        <h2 class="section-title">Realidade Aumentada (WebAR) para Livros</h2>
-        <p class="section-subtitle">O leitor aponta a câmera do celular para a capa física ou marcador e vê elementos 3D
-            ganharem vida — direto no navegador, sem instalar aplicativos.</p>
-
-        <div class="grid-3">
-            <!-- Starter AR -->
-            <div class="price-card">
-                <div>
-                    <h3>Capa Viva Starter</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Perfeito para ações promocionais e
-                        marcadores de página</p>
-                    <div class="price">R$ 490</div>
-                    <div class="price-note">Tecnologia WebAR (sem app)</div>
-                    <ul class="price-features">
-                        <li><i class="fa-solid fa-check"></i> 1 Elemento 3D Animado sobre a capa</li>
-                        <li><i class="fa-solid fa-check"></i> Link direto e QR Code pronto para impressão</li>
-                        <li><i class="fa-solid fa-check"></i> 6 meses de hospedagem WebAR inclusos</li>
-                        <li><i class="fa-solid fa-check"></i> 1 Vídeo demonstrativo para divulgação</li>
-                    </ul>
-                </div>
-                <a href="#contact" class="btn-secondary">Solicitar Capa Starter</a>
-            </div>
-
-            <!-- Professional AR -->
-            <div class="price-card featured">
-                <span class="popular-badge">Inovação Completa</span>
-                <div>
-                    <h3>RA Interativo Pro</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Experiência imersiva para livros físicos e
-                        edições especiais</p>
-                    <div class="price">R$ 890</div>
-                    <div class="price-note">Experiência completa com áudio e botões</div>
-                    <ul class="price-features">
-                        <li><i class="fa-solid fa-check"></i> Cena 3D com múltiplos elementos + efeitos sonoros</li>
-                        <li><i class="fa-solid fa-check"></i> 1 ano de hospedagem WebAR inclusa</li>
-                        <li><i class="fa-solid fa-check"></i> 2 Reels promocionais mostrando a experiência</li>
-                    </ul>
-                </div>
-                <a href="#contact" class="btn-primary">Solicitar RA Pro</a>
-            </div>
-
-
-        </div>
-    </section>
-
-    <!-- Formulário de Contato -->
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <h2 style="text-align: center; margin-bottom: 10px;">Vamos Dar Vida ao Seu Livro?</h2>
-            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Preencha os dados abaixo e
-                retornaremos em até 24 horas com os próximos passos.</p>
-
-            <form action="https://formspree.io/f/xbggbzzl" method="POST">
-                <div class="form-group">
-                    <label for="name">Seu Nome</label>
-                    <input type="text" id="name" name="name" required placeholder="Nome do Autor(a) ou Editora">
-                </div>
-                <div class="form-group">
-                    <label for="email">Seu E-mail ou WhatsApp</label>
-                    <input type="text" id="email" name="email" required
-                        placeholder="seuemail@exemplo.com ou (11) 99999-9999">
-                </div>
-                <div class="form-group">
-                    <label for="package">Qual serviço você procura?</label>
-                    <select id="package" name="package">
-                        <option value="Reels 3D Único (R$ 45)">Reels 3D Único (R$ 45)</option>
-                        <option value="Pacote Trio Lançamento (R$ 110)">Pacote Trio Lançamento - 3 Reels (R$ 110)
-                        </option>
-                        <option value="Capa Viva Starter WebAR (R$ 490)">Realidade Aumentada - Capa Starter (R$ 490)
-                        </option>
-                        <option value="RA Interativo Pro WebAR (R$ 890)">Realidade Aumentada - Pro (R$ 890)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Conte sobre o seu livro</label>
-                    <textarea id="message" name="message" rows="4"
-                        placeholder="Qual o título e o gênero do seu livro? Você já tem a capa pronta em alta resolução?"></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Enviar Solicitação <i
-                        class="fa-solid fa-paper-plane"></i></button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2026 Springlo Tech. Todos os direitos reservados. Animação 3D e Realidade Aumentada na Web.</p>
     </footer>
-
+    <script src="ar.js"></script>
 </body>
 
 </html>
